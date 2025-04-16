@@ -15,9 +15,9 @@ CREATE TABLE users (
 );
 
 
-INSERT INTO users (username, password, firstname, middlename, lastname, email, role) VALUES
-('admin', '$2y$10$mTuOYYcmweU/AWLOKh/iC.5.AzUHCzlWtDT76NTS4rIszzAYZmc5i', 'admin', NULL, 'NULL', 'admin@example.com', 'admin'),
-('user', '$2y$10$fUZ881.pbVvFRby1qOidZeMPeVBspfIl1v9j.vKmO0CiB2IuN3IeS', 'Keihle', 'L.', 'Pascual', 'user@example.com', 'user');
+INSERT INTO users (username, password, firstname, middlename, lastname, email, address, role) VALUES
+('admin', '$2y$10$mTuOYYcmweU/AWLOKh/iC.5.AzUHCzlWtDT76NTS4rIszzAYZmc5i', 'admin', NULL, 'NULL', 'admin@example.com', '	MacArthur Hwy, Angeles, 2009 Pampanga, Philippines', 'admin'),
+('user', '$2y$10$fUZ881.pbVvFRby1qOidZeMPeVBspfIl1v9j.vKmO0CiB2IuN3IeS', 'Keihle', 'L.', 'Pascual', 'user@example.com', 'Angeles City, Pampanga', 'user');
 
 -- CATEGORIES
 CREATE TABLE categories (
