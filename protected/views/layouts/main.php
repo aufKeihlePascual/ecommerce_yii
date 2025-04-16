@@ -29,10 +29,10 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/post/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Posts', 'url'=>array('/post/index')),
+				array('label'=>'Home', 'url'=>array('/site/index')),
+				array('label'=>'Products', 'url'=>array('/product/index')),
+				array('label'=>'Orders', 'url'=>array('/order/index'), 'visible' => !Yii::app()->user->isGuest),
+				array('label'=>'View Cart', 'url'=>array('/cart/view')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
