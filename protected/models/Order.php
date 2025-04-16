@@ -1,26 +1,29 @@
 <?php
 
 /**
- * This is the model class for table "cart_items".
+ * This is the model class for table "orders".
  *
- * The followings are the available columns in table 'cart_items':
+ * The followings are the available columns in table 'orders':
  * @property integer $id
+ * @property integer $user_id
  * @property integer $cart_id
- * @property integer $product_id
- * @property integer $quantity
+ * @property string $total
+ * @property string $status
+ * @property string $created_at
  *
  * The followings are the available model relations:
+ * @property Users $user
  * @property Cart $cart
- * @property Products $product
+ * @property Payments[] $payments
  */
-class CartItems extends CActiveRecord
+class Order extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'cart_items';
+		return 'orders';
 	}
 
 	/**
@@ -31,10 +34,13 @@ class CartItems extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('cart_id, product_id, quantity', 'numerical', 'integerOnly'=>true),
+			array('user_id, cart_id', 'numerical', 'integerOnly'=>true),
+			array('total', 'length', 'max'=>10),
+			array('status', 'length', 'max'=>9),
+			array('created_at', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, cart_id, product_id, quantity', 'safe', 'on'=>'search'),
+			array('id, user_id, cart_id, total, status, created_at', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,8 +52,9 @@ class CartItems extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
 			'cart' => array(self::BELONGS_TO, 'Cart', 'cart_id'),
-			'product' => array(self::BELONGS_TO, 'Products', 'product_id'),
+			'payments' => array(self::HAS_MANY, 'Payments', 'order_id'),
 		);
 	}
 
@@ -58,9 +65,11 @@ class CartItems extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'user_id' => 'User',
 			'cart_id' => 'Cart',
-			'product_id' => 'Product',
-			'quantity' => 'Quantity',
+			'total' => 'Total',
+			'status' => 'Status',
+			'created_at' => 'Created At',
 		);
 	}
 
@@ -83,9 +92,11 @@ class CartItems extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('cart_id',$this->cart_id);
-		$criteria->compare('product_id',$this->product_id);
-		$criteria->compare('quantity',$this->quantity);
+		$criteria->compare('total',$this->total,true);
+		$criteria->compare('status',$this->status,true);
+		$criteria->compare('created_at',$this->created_at,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -96,7 +107,7 @@ class CartItems extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return CartItems the static model class
+	 * @return Order the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

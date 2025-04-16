@@ -1,29 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "orders".
+ * This is the model class for table "tags".
  *
- * The followings are the available columns in table 'orders':
+ * The followings are the available columns in table 'tags':
  * @property integer $id
- * @property integer $user_id
- * @property integer $cart_id
- * @property string $total
- * @property string $status
- * @property string $created_at
+ * @property string $name
  *
  * The followings are the available model relations:
- * @property Users $user
- * @property Cart $cart
- * @property Payments[] $payments
+ * @property Products[] $products
  */
-class Orders extends CActiveRecord
+class Tag extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'orders';
+		return 'tags';
 	}
 
 	/**
@@ -34,13 +28,11 @@ class Orders extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, cart_id', 'numerical', 'integerOnly'=>true),
-			array('total', 'length', 'max'=>10),
-			array('status', 'length', 'max'=>9),
-			array('created_at', 'safe'),
+			array('name', 'required'),
+			array('name', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, cart_id, total, status, created_at', 'safe', 'on'=>'search'),
+			array('id, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,9 +44,7 @@ class Orders extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
-			'cart' => array(self::BELONGS_TO, 'Cart', 'cart_id'),
-			'payments' => array(self::HAS_MANY, 'Payments', 'order_id'),
+			'products' => array(self::MANY_MANY, 'Products', 'product_tags(tag_id, product_id)'),
 		);
 	}
 
@@ -65,11 +55,7 @@ class Orders extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => 'User',
-			'cart_id' => 'Cart',
-			'total' => 'Total',
-			'status' => 'Status',
-			'created_at' => 'Created At',
+			'name' => 'Name',
 		);
 	}
 
@@ -92,11 +78,7 @@ class Orders extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('cart_id',$this->cart_id);
-		$criteria->compare('total',$this->total,true);
-		$criteria->compare('status',$this->status,true);
-		$criteria->compare('created_at',$this->created_at,true);
+		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -107,7 +89,7 @@ class Orders extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Orders the static model class
+	 * @return Tag the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

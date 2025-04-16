@@ -1,23 +1,30 @@
 <?php
 
 /**
- * This is the model class for table "tags".
+ * This is the model class for table "products".
  *
- * The followings are the available columns in table 'tags':
+ * The followings are the available columns in table 'products':
  * @property integer $id
  * @property string $name
+ * @property string $description
+ * @property string $price
+ * @property integer $stock
+ * @property integer $category_id
+ * @property string $image
  *
  * The followings are the available model relations:
- * @property Products[] $products
+ * @property CartItems[] $cartItems
+ * @property Tags[] $tags
+ * @property Categories $category
  */
-class Tags extends CActiveRecord
+class Product extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tags';
+		return 'products';
 	}
 
 	/**
@@ -28,11 +35,15 @@ class Tags extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
+			array('name, price, stock', 'required'),
+			array('stock, category_id', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>100),
+			array('price', 'length', 'max'=>10),
+			array('image', 'length', 'max'=>255),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, name, description, price, stock, category_id, image', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -44,7 +55,9 @@ class Tags extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'products' => array(self::MANY_MANY, 'Products', 'product_tags(tag_id, product_id)'),
+			'cartItems' => array(self::HAS_MANY, 'CartItems', 'product_id'),
+			'tags' => array(self::MANY_MANY, 'Tags', 'product_tags(product_id, tag_id)'),
+			'category' => array(self::BELONGS_TO, 'Categories', 'category_id'),
 		);
 	}
 
@@ -56,6 +69,11 @@ class Tags extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+			'description' => 'Description',
+			'price' => 'Price',
+			'stock' => 'Stock',
+			'category_id' => 'Category',
+			'image' => 'Image',
 		);
 	}
 
@@ -79,6 +97,11 @@ class Tags extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('price',$this->price,true);
+		$criteria->compare('stock',$this->stock);
+		$criteria->compare('category_id',$this->category_id);
+		$criteria->compare('image',$this->image,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -89,7 +112,7 @@ class Tags extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Tags the static model class
+	 * @return Product the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

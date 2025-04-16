@@ -1,27 +1,31 @@
 <?php
 
 /**
- * This is the model class for table "payments".
+ * This is the model class for table "users".
  *
- * The followings are the available columns in table 'payments':
+ * The followings are the available columns in table 'users':
  * @property integer $id
- * @property integer $order_id
- * @property string $method
- * @property string $amount
- * @property string $payment_status
- * @property string $payment_date
+ * @property string $username
+ * @property string $password
+ * @property string $firstname
+ * @property string $middlename
+ * @property string $lastname
+ * @property string $email
+ * @property string $role
+ * @property string $address
  *
  * The followings are the available model relations:
- * @property Orders $order
+ * @property Cart[] $carts
+ * @property Orders[] $orders
  */
-class Payments extends CActiveRecord
+class User extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'payments';
+		return 'users';
 	}
 
 	/**
@@ -32,13 +36,15 @@ class Payments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('order_id', 'numerical', 'integerOnly'=>true),
-			array('method', 'length', 'max'=>50),
-			array('amount, payment_status', 'length', 'max'=>10),
-			array('payment_date', 'safe'),
+			array('username, password, firstname, lastname, email', 'required'),
+			array('username, firstname, middlename, lastname', 'length', 'max'=>50),
+			array('password', 'length', 'max'=>255),
+			array('email', 'length', 'max'=>100),
+			array('role', 'length', 'max'=>5),
+			array('address', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, order_id, method, amount, payment_status, payment_date', 'safe', 'on'=>'search'),
+			array('id, username, password, firstname, middlename, lastname, email, role, address', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,7 +56,8 @@ class Payments extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'order' => array(self::BELONGS_TO, 'Orders', 'order_id'),
+			'carts' => array(self::HAS_MANY, 'Cart', 'user_id'),
+			'orders' => array(self::HAS_MANY, 'Orders', 'user_id'),
 		);
 	}
 
@@ -61,11 +68,14 @@ class Payments extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'order_id' => 'Order',
-			'method' => 'Method',
-			'amount' => 'Amount',
-			'payment_status' => 'Payment Status',
-			'payment_date' => 'Payment Date',
+			'username' => 'Username',
+			'password' => 'Password',
+			'firstname' => 'Firstname',
+			'middlename' => 'Middlename',
+			'lastname' => 'Lastname',
+			'email' => 'Email',
+			'role' => 'Role',
+			'address' => 'Address',
 		);
 	}
 
@@ -88,11 +98,14 @@ class Payments extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('order_id',$this->order_id);
-		$criteria->compare('method',$this->method,true);
-		$criteria->compare('amount',$this->amount,true);
-		$criteria->compare('payment_status',$this->payment_status,true);
-		$criteria->compare('payment_date',$this->payment_date,true);
+		$criteria->compare('username',$this->username,true);
+		$criteria->compare('password',$this->password,true);
+		$criteria->compare('firstname',$this->firstname,true);
+		$criteria->compare('middlename',$this->middlename,true);
+		$criteria->compare('lastname',$this->lastname,true);
+		$criteria->compare('email',$this->email,true);
+		$criteria->compare('role',$this->role,true);
+		$criteria->compare('address',$this->address,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -103,7 +116,7 @@ class Payments extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Payments the static model class
+	 * @return User the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

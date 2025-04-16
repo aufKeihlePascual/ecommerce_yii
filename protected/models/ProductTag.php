@@ -7,7 +7,7 @@
  * @property integer $product_id
  * @property integer $tag_id
  */
-class ProductTags extends CActiveRecord
+class ProductTag extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -85,7 +85,7 @@ class ProductTags extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return ProductTags the static model class
+	 * @return ProductTag the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

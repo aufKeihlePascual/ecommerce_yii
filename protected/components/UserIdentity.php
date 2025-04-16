@@ -34,7 +34,7 @@ class UserIdentity extends CUserIdentity
 		// return !$this->errorCode;
 
 		$username=strtolower($this->username);
-        $user=Users::model()->find('LOWER(username)=?',array($username));
+        $user=User::model()->find('LOWER(username)=?',array($username));
         if($user===null)
             $this->errorCode=self::ERROR_USERNAME_INVALID;
         else if(!$user->validatePassword($this->password))

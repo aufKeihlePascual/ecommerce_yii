@@ -1,30 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "products".
+ * This is the model class for table "payments".
  *
- * The followings are the available columns in table 'products':
+ * The followings are the available columns in table 'payments':
  * @property integer $id
- * @property string $name
- * @property string $description
- * @property string $price
- * @property integer $stock
- * @property integer $category_id
- * @property string $image
+ * @property integer $order_id
+ * @property string $method
+ * @property string $amount
+ * @property string $payment_status
+ * @property string $payment_date
  *
  * The followings are the available model relations:
- * @property CartItems[] $cartItems
- * @property Tags[] $tags
- * @property Categories $category
+ * @property Orders $order
  */
-class Products extends CActiveRecord
+class Payment extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'products';
+		return 'payments';
 	}
 
 	/**
@@ -35,15 +32,13 @@ class Products extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, price, stock', 'required'),
-			array('stock, category_id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>100),
-			array('price', 'length', 'max'=>10),
-			array('image', 'length', 'max'=>255),
-			array('description', 'safe'),
+			array('order_id', 'numerical', 'integerOnly'=>true),
+			array('method', 'length', 'max'=>50),
+			array('amount, payment_status', 'length', 'max'=>10),
+			array('payment_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, description, price, stock, category_id, image', 'safe', 'on'=>'search'),
+			array('id, order_id, method, amount, payment_status, payment_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,9 +50,7 @@ class Products extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'cartItems' => array(self::HAS_MANY, 'CartItems', 'product_id'),
-			'tags' => array(self::MANY_MANY, 'Tags', 'product_tags(product_id, tag_id)'),
-			'category' => array(self::BELONGS_TO, 'Categories', 'category_id'),
+			'order' => array(self::BELONGS_TO, 'Orders', 'order_id'),
 		);
 	}
 
@@ -68,12 +61,11 @@ class Products extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'description' => 'Description',
-			'price' => 'Price',
-			'stock' => 'Stock',
-			'category_id' => 'Category',
-			'image' => 'Image',
+			'order_id' => 'Order',
+			'method' => 'Method',
+			'amount' => 'Amount',
+			'payment_status' => 'Payment Status',
+			'payment_date' => 'Payment Date',
 		);
 	}
 
@@ -96,12 +88,11 @@ class Products extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('price',$this->price,true);
-		$criteria->compare('stock',$this->stock);
-		$criteria->compare('category_id',$this->category_id);
-		$criteria->compare('image',$this->image,true);
+		$criteria->compare('order_id',$this->order_id);
+		$criteria->compare('method',$this->method,true);
+		$criteria->compare('amount',$this->amount,true);
+		$criteria->compare('payment_status',$this->payment_status,true);
+		$criteria->compare('payment_date',$this->payment_date,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -112,7 +103,7 @@ class Products extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Products the static model class
+	 * @return Payment the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
