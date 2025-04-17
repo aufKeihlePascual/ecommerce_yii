@@ -61,6 +61,20 @@
 			</nav>
 		</div>
 	</header> -->
+
+	<?php
+		// $this->widget('zii.widgets.CMenu', array(
+		// 	'htmlOptions' => array('class' => 'nav gap-3'), // Bootstrap or custom classes
+		// 	'items' => array(
+		// 		array('label'=>'Home', 'url'=>array('/site/index'), 'linkOptions'=>array('class'=>'nav-link text-light')),
+		// 		array('label'=>'Products', 'url'=>array('/product/index'), 'linkOptions'=>array('class'=>'nav-link text-light')),
+		// 		array('label'=>'Orders', 'url'=>array('/order/index'), 'visible'=>!Yii::app()->user->isGuest, 'linkOptions'=>array('class'=>'nav-link text-light')),
+		// 		array('label'=>'View Cart', 'url'=>array('/cart/index'), 'linkOptions'=>array('class'=>'nav-link text-light')),
+		// 		array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest, 'linkOptions'=>array('class'=>'nav-link text-light')),
+		// 		array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'linkOptions'=>array('class'=>'nav-link text-light')),
+		// 	),
+		// ));
+		?>
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
