@@ -148,3 +148,366 @@ Stack trace:
 REQUEST_URI=/ecommerce/index.php/site/login
 HTTP_REFERER=http://localhost/ecommerce/index.php/site/login
 ---
+2025/04/16 15:16:12 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "post/index". in H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php:286
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('post/index')
+#1 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/ecommerce/index.php/post/index
+HTTP_REFERER=http://localhost/ecommerce/index.php
+---
+2025/04/16 15:20:35 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "post/index". in H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php:286
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('post/index')
+#1 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/ecommerce/index.php/post/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/product
+---
+2025/04/16 15:22:25 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in H:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 H:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 H:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 H:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
+---
+2025/04/16 15:22:40 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "order/index". in H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php:286
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index')
+#1 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/ecommerce/index.php/order/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
+---
+2025/04/16 15:23:15 [error] [exception.CException] CException: Property "CWebUser.role" is not defined. in H:\xampp\htdocs\ecommerce\framework\base\CComponent.php:130
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\auth\CWebUser.php(146): CComponent->__get('role')
+#1 H:\xampp\htdocs\ecommerce\protected\views\layouts\main.php(34): CWebUser->__get('role')
+#2 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require('H:\\xampp\\htdocs...')
+#3 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): CBaseController->renderInternal('H:\\xampp\\htdocs...', Array, true)
+#4 H:\xampp\htdocs\ecommerce\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('H:\\xampp\\htdocs...', Array, true)
+#5 H:\xampp\htdocs\ecommerce\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div class="spa...')
+#6 H:\xampp\htdocs\ecommerce\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div class="spa...')
+#7 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(215): COutputProcessor->run()
+#8 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(309): CBaseController->endWidget('CContentDecorat...')
+#9 H:\xampp\htdocs\ecommerce\protected\views\layouts\column2.php(22): CBaseController->endContent()
+#10 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require('H:\\xampp\\htdocs...')
+#11 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): CBaseController->renderInternal('H:\\xampp\\htdocs...', Array, true)
+#12 H:\xampp\htdocs\ecommerce\framework\web\CController.php(787): CBaseController->renderFile('H:\\xampp\\htdocs...', Array, true)
+#13 H:\xampp\htdocs\ecommerce\protected\controllers\ProductController.php(126): CController->render('index', Array)
+#14 H:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): ProductController->actionIndex()
+#15 H:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#17 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#18 H:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#19 H:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#20 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#21 H:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#22 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('index')
+#24 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('product/index')
+#25 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#26 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#27 {main}
+REQUEST_URI=/ecommerce/index.php/product/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/site/index
+---
+2025/04/16 15:23:17 [error] [exception.CException] CException: Property "CWebUser.role" is not defined. in H:\xampp\htdocs\ecommerce\framework\base\CComponent.php:130
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\auth\CWebUser.php(146): CComponent->__get('role')
+#1 H:\xampp\htdocs\ecommerce\protected\views\layouts\main.php(34): CWebUser->__get('role')
+#2 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require('H:\\xampp\\htdocs...')
+#3 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): CBaseController->renderInternal('H:\\xampp\\htdocs...', Array, true)
+#4 H:\xampp\htdocs\ecommerce\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('H:\\xampp\\htdocs...', Array, true)
+#5 H:\xampp\htdocs\ecommerce\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#6 H:\xampp\htdocs\ecommerce\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#7 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(215): COutputProcessor->run()
+#8 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(309): CBaseController->endWidget('CContentDecorat...')
+#9 H:\xampp\htdocs\ecommerce\protected\views\layouts\column1.php(6): CBaseController->endContent()
+#10 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require('H:\\xampp\\htdocs...')
+#11 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): CBaseController->renderInternal('H:\\xampp\\htdocs...', Array, true)
+#12 H:\xampp\htdocs\ecommerce\framework\web\CController.php(787): CBaseController->renderFile('H:\\xampp\\htdocs...', Array, true)
+#13 H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php(32): CController->render('index')
+#14 H:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#15 H:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 H:\xampp\htdocs\ecommerce\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('index')
+#19 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('site/index')
+#20 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#21 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/ecommerce/index.php/site/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/product
+---
+2025/04/16 15:23:18 [error] [exception.CException] CException: Property "CWebUser.role" is not defined. in H:\xampp\htdocs\ecommerce\framework\base\CComponent.php:130
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\auth\CWebUser.php(146): CComponent->__get('role')
+#1 H:\xampp\htdocs\ecommerce\protected\views\layouts\main.php(34): CWebUser->__get('role')
+#2 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require('H:\\xampp\\htdocs...')
+#3 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): CBaseController->renderInternal('H:\\xampp\\htdocs...', Array, true)
+#4 H:\xampp\htdocs\ecommerce\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('H:\\xampp\\htdocs...', Array, true)
+#5 H:\xampp\htdocs\ecommerce\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div class="spa...')
+#6 H:\xampp\htdocs\ecommerce\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div class="spa...')
+#7 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(215): COutputProcessor->run()
+#8 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(309): CBaseController->endWidget('CContentDecorat...')
+#9 H:\xampp\htdocs\ecommerce\protected\views\layouts\column2.php(22): CBaseController->endContent()
+#10 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require('H:\\xampp\\htdocs...')
+#11 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): CBaseController->renderInternal('H:\\xampp\\htdocs...', Array, true)
+#12 H:\xampp\htdocs\ecommerce\framework\web\CController.php(787): CBaseController->renderFile('H:\\xampp\\htdocs...', Array, true)
+#13 H:\xampp\htdocs\ecommerce\protected\controllers\ProductController.php(126): CController->render('index', Array)
+#14 H:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): ProductController->actionIndex()
+#15 H:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#17 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#18 H:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#19 H:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#20 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#21 H:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#22 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('')
+#24 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('product')
+#25 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#26 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#27 {main}
+REQUEST_URI=/ecommerce/index.php/product
+---
+2025/04/16 15:23:27 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "order/index". in H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php:286
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index')
+#1 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/ecommerce/index.php/order/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/site/index
+---
+2025/04/16 15:25:05 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in H:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 H:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 H:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 H:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php
+---
+2025/04/16 15:25:14 [error] [php] include(LoginForm.php): Failed to open stream: No such file or directory (H:\xampp\htdocs\ecommerce\framework\YiiBase.php:463)
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\YiiBase.php(463): include()
+#1 H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php(80): autoload()
+#2 H:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#3 H:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 H:\xampp\htdocs\ecommerce\framework\web\CController.php(286): SiteController->runAction()
+#5 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#6 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): SiteController->run()
+#7 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#8 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 H:\xampp\htdocs\ecommerce\index.php(13): CWebApplication->run()
+REQUEST_URI=/ecommerce/index.php/site/login
+in H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php (80)
+in H:\xampp\htdocs\ecommerce\index.php (13)
+2025/04/16 15:25:32 [error] [php] include(LoginForm.php): Failed to open stream: No such file or directory (H:\xampp\htdocs\ecommerce\framework\YiiBase.php:463)
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\YiiBase.php(463): include()
+#1 H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php(80): autoload()
+#2 H:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#3 H:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 H:\xampp\htdocs\ecommerce\framework\web\CController.php(286): SiteController->runAction()
+#5 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#6 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): SiteController->run()
+#7 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#8 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 H:\xampp\htdocs\ecommerce\index.php(13): CWebApplication->run()
+REQUEST_URI=/ecommerce/index.php/site/login
+in H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php (80)
+in H:\xampp\htdocs\ecommerce\index.php (13)
+2025/04/16 15:30:28 [error] [exception.CException] CException: User and its behaviors do not have a method or closure named "validatePassword". in H:\xampp\htdocs\ecommerce\framework\base\CComponent.php:264
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\db\ar\CActiveRecord.php(229): CComponent->__call('validatePasswor...', Array)
+#1 H:\xampp\htdocs\ecommerce\protected\components\UserIdentity.php(40): CActiveRecord->__call('validatePasswor...', Array)
+#2 H:\xampp\htdocs\ecommerce\protected\models\LoginForm.php(54): UserIdentity->authenticate()
+#3 H:\xampp\htdocs\ecommerce\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#4 H:\xampp\htdocs\ecommerce\framework\validators\CValidator.php(201): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#5 H:\xampp\htdocs\ecommerce\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), Array)
+#6 H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php(94): CModel->validate()
+#7 H:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#8 H:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 H:\xampp\htdocs\ecommerce\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('login')
+#12 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#13 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#14 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/ecommerce/index.php/site/login
+HTTP_REFERER=http://localhost/ecommerce/index.php/site/login
+---
+2025/04/16 15:32:58 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in H:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 H:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 H:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 H:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php
+---
+2025/04/16 15:43:22 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in H:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 H:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 H:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 H:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
+---
+2025/04/16 15:43:26 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in H:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 H:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 H:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 H:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php/site/login
+---
+2025/04/16 15:45:14 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in H:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 H:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 H:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 H:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 H:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php
+---
+2025/04/16 16:06:18 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "order/index". in H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php:286
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index')
+#1 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/ecommerce/index.php/order/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
+---
+2025/04/17 18:29:37 [error] [exception.CException] CException: Property "CMenu.cssFile" is not defined. in H:\xampp\htdocs\ecommerce\framework\base\CComponent.php:172
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CWidgetFactory.php(161): CComponent->__set('cssFile', false)
+#1 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'CMenu', Array)
+#2 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(181): CBaseController->createWidget('zii.widgets.CMe...', Array)
+#3 H:\xampp\htdocs\ecommerce\protected\views\layouts\main.php(58): CBaseController->widget('zii.widgets.CMe...', Array)
+#4 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require('H:\\xampp\\htdocs...')
+#5 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): CBaseController->renderInternal('H:\\xampp\\htdocs...', Array, true)
+#6 H:\xampp\htdocs\ecommerce\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('H:\\xampp\\htdocs...', Array, true)
+#7 H:\xampp\htdocs\ecommerce\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#8 H:\xampp\htdocs\ecommerce\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#9 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(215): COutputProcessor->run()
+#10 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(309): CBaseController->endWidget('CContentDecorat...')
+#11 H:\xampp\htdocs\ecommerce\protected\views\layouts\column1.php(6): CBaseController->endContent()
+#12 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require('H:\\xampp\\htdocs...')
+#13 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): CBaseController->renderInternal('H:\\xampp\\htdocs...', Array, true)
+#14 H:\xampp\htdocs\ecommerce\framework\web\CController.php(787): CBaseController->renderFile('H:\\xampp\\htdocs...', Array, true)
+#15 H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php(32): CController->render('index')
+#16 H:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#17 H:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 H:\xampp\htdocs\ecommerce\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#19 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('')
+#21 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#22 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#23 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/ecommerce/index.php
+HTTP_REFERER=http://localhost/ecommerce/index.php/site/index
+---
+2025/04/17 18:46:47 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "order/index". in H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php:286
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index')
+#1 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/ecommerce/index.php/order/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/cart/index
+---
+2025/04/17 18:47:00 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "order/index". in H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php:286
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index')
+#1 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/ecommerce/index.php/order/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/cart/index
+---
+2025/04/17 18:47:02 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "order/index". in H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php:286
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index')
+#1 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/ecommerce/index.php/order/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/cart/index
+---
+2025/04/17 18:47:30 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "order/index". in H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php:286
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index')
+#1 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/ecommerce/index.php/order/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
+---
