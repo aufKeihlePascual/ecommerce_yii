@@ -31,23 +31,12 @@
 		<a href="#"><img src="<?php echo Yii::app()->baseUrl; ?>/images/logo.jpg" alt="logo"  style="width: 150px; height: auto;"></a>
 
 		<div>
-		<?php
-		// $this->widget('zii.widgets.CMenu', array(
-		// 	'htmlOptions' => array('class' => 'nav gap-3'), // Bootstrap or custom classes
-		// 	'items' => array(
-		// 		array('label'=>'Home', 'url'=>array('/site/index'), 'linkOptions'=>array('class'=>'nav-link text-light')),
-		// 		array('label'=>'Products', 'url'=>array('/product/index'), 'linkOptions'=>array('class'=>'nav-link text-light')),
-		// 		array('label'=>'Orders', 'url'=>array('/order/index'), 'visible'=>!Yii::app()->user->isGuest, 'linkOptions'=>array('class'=>'nav-link text-light')),
-		// 		array('label'=>'View Cart', 'url'=>array('/cart/index'), 'linkOptions'=>array('class'=>'nav-link text-light')),
-		// 		array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest, 'linkOptions'=>array('class'=>'nav-link text-light')),
-		// 		array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'linkOptions'=>array('class'=>'nav-link text-light')),
-		// 	),
-		// ));
-		?>
 			<ul id="navbar">
 				<li><a href="<?php echo Yii::app()->createUrl('site/index'); ?>">Home</a></li>
 				<li><a href="<?php echo Yii::app()->createUrl('product/index'); ?>">Products</a></li>
 				<li><a href="<?php echo Yii::app()->createUrl('/order/index'); ?>">Orders</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact</a></li>
 				<li><a href="<?php echo Yii::app()->createUrl('/cart/index'); ?>"><i class="fa-solid fa-cart-shopping"></i></a></li>
 			</ul>
 		</div>
