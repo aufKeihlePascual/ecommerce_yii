@@ -11,7 +11,7 @@
 	<!-- <script src="https://kit.fontawesome.com/4e3a20099e.js" crossorigin="anonymous"></script> -->
 	<script src="https://kit.fontawesome.com/4e3a20099e.js"></script>
 
-	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/custom.css">
+	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css">
 
 	<?php
 	Yii::app()->clientScript->scriptMap = array( // Prevent Yii from loading default CSS
