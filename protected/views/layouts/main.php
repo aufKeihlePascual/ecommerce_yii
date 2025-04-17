@@ -1,60 +1,100 @@
-<?php /* @var $this Controller */ ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta charset="UTF-8">
 	<meta name="language" content="en">
-
-	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection">
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print">
-	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection">
-	<![endif]-->
-
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css">
-
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- <script src="https://kit.fontawesome.com/4e3a20099e.js" crossorigin="anonymous"></script> -->
+	<script src="https://kit.fontawesome.com/4e3a20099e.js"></script>
+
+	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/custom.css">
+
+	<?php
+	Yii::app()->clientScript->scriptMap = array( // Prevent Yii from loading default CSS
+		'jquery.js' => false,
+		'yii.css' => false,
+		'form.css' => false,
+		'screen.css' => false,
+	);
+	Yii::app()->clientScript->reset();
+	?>
 </head>
 
-<body>
+<body class="bg-dark text-light">
 
-<div class="container" id="page">
+	<!-- NAVBAR HEADER -->
+	<section id="header">
+		<a href="#"><img src="<?php echo Yii::app()->baseUrl; ?>/images/logo.jpg" alt="logo"  style="width: 150px; height: auto;"></a>
 
-	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-	</div><!-- header -->
+		<div>
+		<?php
+		// $this->widget('zii.widgets.CMenu', array(
+		// 	'htmlOptions' => array('class' => 'nav gap-3'), // Bootstrap or custom classes
+		// 	'items' => array(
+		// 		array('label'=>'Home', 'url'=>array('/site/index'), 'linkOptions'=>array('class'=>'nav-link text-light')),
+		// 		array('label'=>'Products', 'url'=>array('/product/index'), 'linkOptions'=>array('class'=>'nav-link text-light')),
+		// 		array('label'=>'Orders', 'url'=>array('/order/index'), 'visible'=>!Yii::app()->user->isGuest, 'linkOptions'=>array('class'=>'nav-link text-light')),
+		// 		array('label'=>'View Cart', 'url'=>array('/cart/index'), 'linkOptions'=>array('class'=>'nav-link text-light')),
+		// 		array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest, 'linkOptions'=>array('class'=>'nav-link text-light')),
+		// 		array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'linkOptions'=>array('class'=>'nav-link text-light')),
+		// 	),
+		// ));
+		?>
+			<ul id="navbar">
+				<li><a href="<?php echo Yii::app()->createUrl('site/index'); ?>">Home</a></li>
+				<li><a href="<?php echo Yii::app()->createUrl('product/index'); ?>">Products</a></li>
+				<li><a href="<?php echo Yii::app()->createUrl('/order/index'); ?>">Orders</a></li>
+				<li><a href="<?php echo Yii::app()->createUrl('/cart/index'); ?>"><i class="fa-solid fa-cart-shopping"></i></a></li>
+			</ul>
+		</div>
+	</section>
+	 
 
-	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'Products', 'url'=>array('/product/index')),
-				array('label'=>'Orders', 'url'=>array('/order/index'), 'visible' => !Yii::app()->user->isGuest),
-				array('label'=>'View Cart', 'url'=>array('/cart/view')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
-		)); ?>
-	</div><!-- mainmenu -->
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
+	<!-- Main Content -->
+	<main class="container my-5">
+		<?php echo $content; ?>
+	</main>
 
-	<?php echo $content; ?>
+	<!-- Footer -->
+	<footer class="bg-black text-secondary py-5 mt-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 mb-4">
+					<h5 class="text-white">Collections</h5>
+					<ul class="list-unstyled">
+						<li><a href="#" class="footer-link">All Products</a></li>
+						<li><a href="#" class="footer-link">Group Buys</a></li>
+						<li><a href="#" class="footer-link">What's New</a></li>
+					</ul>
+				</div>
+				<div class="col-md-4 mb-4">
+					<h5 class="text-white">Contact</h5>
+					<p class="small">📞 09123456789<br>📧 info@innotech.com</p>
+					<div class="mt-2">
+						<a href="#" class="me-2 text-light"><i class="bi bi-facebook"></i></a>
+						<a href="#" class="me-2 text-light"><i class="bi bi-instagram"></i></a>
+						<a href="#" class="text-light"><i class="bi bi-discord"></i></a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<h5 class="text-white">Newsletter</h5>
+					<p class="small">Get exclusive updates and deals.</p>
+					<form class="d-flex">
+						<input type="email" class="form-control form-control-sm me-2" placeholder="Your email">
+						<button class="btn btn-success btn-sm">Subscribe</button>
+					</form>
+				</div>
+			</div>
+			<hr class="border-secondary my-4">
+			<p class="text-center small mb-0">© <?php echo date('Y'); ?> InnoTech. All rights reserved.</p>
+		</div>
+	</footer>
 
-	<div class="clear"></div>
-
-	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
-	</div><!-- footer -->
-
-</div><!-- page -->
-
+	<!-- Bootstrap JS Bundle -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
