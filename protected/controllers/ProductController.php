@@ -170,4 +170,48 @@ class ProductController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	public function actionAddToCart($id)
+	{
+		if (Yii::app()->user->isGuest) {
+			$this->redirect(array('site/login')); // Or wherever your login page is
+		}
+
+		$product = Product::model()->findByPk($id);
+		if (!$product) {
+			throw new CHttpException(404, 'Product not found.');
+		}
+
+		$userId = Yii::app()->user->id;
+
+		// Find or create active cart for logged-in user
+		$cart = Cart::model()->find('user_id=:uid AND status="active"', array(':uid' => $userId));
+		if (!$cart) {
+			$cart = new Cart;
+			$cart->user_id = $userId;
+			$cart->status = 'active';
+			$cart->save();
+		}
+
+		// Check if product is already in cart
+		$item = CartItem::model()->findByAttributes(array(
+			'cart_id' => $cart->id,
+			'product_id' => $id
+		));
+
+		if ($item) {
+			$item->quantity += 1;
+		} else {
+			$item = new CartItem;
+			$item->cart_id = $cart->id;
+			$item->product_id = $id;
+			$item->quantity = 1;
+		}
+
+		$item->save();
+
+		Yii::app()->user->setFlash('success', 'Item added to cart!');
+		$this->redirect(array('cart/view'));
+	}
+
 }
