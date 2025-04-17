@@ -28,11 +28,11 @@
 
 	<!-- NAVBAR HEADER -->
 	<section id="header">
-		<a href="#"><img src="<?php echo Yii::app()->baseUrl; ?>/images/logo.jpg" alt="logo"  style="width: 150px; height: auto;"></a>
+		<a id="logo" href="<?php echo Yii::app()->createUrl('/'); ?>"><img src="<?php echo Yii::app()->baseUrl; ?>/images/logo.jpg" alt="logo"  style="width: 130px; height: auto;"></a>
 
-		<div>
+		<div id="navbar-div">
 			<ul id="navbar">
-				<li><a href="<?php echo Yii::app()->createUrl('site/index'); ?>">Home</a></li>
+				<li><a class="active" href="<?php echo Yii::app()->createUrl('/'); ?>">Home</a></li>
 				<li><a href="<?php echo Yii::app()->createUrl('product/index'); ?>">Products</a></li>
 				<li><a href="<?php echo Yii::app()->createUrl('/order/index'); ?>">Orders</a></li>
 				<li><a href="#">About</a></li>
@@ -41,12 +41,15 @@
 			</ul>
 		</div>
 	</section>
-	 
+	
+	<!-- HERO SECTION -->
+	 <section id="hero" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/hero_keyboard.png');">
+		<h2>Elevate your typing experience</h2>
+		<p>Explore premium keyboards, switches, and keycaps for the ultimate setup.</p>
+		<button>Shop Now</button>
+	 </section>
 
-	<!-- Main Content -->
-	<main class="container my-5">
-		<?php echo $content; ?>
-	</main>
+	
 
 	<!-- Footer -->
 	<footer class="bg-black text-secondary py-5 mt-5">

@@ -511,3 +511,12 @@ Stack trace:
 REQUEST_URI=/ecommerce/index.php/order/index
 HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
 ---
+2025/04/17 19:39:53 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "index". in H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php:286
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('index')
+#1 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 H:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/ecommerce/index.php/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/
+---
