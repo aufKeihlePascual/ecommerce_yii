@@ -9,6 +9,10 @@
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('brand')); ?>:</b>
+	<?php echo CHtml::encode($data->brand); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
@@ -29,9 +33,11 @@
 	<?php echo CHtml::encode($data->category_id); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('image')); ?>:</b>
 	<?php echo CHtml::encode($data->image); ?>
 	<br />
 
+	*/ ?>
 
 </div>
