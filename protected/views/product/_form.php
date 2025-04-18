@@ -20,6 +20,13 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'new_column_name'); ?>
+		<?php echo $form->textField($model,'new_column_name', array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'new_column_name'); ?>
+	</div>
+
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'name'); ?>
