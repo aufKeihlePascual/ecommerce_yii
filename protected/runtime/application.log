@@ -520,3 +520,41 @@ Stack trace:
 REQUEST_URI=/ecommerce/index.php/index
 HTTP_REFERER=http://localhost/ecommerce/index.php/
 ---
+2025/04/18 12:51:33 [error] [php] Undefined variable $products (H:\xampp\htdocs\ecommerce\protected\views\site\index.php:34)
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require()
+#1 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): SiteController->renderInternal()
+#2 H:\xampp\htdocs\ecommerce\framework\web\CController.php(872): SiteController->renderFile()
+#3 H:\xampp\htdocs\ecommerce\framework\web\CController.php(785): SiteController->renderPartial()
+#4 H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php(32): SiteController->render()
+#5 H:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#6 H:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 H:\xampp\htdocs\ecommerce\framework\web\CController.php(286): SiteController->runAction()
+#8 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#9 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): SiteController->run()
+#10 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#12 H:\xampp\htdocs\ecommerce\index.php(13): CWebApplication->run()
+REQUEST_URI=/ecommerce/index.php
+in H:\xampp\htdocs\ecommerce\protected\views\site\index.php (34)
+in H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php (32)
+in H:\xampp\htdocs\ecommerce\index.php (13)
+2025/04/18 12:52:12 [error] [php] Undefined variable $products (H:\xampp\htdocs\ecommerce\protected\views\site\index.php:41)
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require()
+#1 H:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): SiteController->renderInternal()
+#2 H:\xampp\htdocs\ecommerce\framework\web\CController.php(872): SiteController->renderFile()
+#3 H:\xampp\htdocs\ecommerce\framework\web\CController.php(785): SiteController->renderPartial()
+#4 H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php(32): SiteController->render()
+#5 H:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#6 H:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 H:\xampp\htdocs\ecommerce\framework\web\CController.php(286): SiteController->runAction()
+#8 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#9 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): SiteController->run()
+#10 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#12 H:\xampp\htdocs\ecommerce\index.php(13): CWebApplication->run()
+REQUEST_URI=/ecommerce/index.php
+in H:\xampp\htdocs\ecommerce\protected\views\site\index.php (41)
+in H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php (32)
+in H:\xampp\htdocs\ecommerce\index.php (13)

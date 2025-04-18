@@ -27,7 +27,7 @@
 	<!-- NAVBAR HEADER -->
 	<section id="header">
 		<a id="logo" href="<?php echo Yii::app()->createUrl('/'); ?>">
-			<img src="<?php echo Yii::app()->baseUrl; ?>/images/logo3.png" alt="logo" style="width: 130px; height: auto;">
+			<img src="<?php echo Yii::app()->baseUrl; ?>/images/logo2.png" alt="logo" style="width: 130px; height: auto;">
 		</a>
 
 		<div id="navbar-div">
