@@ -174,7 +174,7 @@ class ProductController extends Controller
 	public function actionAddToCart($id)
 	{
 		if (Yii::app()->user->isGuest) {
-			$this->redirect(array('site/login')); // Or wherever your login page is
+			$this->redirect(array('site/login'));
 		}
 
 		$product = Product::model()->findByPk($id);
@@ -213,5 +213,4 @@ class ProductController extends Controller
 		Yii::app()->user->setFlash('success', 'Item added to cart!');
 		$this->redirect(array('cart/view'));
 	}
-
 }
