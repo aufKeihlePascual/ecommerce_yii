@@ -8,6 +8,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css">
+
 	<script src="https://kit.fontawesome.com/4e3a20099e.js" crossorigin="anonymous"></script>
 
 	<?php
@@ -24,7 +25,6 @@
 
 <body class="bg-dark text-light">
 
-	<!-- NAVBAR HEADER -->
 	<section id="header">
 		<a id="logo" href="<?php echo Yii::app()->createUrl('/'); ?>">
 			<img src="<?php echo Yii::app()->baseUrl; ?>/images/logo2.png" alt="logo" style="width: 130px; height: auto;">
@@ -37,8 +37,14 @@
 				<li><a class="<?php echo Yii::app()->controller->id == 'order' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/order/index'); ?>">Orders</a></li>
 				<li><a href="#">About</a></li>
 				<li><a href="#">Contact</a></li>
-				<li><a href="<?php echo Yii::app()->createUrl('/cart/index'); ?>"><i class="fa-solid fa-cart-shopping"></i></a></li>
+				<li id="nav-cart"><a href="<?php echo Yii::app()->createUrl('/cart/index'); ?>"><i class="fa-solid fa-cart-shopping"></i></a></li>
+				<a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
 			</ul>
+		</div>
+
+		<div id="mobile">
+			<a href="<?php echo Yii::app()->createUrl('/cart/index'); ?>"><i class="fa-solid fa-cart-shopping" style="color: #FFFFFF;"></i></a>
+			<i id="bar" class="fa-solid fa-bars"></i>
 		</div>
 	</section>
 
@@ -115,5 +121,6 @@
 
 	<!-- Bootstrap JS -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/script.js"></script>
 </body>
 </html>
