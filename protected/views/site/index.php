@@ -74,3 +74,35 @@
 	<h2>Accessories that make every keypress count.</h2>
 	<button class="normal">Check It Out</button>
 </section>
+
+<section id="sm-banner" class="section-p1">
+	<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/fullsize.png');">
+		<h4>Full-Size Keyboards</h4>
+		<button class="categories">View</button>
+	</div>
+
+	<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/tkl.png');">
+		<h4>TKL Keyboards</h4>
+		<button class="categories">View</button>
+	</div>
+
+	<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/75.png');">
+		<h4>75% Keyboards</h4>
+		<button class="categories">View</button>
+	</div>
+
+	<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/65.png');">
+		<h4>65% Keyboards</h4>
+		<button class="categories">View</button>
+	</div>
+
+	<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/60.png');">
+		<h4>60% Keyboards</h4>
+		<button class="categories">View</button>
+	</div>
+
+	<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/numpad.png');">
+		<h4>Numpad Keyboards</h4>
+		<button class="categories">View</button>
+	</div>
+</section>

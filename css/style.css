@@ -58,6 +58,20 @@ button.normal {
     transition: 0.2s;
 }
 
+button.categories {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 11px 18px;
+    color: #fff;
+    /* background-color: #002b5c; */
+    background-color: #004d79;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #002b5c;
+    outline: none;
+    transition: 0.2s;
+}
+
 body {
     width: 100%;
 }
@@ -299,4 +313,47 @@ body {
 #banner button:hover {
     background: #54c9cf;
     color: #fff;
+}
+
+#sm-banner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* background-color: rgba(255, 255, 255, 0.938); */
+}
+
+#sm-banner .banner-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 30px;
+    position: relative;
+
+    min-width: 580px;
+    max-width: 580px;
+    height: 40vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-color: #90aed4; */
+    background-color: rgba(255, 255, 255, 0.938);
+    border-radius: 5px;
+}
+
+#sm-banner h4 {
+    font-weight: 800;
+    margin-top: 10px;
+}
+
+#sm-banner .banner-box:hover {
+    background-color: #90aed4;
+}
+
+#sm-banner .banner-box:hover button {
+    background-color: #fff;
+    border: 1px solid #5DE0E6;
+    color: #002b5c;
 }
