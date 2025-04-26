@@ -68,3 +68,9 @@
 
 	</div>
 </section>
+
+<section id="banner" class="section-m1" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/b1.jpg');">
+	<h4>Keyboard Accessories</h4>
+	<h2>Accessories that make every keypress count.</h2>
+	<button class="normal">Check It Out</button>
+</section>
