@@ -106,3 +106,17 @@
 		<button class="categories">View</button>
 	</div>
 </section>
+
+<section id="newsletter" class="section-p1" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/newsletter.jpg');">
+	<div class="newstext">
+		<h3>Sign Up for Newsletters</h3>
+		<p>Get E-mail updates about our latest shop and <span>special offers</span>.</p>
+
+		<div class="form">
+			<input type="text" placeholder="Your Email Address">
+			<button class="normal">Sign Up</button>
+		</div>
+	</div>
+
+	
+</section>

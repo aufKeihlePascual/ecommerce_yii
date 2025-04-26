@@ -63,10 +63,54 @@
 	<?php echo $content; ?>
 
 	<!-- Footer -->
-	<footer class="bg-black text-secondary py-5 mt-5">
+	<!-- <footer class="bg-black text-secondary py-5 mt-5">
 		<div class="container">
 			<p class="text-center small mb-0">© <?php echo date('Y'); ?> InnoTech. All rights reserved.</p>
 		</div>
+	</footer> -->
+
+	<footer class="section-p1 bg-light text-dark">
+		<div class="col">
+			<img src="<?php echo Yii::app()->baseUrl; ?>/images/logo2.png" alt="logo"  style="width: 200px; height: auto;" class="logo">
+			<!-- <h4>Contact</h4> -->
+			<p><strong>Address: </strong>MacArthur Hwy, Angeles, 2009 Pampanga</p>
+			<p><strong>Phone: </strong>+63 9012345678</p>
+			<p><strong>Hours: </strong>10:00 - 18:00, Mon - Sat</p>
+		</div>
+
+		<div class="col">
+			<h4>About</h4>
+			<a href="#">About Us</a>
+			<a href="#">Delivery Information</a>
+			<a href="#">Contact Us</a>
+		</div>
+
+		<div class="col">
+			<h4>My Account</h4>
+			<a href="#">Sign In</a>
+			<a href="#">View Cart</a>
+			<a href="#">My Wishlist</a>
+		</div>
+
+		<div class="col install">
+			<h4>Secured Payment Gateways</h4>
+			<img src="<?php echo Yii::app()->baseUrl; ?>/images/payment.png" style="width: 300px; height: auto;" alt="Payment Options">
+
+			<div class="follow">
+				<h4>Follow Us</h4>
+				<div class="icon">
+					<i class="fa-brands fa-facebook-f"></i>
+					<i class="fa-brands fa-x-twitter"></i>
+					<i class="fa-brands fa-instagram"></i>
+					<i class="fa-brands fa-youtube"></i>
+				</div>
+			</div>
+		</div>
+
+		<div class="copyright">
+			<p class="text-center small mb-0">© <?php echo date('Y'); ?> InnoTech. All rights reserved.</p>
+		</div>
+
 	</footer>
 
 	<!-- Bootstrap JS -->
