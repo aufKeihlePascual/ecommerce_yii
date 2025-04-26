@@ -59,7 +59,7 @@ button.normal {
 }
 
 button.categories {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     padding: 11px 18px;
     color: #fff;
@@ -319,7 +319,7 @@ body {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 50px;
     /* background-color: rgba(255, 255, 255, 0.938); */
 }
 
@@ -332,8 +332,8 @@ body {
     padding: 30px;
     position: relative;
 
-    min-width: 580px;
-    max-width: 580px;
+    min-width: 550px;
+    max-width: 550px;
     height: 40vh;
     background-size: cover;
     background-repeat: no-repeat;
