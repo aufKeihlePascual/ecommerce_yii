@@ -26,9 +26,19 @@ $this->breadcrumbs=array(
 </head>
 
 <section id="products" class="section-p1">
-	<h2>Products</h2>
-	<div class="pro-container">
+	<div class="section-header">
+		<div class="breadcrumbs">
+			<?php if (isset($this->breadcrumbs)): ?>
+				<?php $this->widget('zii.widgets.CBreadcrumbs', array(
+					'links' => $this->breadcrumbs,
+					'htmlOptions' => array('class' => 'breadcrumb-links'),
+				)); ?>
+			<?php endif; ?>
+		</div>
+		<h2>Products</h2>
+	</div>
 
+	<div class="pro-container">
 		<?php foreach ($products as $product): ?>
 			<?php
 				$image = $product->image ? $product->image : 'placeholder.jpg';

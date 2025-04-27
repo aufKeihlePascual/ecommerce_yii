@@ -1,3 +1,37 @@
+.section-header {
+    display: flex;
+    flex-direction: column; /* stack breadcrumbs above h2 */
+    align-items: flex-start; /* align both to the left */
+    margin-bottom: 20px;
+    gap: 5px; /* small gap between breadcrumb and h2 */
+}
+
+.section-header h2 {
+    margin: 0;
+}
+
+.breadcrumb-links {
+    font-size: 14px;
+    color: #fff;
+}
+
+.breadcrumb-links a {
+    color: #5DE0E6;
+    text-decoration: none;
+    margin: 0 5px;
+    font-size: 14px;
+}
+
+.breadcrumb-links a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-links span {
+    margin: 0 5px;
+}
+
+/*  */
+
 #products {
     text-align: center;
 }
@@ -10,7 +44,7 @@
 #products .pro-container {
     display: flex;
     justify-content: space-between;
-    padding-top: 20px;
+    /* padding-top: 20px; */
     flex-wrap: wrap;
 }
 
