@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css">
+	
 	<script src="https://kit.fontawesome.com/4e3a20099e.js"></script>
 </head>
 
@@ -69,7 +70,7 @@
 	</div>
 </section>
 
-<section id="banner" class="section-m1" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/b1.jpg');">
+<section id="banner" class="section-m1" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/b2.jpg');">
 	<h4>Keyboard Accessories</h4>
 	<h2>Accessories that make every keypress count.</h2>
 	<button class="normal">Check It Out</button>
@@ -117,6 +118,4 @@
 			<button class="normal">Sign Up</button>
 		</div>
 	</div>
-
-	
 </section>
