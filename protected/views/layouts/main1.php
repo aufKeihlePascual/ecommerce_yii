@@ -30,17 +30,17 @@
 			<img src="<?php echo Yii::app()->baseUrl; ?>/images/logo2.png" alt="logo" style="width: 130px; height: auto;">
 		</a>
 
-		<div id="navbar-div">
+		<!-- <div id="navbar-div">
 			<ul id="navbar">
-				<li><a class="<?php echo Yii::app()->controller->id == 'site' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/'); ?>">Home</a></li>
-				<li><a class="<?php echo Yii::app()->controller->id == 'product' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/product/index'); ?>">Products</a></li>
-				<li><a class="<?php echo Yii::app()->controller->id == 'order' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/order/index'); ?>">Orders</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Contact</a></li>
-				<li id="nav-cart"><a href="<?php echo Yii::app()->createUrl('/cart/index'); ?>"><i class="fa-solid fa-cart-shopping"></i></a></li>
+				<li><a class="<?php //echo (Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'index') ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/'); ?>">Home</a></li>
+				<li><a class="<?php //echo Yii::app()->controller->id == 'product' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/product/index'); ?>">Products</a></li>
+				<li><a class="<?php //echo Yii::app()->controller->id == 'order' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/order/index'); ?>">Orders</a></li>
+				<li><a class="<?php //echo (Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'about') ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/site/about'); ?>">About</a></li>
+				<li><a class="<?php //echo (Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'contact') ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/site/contact'); ?>">Contact</a></li>
+				<li id="nav-cart"><a class="<?php //echo Yii::app()->controller->id == 'cart' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/cart/index'); ?>"><i class="fa-solid fa-cart-shopping"></i></a></li>
 				<a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
 			</ul>
-		</div>
+		</div> -->
 
 		<div id="mobile">
 			<a href="<?php echo Yii::app()->createUrl('/cart/index'); ?>"><i class="fa-solid fa-cart-shopping" style="color: #FFFFFF;"></i></a>

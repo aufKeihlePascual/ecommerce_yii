@@ -30,30 +30,45 @@
 			<img src="<?php echo Yii::app()->baseUrl; ?>/images/logo2.png" alt="logo" style="width: 130px; height: auto;">
 		</a>
 
-		<!-- <div id="navbar-div">
-			<ul id="navbar">
-				<li><a class="<?php //echo Yii::app()->controller->id == 'site' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/'); ?>">Home</a></li>
-				<li><a class="<?php //echo Yii::app()->controller->id == 'product' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/product/index'); ?>">Products</a></li>
-				<li><a class="<?php //echo Yii::app()->controller->id == 'order' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/order/index'); ?>">Orders</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Contact</a></li>
-				<li id="nav-cart"><a href="<?php echo Yii::app()->createUrl('/cart/index'); ?>"><i class="fa-solid fa-cart-shopping"></i></a></li>
-				<a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
-			</ul>
-		</div> -->
+		<?php
+		$menuItems = array(
+			array('label' => 'Home', 'url' => array('/'), 'controller' => 'site', 'action' => 'index'),
+			array('label' => 'Products', 'url' => array('/product/index'), 'controller' => 'product'),
+			array('label' => 'Orders', 'url' => array('/order/index'), 'controller' => 'order'),
+			array('label' => 'About', 'url' => array('/site/about'), 'controller' => 'site', 'action' => 'about'),
+			array('label' => 'Contact', 'url' => array('/site/contact'), 'controller' => 'site', 'action' => 'contact'),
+		);
+
+		$cartItem = array('label' => '<i class="fa-solid fa-cart-shopping"></i>', 'url' => array('/cart/index'), 'controller' => 'cart', 'encode' => false);
+		?>
 
 		<div id="navbar-div">
 			<ul id="navbar">
-				<li><a class="<?php echo (Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'index') ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/'); ?>">Home</a></li>
-				<li><a class="<?php echo Yii::app()->controller->id == 'product' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/product/index'); ?>">Products</a></li>
-				<li><a class="<?php echo Yii::app()->controller->id == 'order' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/order/index'); ?>">Orders</a></li>
-				<li><a class="<?php echo (Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'about') ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/site/about'); ?>">About</a></li>
-				<li><a class="<?php echo (Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'contact') ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/site/contact'); ?>">Contact</a></li>
-				<li id="nav-cart"><a class="<?php echo Yii::app()->controller->id == 'cart' ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl('/cart/index'); ?>"><i class="fa-solid fa-cart-shopping"></i></a></li>
+				<?php foreach ($menuItems as $item): ?>
+					<?php
+						$isActive = false;
+						if (isset($item['action'])) {
+							$isActive = (Yii::app()->controller->id == $item['controller'] && Yii::app()->controller->action->id == $item['action']);
+						} else {
+							$isActive = (Yii::app()->controller->id == $item['controller']);
+						}
+					?>
+					<li>
+						<a class="<?php echo $isActive ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl($item['url'][0]); ?>">
+							<?php echo CHtml::encode($item['label']); ?>
+						</a>
+					</li>
+				<?php endforeach; ?>
+
+				<li id="nav-cart">
+					<a class="<?php echo (Yii::app()->controller->id == $cartItem['controller']) ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl($cartItem['url'][0]); ?>">
+						<?php echo $cartItem['encode'] === false ? $cartItem['label'] : CHtml::encode($cartItem['label']); ?>
+					</a>
+				</li>
+
 				<a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
 			</ul>
 		</div>
-
 
 		<div id="mobile">
 			<a href="<?php echo Yii::app()->createUrl('/cart/index'); ?>"><i class="fa-solid fa-cart-shopping" style="color: #FFFFFF;"></i></a>
