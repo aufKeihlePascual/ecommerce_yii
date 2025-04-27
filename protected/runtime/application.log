@@ -637,3 +637,33 @@ Stack trace:
 REQUEST_URI=/ecommerce/index.php/site/about
 HTTP_REFERER=http://localhost/ecommerce/index.php/order/index
 ---
+2025/04/27 19:13:09 [error] [php] include(ContactForm.php): Failed to open stream: No such file or directory (H:\xampp\htdocs\ecommerce\framework\YiiBase.php:463)
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\YiiBase.php(463): include()
+#1 H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php(60): autoload()
+#2 H:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): SiteController->actionContact()
+#3 H:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 H:\xampp\htdocs\ecommerce\framework\web\CController.php(286): SiteController->runAction()
+#5 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#6 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): SiteController->run()
+#7 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#8 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 H:\xampp\htdocs\ecommerce\index.php(13): CWebApplication->run()
+REQUEST_URI=/ecommerce/index.php/site/contact
+in H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php (60)
+in H:\xampp\htdocs\ecommerce\index.php (13)
+2025/04/27 19:14:18 [error] [php] include(ContactForm.php): Failed to open stream: No such file or directory (H:\xampp\htdocs\ecommerce\framework\YiiBase.php:463)
+Stack trace:
+#0 H:\xampp\htdocs\ecommerce\framework\YiiBase.php(463): include()
+#1 H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php(60): autoload()
+#2 H:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): SiteController->actionContact()
+#3 H:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 H:\xampp\htdocs\ecommerce\framework\web\CController.php(286): SiteController->runAction()
+#5 H:\xampp\htdocs\ecommerce\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#6 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): SiteController->run()
+#7 H:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#8 H:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 H:\xampp\htdocs\ecommerce\index.php(13): CWebApplication->run()
+REQUEST_URI=/ecommerce/index.php/site/contact
+in H:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php (60)
+in H:\xampp\htdocs\ecommerce\index.php (13)
