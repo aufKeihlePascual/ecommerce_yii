@@ -1,9 +1,9 @@
 .section-header {
     display: flex;
-    flex-direction: column; /* stack breadcrumbs above h2 */
-    align-items: flex-start; /* align both to the left */
+    flex-direction: column;
+    align-items: flex-start;
     margin-bottom: 20px;
-    gap: 5px; /* small gap between breadcrumb and h2 */
+    gap: 5px;
 }
 
 .section-header h2 {
@@ -29,8 +29,6 @@
 .breadcrumb-links span {
     margin: 0 5px;
 }
-
-/*  */
 
 #products {
     text-align: center;
