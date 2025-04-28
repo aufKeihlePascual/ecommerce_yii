@@ -34,43 +34,7 @@
 	</div>
 </section> -->
 
-<section id="featured" class="section-p1">
-	<h2>Newest Products</h2>
-	<!-- <p>Elevate your typing experience</p> -->
-	<div class="pro-container">
-
-		<?php foreach ($products as $product): ?>
-			<?php
-				$image = $product->image ? $product->image : 'placeholder.jpg';
-			?>
-			<div class="pro">
-
-				<div class="image-wrapper">
-					<img src="<?php echo Yii::app()->baseUrl . '/images/products/' . CHtml::encode($image); ?>" alt="<?php echo CHtml::encode($product->name); ?>">
-				</div>
-				
-				<div class="des">
-					<span><?php echo CHtml::encode($product->brand); ?></span>
-					<h5><?php echo CHtml::encode($product->name); ?></h5>
-
-					<div class="star">
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-					</div>
-
-					<h4>₱<?php echo number_format($product->price, 2); ?></h4>
-				</div>
-				<a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
-			</div>
-		<?php endforeach; ?>
-
-	</div>
-</section>
-
-<section id="index-category" class="section-p1 text-dark">
+<section id="index-category" class="section-p1 bg-dark text-light">
 	<h2>Shop by Category</h2>
 	<!-- <p>Elevate your typing experience</p> -->
 	<div class="pro-container">
@@ -113,8 +77,56 @@
 	<button class="normal">Check It Out</button>
 </section>
 
+<section id="featured" class="section-p1">
+	<h2>Newest Products</h2>
+	<!-- <p>Elevate your typing experience</p> -->
+	<div class="pro-container">
+
+		<?php foreach ($products as $product): ?>
+			<?php
+				$image = $product->image ? $product->image : 'placeholder.jpg';
+			?>
+			<div class="pro">
+
+				<div class="image-wrapper">
+					<img src="<?php echo Yii::app()->baseUrl . '/images/products/' . CHtml::encode($image); ?>" alt="<?php echo CHtml::encode($product->name); ?>">
+				</div>
+				
+				<div class="des">
+					<span><?php echo CHtml::encode($product->brand); ?></span>
+					<h5><?php echo CHtml::encode($product->name); ?></h5>
+
+					<div class="star">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+					</div>
+
+					<h4>₱<?php echo number_format($product->price, 2); ?></h4>
+				</div>
+				<a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
+			</div>
+		<?php endforeach; ?>
+
+	</div>
+</section>
+
+<section id="newsletter" class="section-p1" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/newsletter.jpg');">
+	<div class="newstext">
+		<h3>Sign Up for Newsletters</h3>
+		<p>Get E-mail updates about our latest shop and <span>special offers</span>.</p>
+
+		<div class="form">
+			<input type="text" placeholder="Your Email Address">
+			<button class="normal">Sign Up</button>
+		</div>
+	</div>
+</section>
+
 <section id="keyboard-section" class="section-p1">
-	<h2>Full-Size Keyboards</h2>
+	<h2>Shop by Keyboard Size</h2>
 
 	<div class="keyboard-container">
 		<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/fullsize.png');">
@@ -147,17 +159,5 @@
 			<button class="categories">Browse</button>
 		</div>
 
-	</div>
-</section>
-
-<section id="newsletter" class="section-p1" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/newsletter.jpg');">
-	<div class="newstext">
-		<h3>Sign Up for Newsletters</h3>
-		<p>Get E-mail updates about our latest shop and <span>special offers</span>.</p>
-
-		<div class="form">
-			<input type="text" placeholder="Your Email Address">
-			<button class="normal">Sign Up</button>
-		</div>
 	</div>
 </section>

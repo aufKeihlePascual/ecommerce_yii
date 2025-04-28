@@ -87,7 +87,7 @@
 
 	<?php echo $content; ?>
 
-	<footer class="section-p1 bg-light text-dark">
+	<footer id="footer" class="section-p1 bg-light text-dark">
 		<div class="col">
 			<img src="<?php echo Yii::app()->baseUrl; ?>/images/logo2.png" alt="logo"  style="width: 200px; height: auto;" class="logo">
 			<!-- <h4>Contact</h4> -->
