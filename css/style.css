@@ -423,6 +423,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
+
+    gap: 20px;
 }
 
 #banner h4 {
@@ -430,7 +432,7 @@ body {
 }
 
 #banner h2 {
-    font-size: 45px;
+    font-size: 50px;
     padding: 10px 0;
 }
 
@@ -475,7 +477,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: rgba(255, 255, 255, 0.938);
+    /* background-color: rgba(255, 255, 255, 0.938); */
+    background-color: #f0f0f0;
     border-radius: 18px;
 }
 
@@ -633,26 +636,34 @@ footer .copyright {
 }
 
 /*----------------- MEDIA RESPONSIVENESS -----------------*/
-@media (max-width: 1189px ) {
+@media (max-width: 1024px ) {
     
+    #index-category {
+        padding: 40px 60px;
+    }
+
     #index-category .pro{
         margin-bottom: 30px;
         margin-left: 4px;
         margin-right: 4px;
-        min-width: 310px;
-        max-width: 310px;
+        min-width: 280px;
+        max-width: 280px;
         min-height: 400px;
-
+        max-height: 500px;
     }
 
+    #featured {
+        padding: 40px 60px;
+    }
+    
     #featured .pro{
         margin-bottom: 30px;
         margin-left: 4px;
         margin-right: 4px;
-        min-width: 310px;
-        max-width: 310px;
+        min-width: 280px;
+        max-width: 280px;
         min-height: 400px;
-
+        max-height: 500px;
     }
 
     .keyboard-container {
@@ -660,7 +671,7 @@ footer .copyright {
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 30px;
-        padding: 20px 70px;
+        padding: 20px 0;
     }
     
     .keyboard-container .banner-box {
@@ -679,16 +690,16 @@ footer .copyright {
         gap: 18px;
     }
 
-    #newsletter .newstext {
-        justify-content: center;
+    #newsletter {
+        height: 35vh;
     }
 
     #newsletter .form {
-        margin-left: 5px;
+        justify-content: center;
     }
 
     #newsletter input {
-        width: 80%;
+        width: 60%;
     }
 
     #footer {

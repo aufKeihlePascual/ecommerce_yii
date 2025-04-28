@@ -6,34 +6,6 @@
 	<script src="https://kit.fontawesome.com/4e3a20099e.js"></script>
 </head>
 
-<!-- Homepage Featured Products -->
-<!-- <section id="featured" class="section-p1">
-	<h2>Featured Products</h2>
-	<p>Elevate your typing experience</p>
-	<div class="pro-container">
-		<div class="pro">
-			<img src="<?php echo Yii::app()->baseUrl; ?>/images/featured/gmmk_pro.jpg" alt="">
-			
-			<div class="des">
-				<span>brand name</span>
-				<h5>product name</h5>
-
-				<div class="star">
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-				</div>
-
-				<h4>price</h4>
-			</div>
-			<a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
-
-		</div>
-	</div>
-</section> -->
-
 <section id="index-category" class="section-p1 bg-dark text-light">
 	<h2>Shop by Category</h2>
 	<!-- <p>Elevate your typing experience</p> -->
@@ -70,7 +42,6 @@
 	</div>
 </section>
 
-<!-- <section id="banner" class="section-m1" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/b2.jpg');"> -->
 <section id="banner" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/b2.jpg');">
 	<h4>Keyboard Accessories</h4>
 	<h2>Accessories that make every keypress count.</h2>
