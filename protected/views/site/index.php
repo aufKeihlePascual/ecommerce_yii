@@ -35,8 +35,8 @@
 </section> -->
 
 <section id="featured" class="section-p1">
-	<h2>Featured Products</h2>
-	<p>Elevate your typing experience</p>
+	<h2>Newest Products</h2>
+	<!-- <p>Elevate your typing experience</p> -->
 	<div class="pro-container">
 
 		<?php foreach ($products as $product): ?>
@@ -70,41 +70,83 @@
 	</div>
 </section>
 
-<section id="banner" class="section-m1" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/b2.jpg');">
+<section id="index-category" class="section-p1 text-dark">
+	<h2>Shop by Category</h2>
+	<!-- <p>Elevate your typing experience</p> -->
+	<div class="pro-container">
+
+		<?php foreach ($products as $product): ?>
+			<?php
+				$image = $product->image ? $product->image : 'placeholder.jpg';
+			?>
+			<div class="pro">
+
+				<div class="image-wrapper">
+					<img src="<?php echo Yii::app()->baseUrl . '/images/products/' . CHtml::encode($image); ?>" alt="<?php echo CHtml::encode($product->name); ?>">
+				</div>
+				
+				<div class="des">
+					<span><?php echo CHtml::encode($product->brand); ?></span>
+					<h5><?php echo CHtml::encode($product->name); ?></h5>
+
+					<div class="star">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+					</div>
+
+					<h4>₱<?php echo number_format($product->price, 2); ?></h4>
+				</div>
+				<a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
+			</div>
+		<?php endforeach; ?>
+
+	</div>
+</section>
+
+<!-- <section id="banner" class="section-m1" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/b2.jpg');"> -->
+<section id="banner" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/b2.jpg');">
 	<h4>Keyboard Accessories</h4>
 	<h2>Accessories that make every keypress count.</h2>
 	<button class="normal">Check It Out</button>
 </section>
 
-<section id="sm-banner" class="section-p1">
-	<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/fullsize.png');">
-		<h4>Full-Size Keyboards</h4>
-		<button class="categories">View</button>
-	</div>
+<section id="keyboard-section" class="section-p1">
+	<h2>Full-Size Keyboards</h2>
 
-	<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/tkl.png');">
-		<h4>TKL Keyboards</h4>
-		<button class="categories">View</button>
-	</div>
+	<div class="keyboard-container">
+		<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/fullsize.png');">
+			<h4>Full-Size Keyboards</h4>
+			<button class="categories">Browse</button>
+		</div>
 
-	<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/75.png');">
-		<h4>75% Keyboards</h4>
-		<button class="categories">View</button>
-	</div>
+		<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/tkl.png');">
+			<h4>TKL Keyboards</h4>
+			<button class="categories">Browse</button>
+		</div>
 
-	<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/65.png');">
-		<h4>65% Keyboards</h4>
-		<button class="categories">View</button>
-	</div>
+		<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/75.png');">
+			<h4>75% Keyboards</h4>
+			<button class="categories">Browse</button>
+		</div>
 
-	<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/60.png');">
-		<h4>60% Keyboards</h4>
-		<button class="categories">View</button>
-	</div>
+		<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/65.png');">
+			<h4>65% Keyboards</h4>
+			<button class="categories">Browse</button>
+		</div>
 
-	<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/numpad.png');">
-		<h4>Numpad Keyboards</h4>
-		<button class="categories">View</button>
+		<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/60.png');">
+			<h4>60% Keyboards</h4>
+			<button class="categories">Browse</button>
+		</div>
+
+		<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/numpad.png');">
+			<h4>Numpad Keyboards</h4>
+			<button class="categories">Browse</button>
+		</div>
+
 	</div>
 </section>
 

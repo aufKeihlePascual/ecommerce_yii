@@ -124,7 +124,7 @@ class ProductController extends Controller
 	{
 		// $dataProvider=new CActiveDataProvider('Product');
 		$products = Product::model()->findAll(array(
-            'limit' => 6,
+            'limit' => 8,
             'order' => 'id DESC',
         ));
 		
