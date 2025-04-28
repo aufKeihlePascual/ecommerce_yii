@@ -40,6 +40,14 @@
 		);
 
 		$cartItem = array('label' => '<i class="fa-solid fa-cart-shopping"></i>', 'url' => array('/cart/index'), 'controller' => 'cart', 'encode' => false);
+
+		$userItem = array(
+			'label' => '<i class="fa-solid fa-user"></i>',
+			'url' => Yii::app()->user->isGuest ? array('/site/login') : array('/site/logout'),
+			'controller' => 'site',
+			'encode' => false,
+			'tooltip' => Yii::app()->user->isGuest ? 'Login' : 'Logout ('.Yii::app()->user->name.')'
+		);
 		?>
 
 		<div id="navbar-div">
@@ -63,6 +71,12 @@
 				<li id="nav-cart">
 					<a class="<?php echo (Yii::app()->controller->id == $cartItem['controller']) ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl($cartItem['url'][0]); ?>">
 						<?php echo $cartItem['encode'] === false ? $cartItem['label'] : CHtml::encode($cartItem['label']); ?>
+					</a>
+				</li>
+
+				<li id="nav-user">
+					<a href="<?php echo Yii::app()->createUrl($userItem['url'][0]); ?>" title="<?php echo $userItem['tooltip']; ?>">
+						<?php echo $userItem['encode'] === false ? $userItem['label'] : CHtml::encode($userItem['label']); ?>
 					</a>
 				</li>
 
@@ -90,7 +104,6 @@
 	<footer id="footer" class="section-p1 bg-light text-dark">
 		<div class="col">
 			<img src="<?php echo Yii::app()->baseUrl; ?>/images/logo2.png" alt="logo"  style="width: 200px; height: auto;" class="logo">
-			<!-- <h4>Contact</h4> -->
 			<p><strong>Address: </strong>MacArthur Hwy, Angeles, 2009 Pampanga</p>
 			<p><strong>Phone: </strong>+63 9012345678</p>
 			<p><strong>Hours: </strong>10:00 - 18:00, Mon - Sat</p>

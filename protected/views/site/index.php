@@ -8,7 +8,6 @@
 
 <section id="index-category" class="section-p1 bg-dark text-light">
 	<h2>Shop by Category</h2>
-	<!-- <p>Elevate your typing experience</p> -->
 	<div class="pro-container">
 
 		<?php foreach ($products as $product): ?>
@@ -50,7 +49,6 @@
 
 <section id="featured" class="section-p1">
 	<h2>Newest Products</h2>
-	<!-- <p>Elevate your typing experience</p> -->
 	<div class="pro-container">
 
 		<?php foreach ($products as $product): ?>
