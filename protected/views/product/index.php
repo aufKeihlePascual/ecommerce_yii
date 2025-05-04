@@ -26,7 +26,7 @@ $this->breadcrumbs=array(
 
 <section id="index-category" class="section-p1 bg-dark text-light">
 	<!-- Breadcrumbs -->
-	<div class="section-header">
+	<div id="products-page" class="section-header">
 		<div class="breadcrumbs">
 			<?php if (isset($this->breadcrumbs)): ?>
 				<?php $this->widget('zii.widgets.CBreadcrumbs', array(
