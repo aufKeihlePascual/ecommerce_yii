@@ -122,14 +122,8 @@ class ProductController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// $dataProvider=new CActiveDataProvider('Product');
-		$products = Product::model()->findAll(array(
-            'limit' => 8,
-            'order' => 'id DESC',
-        ));
-		
-		$this->render('index',array(
-			// 'dataProvider'=>$dataProvider,
+		$products = Product::model()->findAll();
+		$this->render('index', array(
 			'products' => $products,
 		));
 	}

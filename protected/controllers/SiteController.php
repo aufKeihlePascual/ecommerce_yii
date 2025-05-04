@@ -32,8 +32,14 @@ class SiteController extends Controller
 
 		// $this->render('index');
 
-		$products = Product::model()->findAll();
-		$this->render('index', array(
+		// $dataProvider=new CActiveDataProvider('Product');
+		$products = Product::model()->findAll(array(
+            'limit' => 8,
+            'order' => 'id DESC',
+        ));
+		
+		$this->render('index',array(
+			// 'dataProvider'=>$dataProvider,
 			'products' => $products,
 		));
 	}

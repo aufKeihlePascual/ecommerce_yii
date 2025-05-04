@@ -90,7 +90,6 @@
 		</div>
 	</section>
 
-	<!-- HERO SECTION -->
 	<?php if (Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'index'): ?>
 		<section id="hero" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/hero_keyboard.png');">
 			<h1>Elevate your typing experience</h1>
@@ -144,7 +143,6 @@
 
 	</footer>
 
-	<!-- Bootstrap JS -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/script.js"></script>
 </body>

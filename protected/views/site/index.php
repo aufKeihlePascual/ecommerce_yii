@@ -8,37 +8,37 @@
 
 <section id="index-category" class="section-p1 bg-dark text-light">
 	<h2>Shop by Category</h2>
-	<div class="pro-container">
+		<div class="pro-container">
 
-		<?php foreach ($products as $product): ?>
-			<?php
-				$image = $product->image ? $product->image : 'placeholder.jpg';
-			?>
-			<div class="pro">
+			<?php foreach ($products as $product): ?>
+				<?php
+					$image = $product->image ? $product->image : 'placeholder.jpg';
+				?>
+				<div class="pro">
 
-				<div class="image-wrapper">
-					<img src="<?php echo Yii::app()->baseUrl . '/images/products/' . CHtml::encode($image); ?>" alt="<?php echo CHtml::encode($product->name); ?>">
-				</div>
-				
-				<div class="des">
-					<span><?php echo CHtml::encode($product->brand); ?></span>
-					<h5><?php echo CHtml::encode($product->name); ?></h5>
-
-					<div class="star">
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
+					<div class="image-wrapper">
+						<img src="<?php echo Yii::app()->baseUrl . '/images/products/' . CHtml::encode($image); ?>" alt="<?php echo CHtml::encode($product->name); ?>">
 					</div>
+					
+					<div class="des">
+						<span><?php echo CHtml::encode($product->brand); ?></span>
+						<h5><?php echo CHtml::encode($product->name); ?></h5>
 
-					<h4>₱<?php echo number_format($product->price, 2); ?></h4>
+						<div class="star">
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+						</div>
+
+						<h4>₱<?php echo number_format($product->price, 2); ?></h4>
+					</div>
+					<a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
 				</div>
-				<a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
-			</div>
-		<?php endforeach; ?>
+			<?php endforeach; ?>
 
-	</div>
+		</div>
 </section>
 
 <section id="banner" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/b2.jpg');">
@@ -49,12 +49,12 @@
 
 <section id="featured" class="section-p1">
 	<h2>Newest Products</h2>
-	<div class="pro-container">
 
+	<div class="pro-container">
 		<?php foreach ($products as $product): ?>
-			<?php
-				$image = $product->image ? $product->image : 'placeholder.jpg';
-			?>
+
+			<?php $image = $product->image ? $product->image : 'placeholder.jpg'; ?>
+			
 			<div class="pro">
 
 				<div class="image-wrapper">
@@ -62,6 +62,7 @@
 				</div>
 				
 				<div class="des">
+					
 					<span><?php echo CHtml::encode($product->brand); ?></span>
 					<h5><?php echo CHtml::encode($product->name); ?></h5>
 
@@ -72,13 +73,14 @@
 						<i class="fas fa-star"></i>
 						<i class="fas fa-star"></i>
 					</div>
-
 					<h4>₱<?php echo number_format($product->price, 2); ?></h4>
+
 				</div>
+
 				<a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
 			</div>
-		<?php endforeach; ?>
 
+		<?php endforeach; ?>
 	</div>
 </section>
 

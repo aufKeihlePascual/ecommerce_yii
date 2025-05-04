@@ -42,7 +42,7 @@ p {
 }
 
 .section-p1 {
-    padding: 40px 80px 60px 80px;
+    padding: 40px 40px 60px 40px;
 }
 
 .section-m1 {
@@ -204,12 +204,13 @@ body {
 /* FEATURED PRODUCTS */
 #featured {
     text-align: center;
-    background-color: #f0f0f0;
+    background-color: #d6d6d6;
 }
 
 #featured h2 {
     text-align: left;
     color: #004d79;
+    margin-left: 40px;
 }
 
 #featured p {
@@ -218,22 +219,27 @@ body {
 
 #featured .pro-container {
     display: flex;
-    justify-content: space-between;
-    padding-top: 20px;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
+    justify-content: flex-start;
+    /* padding: 10px 25px; */
+    padding: 30px 0 10px 45px;
+    column-gap: 60px;
+    row-gap: 50px;
 }
 
 #featured .pro {
     width: 20%;
-    min-width: 350px;
-    max-width: 350px;
+    min-width: 300px;
+    max-width: 300px;
     min-height: 400px;
-    padding: 25px 20px;
+    /* margin: 20px 10px; */
+    padding: 20px;
+
     border: 2px solid #004aad;
     border-radius: 25px;
     background-color: rgba(255, 255, 255, 0.938);
     color: #222;
-    margin: 15px 0;
     position: relative;
 }
 
@@ -318,7 +324,18 @@ body {
 
 #index-category h2 {
     text-align: left;
-    /* color: #004aad; */
+    margin-bottom: 30px;
+    margin-left: 40px;
+}
+
+#index-category .section-header {
+    text-align: left;
+    margin-left: 40px;
+}
+
+#index-category .breadcrumbs {
+    margin-top: -25px;
+    margin-bottom: 40px;
 }
 
 #index-category p {
@@ -327,27 +344,31 @@ body {
 
 #index-category .pro-container {
     display: flex;
-    justify-content: space-between;
-    padding-top: 20px;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 10px 0 10px 40px;
+    column-gap: 60px;
+    row-gap: 50px;
 }
 
 #index-category .pro {
     width: 20%;
-    min-width: 350px;
-    max-width: 350px;
+    min-width: 300px;
+    max-width: 300px;
     min-height: 400px;
-    padding: 25px 20px;
+    /* margin: 20px 10px; */
+    padding: 20px;
+    
     border: 2px solid #004aad;
     border-radius: 25px;
     background-color: rgba(255, 255, 255, 0.938);
     color: #222;
-    margin: 15px 0;
     position: relative;
 }
 
 #index-category .pro:hover {
-    box-shadow: 20px 20px 30px rgba(255, 251, 0, 0.09);
+    box-shadow: 20px 20px 30px rgba(0, 247, 255, 0.12);
     transition: 0.2s ease;
 }
 
@@ -640,47 +661,56 @@ footer .copyright {
 
 /*----------------- MEDIA RESPONSIVENESS -----------------*/
 @media (max-width: 1024px ) {
-    
-    #index-category {
-        padding: 40px 60px;
+     
+    #header {
+        padding: 15px 40px;
     }
 
-    #index-category .pro{
-        margin-bottom: 30px;
-        margin-left: 4px;
-        margin-right: 4px;
+    #navbar li {
+        padding: 0 15px;
+    }
+
+    #hero {
+        row-gap: 40px;
+    }
+
+    #hero h1 {
+        font-size: 53px;
+    }
+
+    #hero p {
+        font-size: 20px;
+    }
+
+    #hero button {
+        font-size: 18px;
+    }
+
+    #index-category h2,
+    #featured h2 {
+        font-size: 40px;
+        margin-left: 20px;
+    }
+
+    #index-category .pro-container,
+    #featured .pro-container {
+        padding: 10px 0 10px 20px;
+        column-gap: 30px;
+        row-gap: 30px;
+    }
+
+    #index-category .pro,
+    #featured .pro {
         min-width: 280px;
         max-width: 280px;
-        min-height: 400px;
-        max-height: 500px;
+        min-height: 450px;
+        max-height: 450px;
+        padding: 15px;
     }
 
-    #featured {
-        padding: 40px 60px;
-    }
-    
-    #featured .pro{
-        margin-bottom: 30px;
-        margin-left: 4px;
-        margin-right: 4px;
-        min-width: 280px;
-        max-width: 280px;
-        min-height: 400px;
-        max-height: 500px;
-    }
-
-    .keyboard-container {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 30px;
-        padding: 20px 0;
-    }
-    
-    .keyboard-container .banner-box {
-        position: relative;
-        min-width: 380px;
-        max-width: 380px;
+    #index-category .pro .cart,
+    #featured .pro .cart {
+        right: 15px;
     }
 
     #banner h4 {
@@ -689,8 +719,17 @@ footer .copyright {
         font-weight: 600;
     }
 
+    #banner h2 {
+        font-size: 42px;
+        padding: 10px 0;
+    }
+
     #banner {
-        gap: 18px;
+        row-gap: 18px;
+    }
+
+    button.normal {
+        font-size: 1px;
     }
 
     #newsletter {
@@ -703,6 +742,20 @@ footer .copyright {
 
     #newsletter input {
         width: 60%;
+    }
+
+    .keyboard-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 30px;
+        padding: 20px 0;
+    }
+    
+    .keyboard-container .banner-box {
+        position: relative;
+        min-width: 400px;
+        max-width: 400px;
     }
 
     #footer {
