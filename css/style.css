@@ -670,6 +670,46 @@ footer .copyright {
     text-align: center;
 }
 
+/* Flex layout for sidebar + products */
+.product-page {
+	display: flex;
+	gap: 40px;
+	margin-top: 30px;
+}
+
+/* Sidebar styling */
+.sidebar {
+	flex: 0 0 240px;
+	background-color: #1a1a1a;
+	color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	font-size: 15px;
+}
+
+.sidebar h4 {
+	color: #ffe927;
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+
+.sidebar label {
+	display: block;
+	margin-bottom: 8px;
+	cursor: pointer;
+}
+
+/* Main content holds the product grid */
+.main-content {
+	flex: 1;
+}
+
+/* Optional: Ensure .pro-container inside adjusts accordingly */
+.main-content .pro-container {
+	padding-left: 0 !important;
+}
+
+
 /*----------------- MEDIA RESPONSIVENESS -----------------*/
 @media (max-width: 1024px ) {
      
