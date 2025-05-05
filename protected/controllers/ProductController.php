@@ -123,8 +123,12 @@ class ProductController extends Controller
 	public function actionIndex()
 	{
 		$products = Product::model()->findAll();
+		$categories = Category::model()->findAll();
+
+
 		$this->render('index', array(
 			'products' => $products,
+			'categories' => $categories,
 		));
 	}
 

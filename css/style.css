@@ -368,7 +368,22 @@ body {
     max-width: 300px;
     min-height: 480px;
     max-height: 480px;
-    padding: 20px;
+    padding: 15px;
+    
+    border: 2px solid #004aad;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.938);
+    color: #222;
+    position: relative;
+}
+
+#index-category #products-page .pro {
+    width: 20%;
+    min-width: 280px;
+    max-width: 280px;
+    min-height: 400px;
+    max-height: 400px;
+    padding: 15px;
     
     border: 2px solid #004aad;
     border-radius: 25px;
@@ -680,6 +695,26 @@ footer .copyright {
 
 #products-page .section-header {
     margin-left: 0;
+}
+
+#products-page .pro .des h4 {
+    padding-top: 7px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #004d79;
+}
+
+#index-category .pro .cart {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 50px;
+    background-color: #246083;
+    color: #ffffff;
+    border: 1px #cce7d0;
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
 }
 
 .sidebar {

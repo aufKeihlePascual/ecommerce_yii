@@ -6,7 +6,7 @@
 	<script src="https://kit.fontawesome.com/4e3a20099e.js"></script>
 </head>
 
-<section id="index-category" class="section-p1 bg-dark text-light">
+<!-- <section id="index-category" class="section-p1 bg-dark text-light">
 	<h2>Shop by Category</h2>
 		<div class="pro-container">
 
@@ -39,7 +39,25 @@
 			<?php endforeach; ?>
 
 		</div>
+</section> -->
+
+<section id="keyboard-section" class="section-p1 bg-dark text-light">
+	<h2>Shop by Keyboard Size</h2>
+
+	<div class="keyboard-container">
+		<?php foreach ($categories as $category): ?>
+			<?php
+				$image = $category->image ? $category->image : 'placeholder.jpg';
+				$name = CHtml::encode($category->name);
+			?>
+			<div class="banner-box" style="background-image: url('<?php echo Yii::app()->baseUrl . '/images/categories/' . CHtml::encode($image); ?>');">
+				<h4><?php echo $name; ?></h4>
+				<button class="categories">Browse</button>
+			</div>
+		<?php endforeach; ?>
+	</div>
 </section>
+
 
 <section id="banner" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/b2.jpg');">
 	<h4>Keyboard Accessories</h4>
