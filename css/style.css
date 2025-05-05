@@ -338,9 +338,9 @@ body {
     padding: 10px;
 }
 
-#index-category .section-header {
+.section-header {
     text-align: left;
-    margin-left: 40px;
+    /* margin-left: 40px; */
 }
 
 #index-category .breadcrumbs {
@@ -670,14 +670,18 @@ footer .copyright {
     text-align: center;
 }
 
-/* Flex layout for sidebar + products */
+
+/*---------------- PRODUCTS PAGE ----------------*/
 .product-page {
 	display: flex;
 	gap: 40px;
 	margin-top: 30px;
 }
 
-/* Sidebar styling */
+#products-page .section-header {
+    margin-left: 0;
+}
+
 .sidebar {
 	flex: 0 0 240px;
 	background-color: #1a1a1a;
@@ -699,15 +703,13 @@ footer .copyright {
 	cursor: pointer;
 }
 
-/* Main content holds the product grid */
 .main-content {
 	flex: 1;
 }
 
-/* Optional: Ensure .pro-container inside adjusts accordingly */
-.main-content .pro-container {
+/* .main-content .pro-container {
 	padding-left: 0 !important;
-}
+} */
 
 
 /*----------------- MEDIA RESPONSIVENESS -----------------*/
