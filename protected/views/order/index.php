@@ -53,11 +53,11 @@ $this->breadcrumbs = array('Orders');
 				<tbody>
 					<?php foreach ($dataProvider->getData() as $data): ?>
 						<tr>
-							<td>#<?php echo $data->id; ?></td>
+							<td><?php echo $data->id; ?></td>
 							<td><?php echo $data->itemCount; ?></td>
 							<td><?php echo date('F j, Y', strtotime($data->created_at)); ?></td>
 							<td><span class="status <?php echo strtolower($data->status); ?>"><?php echo ucfirst($data->status); ?></span></td>
-							<td>₱<?php echo number_format($data->total, 2); ?></td>
+							<td>₱ <strong><?php echo number_format($data->total, 2); ?></strong></td>
 							<td>
 								<?php echo CHtml::link('View', array('order/view', 'id' => $data->id), array('class' => 'view-btn')); ?>
 							</td>

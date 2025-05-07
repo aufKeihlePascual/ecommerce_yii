@@ -884,7 +884,6 @@ footer .copyright {
 	display: block;
 	cursor: pointer;
     text-align: start;
-    margin-top: -10px;
 }
 
 .main-content {
@@ -894,10 +893,11 @@ footer .copyright {
 .menu-links {
     list-style: none;
     padding-left: 0;
+    margin-bottom: 10px;
 }
 
-.menu-links li {
-    margin-bottom: 10px;
+#index-orders .menu-links li {
+    margin-top: 10px;
 }
 
 .menu-links a {
@@ -940,7 +940,7 @@ footer .copyright {
 
 #index-orders .sidebar {
     margin-right: 10px;
-    height: 24vh;
+    height: 23.5vh;
     flex: 0 0 240px;
 }
 
@@ -967,7 +967,7 @@ footer .copyright {
 .order-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #cccccc;
+    background-color: #dadada;
     color: #002b5c;
     border-radius: 10px;
     overflow: hidden;
@@ -1017,7 +1017,7 @@ footer .copyright {
 }
 
 .view-btn {
-    background-color: #444;
+    background-color: rgb(15, 90, 119);
     color: #fff;
     padding: 6px 14px;
     border-radius: 5px;
@@ -1027,7 +1027,7 @@ footer .copyright {
 }
 
 .view-btn:hover {
-    background-color: #666;
+    background-color: rgb(6, 38, 51);
 }
 
 
