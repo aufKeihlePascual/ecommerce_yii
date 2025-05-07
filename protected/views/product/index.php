@@ -58,7 +58,7 @@ $this->breadcrumbs = array('Products');
                         <?php endforeach; ?>
                     </div>
                     <div class="toggle-btn-wrapper">
-                        <button type="button" class="toggle-btn" data-target="#brand-filter">Show More</button>
+                        <button type="button" class="toggle-btn" data-target="#category-filter">Show More</button>
                     </div>
                 </div>
 
