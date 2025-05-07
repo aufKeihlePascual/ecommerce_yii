@@ -334,7 +334,6 @@ body {
 
 #index-category .sidebar label {
 	margin-top: 0;
-    margin-bottom: -10px
 }
 
 #index-category .sidebar h4 {
@@ -352,14 +351,22 @@ body {
 	max-height: none;
 }
 
+.toggle-btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+
 .toggle-btn {
 	background: none;
-	color: #ffe927;
+	color: #ffcd27;
 	border: none;
 	cursor: pointer;
-	margin-top: 20px;
-	font-size: 14px;
+	font-size: 13px;
 	padding: 0;
+    font-weight: 600;
+    text-decoration: underline;
 }
 
 #products-page h2 {
@@ -532,6 +539,10 @@ body {
 #product-sidebar .sidebar h4 {
     margin-top: 10px;
     margin-bottom: 15px;
+}
+
+#product-sidebar .sidebar-filter h4 {
+    margin-top: 20px;
 }
 
 #banner {

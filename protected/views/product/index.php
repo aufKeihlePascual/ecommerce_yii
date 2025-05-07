@@ -40,7 +40,7 @@ $this->breadcrumbs = array('Products');
                 </div>
             </aside>
 
-            <aside class="sidebar">
+            <aside class="sidebar sidebar-filter">
                 <div class="filter-section">
                     <h4>Availability</h4>
                     <label><input type="checkbox"> In stock / Pre-order</label><br>
@@ -57,7 +57,9 @@ $this->breadcrumbs = array('Products');
                             </label><br>
                         <?php endforeach; ?>
                     </div>
-                    <button type="button" class="toggle-btn" data-target="#category-filter">Show More</button>
+                    <div class="toggle-btn-wrapper">
+                        <button type="button" class="toggle-btn" data-target="#brand-filter">Show More</button>
+                    </div>
                 </div>
 
                 <div class="filter-section">
@@ -70,7 +72,9 @@ $this->breadcrumbs = array('Products');
                             </label><br>
                         <?php endforeach; ?>
                     </div>
-                    <button type="button" class="toggle-btn" data-target="#brand-filter">Show More</button>
+                    <div class="toggle-btn-wrapper">
+                        <button type="button" class="toggle-btn" data-target="#brand-filter">Show More</button>
+                    </div>
                 </div>
             </aside>
         </div>
