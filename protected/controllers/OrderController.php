@@ -122,9 +122,12 @@ class OrderController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$orders = Order::model()->findAll();
+
 		$dataProvider=new CActiveDataProvider('Order');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'orders' => $orders,
 		));
 	}
 

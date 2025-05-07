@@ -37,10 +37,13 @@ class SiteController extends Controller
             'limit' => 8,
             'order' => 'id DESC',
         ));
+
+		$categories = Category::model()->findAll();
 		
 		$this->render('index',array(
 			// 'dataProvider'=>$dataProvider,
 			'products' => $products,
+			'categories' => $categories,
 		));
 	}
 

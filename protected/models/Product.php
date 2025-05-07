@@ -59,6 +59,7 @@ class Product extends CActiveRecord
 			'cartItems' => array(self::HAS_MANY, 'CartItems', 'product_id'),
 			'tags' => array(self::MANY_MANY, 'Tags', 'product_tags(product_id, tag_id)'),
 			'category' => array(self::BELONGS_TO, 'Categories', 'category_id'),
+			'orderItems' => array(self::HAS_MANY, 'OrderItem', 'product_id'),
 		);
 	}
 

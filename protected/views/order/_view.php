@@ -5,29 +5,15 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
-	<?php echo CHtml::encode($data->user_id); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('cart_id')); ?>:</b>
-	<?php echo CHtml::encode($data->cart_id); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('total')); ?>:</b>
-	<?php echo CHtml::encode($data->total); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
-	<?php echo CHtml::encode($data->status); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('created_at')); ?>:</b>
-	<?php echo CHtml::encode($data->created_at); ?>
-	<br />
-
+<h3>Order #<?php echo $data->id; ?> (<?php echo $data->created_at; ?>)</h3>
+<ul>
+    <?php foreach($data->orderItems as $item): ?>
+        <li>
+            <?php echo $item->product->name; ?> — 
+            Qty: <?php echo $item->quantity; ?> — 
+            ₱<?php echo number_format($item->price, 2); ?>
+        </li>
+    <?php endforeach; ?>
+</ul>
 
 </div>

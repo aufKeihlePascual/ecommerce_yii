@@ -122,13 +122,17 @@ class ProductController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$products = Product::model()->findAll();
-		$categories = Category::model()->findAll();
-
-
+		$dataProvider = new CActiveDataProvider('Product', array(
+			'pagination' => array(
+				'pageSize' => 8,
+			),
+			'criteria' => array(
+				'order' => 'id DESC',
+			),
+		));
+	
 		$this->render('index', array(
-			'products' => $products,
-			'categories' => $categories,
+			'dataProvider' => $dataProvider,
 		));
 	}
 

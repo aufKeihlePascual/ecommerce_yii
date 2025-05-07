@@ -55,6 +55,7 @@ class Order extends CActiveRecord
 			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
 			'cart' => array(self::BELONGS_TO, 'Cart', 'cart_id'),
 			'payments' => array(self::HAS_MANY, 'Payments', 'order_id'),
+			'orderItems' => array(self::HAS_MANY, 'OrderItem', 'order_id'),
 		);
 	}
 
