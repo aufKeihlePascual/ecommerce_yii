@@ -114,4 +114,10 @@ class Order extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function getItemCount()
+	{
+		return count($this->orderItems);
+	}
+
 }

@@ -20,4 +20,30 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+
+	public $userItem;
+
+	public function init() {
+		parent::init();
+
+		if (Yii::app()->user->isGuest) {
+			$this->userItem = array(
+				'label' => '<i class="fa-solid fa-user"></i>',
+				'url' => array('/site/login'),
+				'controller' => 'site',
+				'encode' => false,
+				'visible' => true,
+				'tooltip' => 'Login',
+			);
+		} else {
+			$this->userItem = array(
+				'label' => CHtml::encode(Yii::app()->user->name) . ' (Logout)',
+				'url' => array('/site/logout'),
+				'controller' => 'site',
+				'encode' => true,
+				'visible' => true,
+				'tooltip' => 'Logout',
+			);
+		}
+	}
 }

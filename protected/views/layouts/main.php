@@ -34,25 +34,24 @@
 		$menuItems = array(
 			array('label' => 'Home', 'url' => array('/'), 'controller' => 'site', 'action' => 'index'),
 			array('label' => 'Products', 'url' => array('/product/index'), 'controller' => 'product'),
-			array('label' => 'Orders', 'url' => array('/order/index'), 'controller' => 'order'),
+			array('label' => 'Orders', 'url' => array('/order/index'), 'controller' => 'order', 'visible' => !Yii::app()->user->isGuest),
 			array('label' => 'About', 'url' => array('/site/about'), 'controller' => 'site', 'action' => 'about'),
 			array('label' => 'Contact', 'url' => array('/site/contact'), 'controller' => 'site', 'action' => 'contact'),
 		);
 
 		$cartItem = array('label' => '<i class="fa-solid fa-cart-shopping"></i>', 'url' => array('/cart/index'), 'controller' => 'cart', 'encode' => false);
 
-		$userItem = array(
-			'label' => '<i class="fa-solid fa-user"></i>',
-			'url' => Yii::app()->user->isGuest ? array('/site/login') : array('/site/logout'),
-			'controller' => 'site',
-			'encode' => false,
-			'tooltip' => Yii::app()->user->isGuest ? 'Login' : 'Logout ('.Yii::app()->user->name.')'
-		);
+		$userItem = $this->userItem;
 		?>
 
 		<div id="navbar-div">
 			<ul id="navbar">
-				<?php foreach ($menuItems as $item): ?>
+				<?php
+					$menuItems = array_filter($menuItems, function($item) {
+						return !isset($item['visible']) || $item['visible'] === true;
+					});
+					 
+					foreach ($menuItems as $item): ?>
 					<?php
 						$isActive = false;
 						if (isset($item['action'])) {
@@ -74,11 +73,14 @@
 					</a>
 				</li>
 
-				<li id="nav-user">
-					<a href="<?php echo Yii::app()->createUrl($userItem['url'][0]); ?>" title="<?php echo $userItem['tooltip']; ?>">
-						<?php echo $userItem['encode'] === false ? $userItem['label'] : CHtml::encode($userItem['label']); ?>
-					</a>
-				</li>
+				<?php if ($userItem['visible']): ?>
+					<li id="nav-user">
+						<a href="<?php echo Yii::app()->createUrl($userItem['url'][0]); ?>" title="<?php echo $userItem['tooltip']; ?>">
+							<?php echo $userItem['encode'] === false ? $userItem['label'] : CHtml::encode($userItem['label']); ?>
+						</a>
+					</li>
+				<?php endif; ?>
+
 
 				<a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
 			</ul>

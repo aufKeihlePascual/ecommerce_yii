@@ -19,7 +19,6 @@ $this->breadcrumbs = array('Orders');
         <h2>Orders</h2>
     </div>
 
-    <!-- <div class="product-page"> -->
 	<div class="order-page d-flex">
 		<aside class="sidebar">
             <div class="filter-section">
@@ -43,7 +42,8 @@ $this->breadcrumbs = array('Orders');
 			<table class="order-table">
 				<thead>
 					<tr>
-						<th>Order</th>
+						<th>Order ID</th>
+						<th>Items</th>
 						<th>Date</th>
 						<th>Status</th>
 						<th>Total</th>
@@ -54,6 +54,7 @@ $this->breadcrumbs = array('Orders');
 					<?php foreach ($dataProvider->getData() as $data): ?>
 						<tr>
 							<td>#<?php echo $data->id; ?></td>
+							<td><?php echo $data->itemCount; ?></td>
 							<td><?php echo date('F j, Y', strtotime($data->created_at)); ?></td>
 							<td><span class="status <?php echo strtolower($data->status); ?>"><?php echo ucfirst($data->status); ?></span></td>
 							<td>₱<?php echo number_format($data->total, 2); ?></td>
