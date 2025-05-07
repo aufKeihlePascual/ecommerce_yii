@@ -492,6 +492,48 @@ body {
     right: 25px;
 }
 
+.product-page {
+    display: flex;
+    gap: 40px;
+}
+
+#product-sidebar .sidebar-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 0 0 300px;
+}
+
+#product-sidebar .admin-side {
+    height: 23.5vh;
+    padding: 15px;
+    background-color: #014b6e;
+    border-radius: 10px;
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.main-content {
+    flex-grow: 1;
+}
+
+#product-sidebar .menu-links a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;          
+    align-items: left;        
+    justify-content: flex-start;
+    padding: 6px 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    gap: 10px;
+}
+
+#product-sidebar .sidebar h4 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
 #banner {
     display: flex;
     flex-direction: column;
@@ -918,7 +960,7 @@ footer .copyright {
 /*----------------- Orders Page -----------------*/
 
 #index-orders {
-    padding: 40px 80px;
+    padding: 40px 90px 40px 80px;
     background-color: #121417;
     color: #fff;
     min-height: 59.5vh;
@@ -939,9 +981,9 @@ footer .copyright {
 }
 
 #index-orders .sidebar {
-    margin-right: 10px;
-    height: 23.5vh;
-    flex: 0 0 240px;
+    margin-right: 50px;
+    min-height: 23.5vh;
+    flex: 0 0 300px;
 }
 
 #orders-page.section-header {

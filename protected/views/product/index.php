@@ -20,42 +20,60 @@ $this->breadcrumbs = array('Products');
         <h2>Products</h2>
     </div>
 
-    <div class="product-page">
-        <aside class="sidebar">
-            <div class="filter-section">
-                <h4>Availability</h4>
-                <label><input type="checkbox"> In stock / Pre-order</label><br>
-                <label><input type="checkbox"> Out of stock</label>
-            </div>
-
-            <div class="filter-section">
-                <h4>Categories</h4>
-                <div class="filter-scroll limited-height" id="category-filter">
-                    <?php foreach ($categories as $category): ?>
-                        <label>
-                            <input type="checkbox" value="<?php echo CHtml::encode($category->id); ?>">
-                            <?php echo CHtml::encode($category->name); ?>
-                        </label><br>
-                    <?php endforeach; ?>
+    <div id="product-sidebar" class="product-page">
+        <div class="sidebar-column">
+            <aside class="sidebar admin-side">
+                <div class="filter-section">
+                    <h4>Actions</h4>
+                    <ul class="menu-links">
+                        <li>
+                            <a href="<?php echo CHtml::normalizeUrl(array('product/create')); ?>">
+                                <i class="fa fa-plus-circle"></i> Add Product
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo CHtml::normalizeUrl(array('product/admin')); ?>">
+                                <i class="fa fa-cogs"></i> Manage Products
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <button type="button" class="toggle-btn" data-target="#category-filter">Show More</button>
-            </div>
+            </aside>
 
-            <div class="filter-section">
-                <h4>Brand</h4>
-                <div class="filter-scroll limited-height" id="brand-filter">
-                <?php foreach ($brands as $brand): ?>
-                    <label>
-                        <input type="checkbox" value="<?php echo CHtml::encode($brand); ?>">
-                        <?php echo CHtml::encode($brand); ?>
-                    </label><br>
-                <?php endforeach; ?>
-
+            <aside class="sidebar">
+                <div class="filter-section">
+                    <h4>Availability</h4>
+                    <label><input type="checkbox"> In stock / Pre-order</label><br>
+                    <label><input type="checkbox"> Out of stock</label>
                 </div>
-                <button type="button" class="toggle-btn" data-target="#brand-filter">Show More</button>
-            </div>
-        </aside>
 
+                <div class="filter-section">
+                    <h4>Categories</h4>
+                    <div class="filter-scroll limited-height" id="category-filter">
+                        <?php foreach ($categories as $category): ?>
+                            <label>
+                                <input type="checkbox" value="<?php echo CHtml::encode($category->id); ?>">
+                                <?php echo CHtml::encode($category->name); ?>
+                            </label><br>
+                        <?php endforeach; ?>
+                    </div>
+                    <button type="button" class="toggle-btn" data-target="#category-filter">Show More</button>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Brand</h4>
+                    <div class="filter-scroll limited-height" id="brand-filter">
+                        <?php foreach ($brands as $brand): ?>
+                            <label>
+                                <input type="checkbox" value="<?php echo CHtml::encode($brand); ?>">
+                                <?php echo CHtml::encode($brand); ?>
+                            </label><br>
+                        <?php endforeach; ?>
+                    </div>
+                    <button type="button" class="toggle-btn" data-target="#brand-filter">Show More</button>
+                </div>
+            </aside>
+        </div>
 
         <div class="main-content">
             <?php $this->widget('zii.widgets.CListView', array(
