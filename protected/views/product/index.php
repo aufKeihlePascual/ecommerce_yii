@@ -1,3 +1,4 @@
+   
 <?php
 /* @var $this ProductController */
 /* @var $dataProvider CActiveDataProvider */
@@ -28,33 +29,53 @@ $this->breadcrumbs = array('Products');
             </div>
 
             <div class="filter-section">
+                <h4>Categories</h4>
+                <div class="filter-scroll limited-height" id="category-filter">
+                    <?php foreach ($categories as $category): ?>
+                        <label>
+                            <input type="checkbox" value="<?php echo CHtml::encode($category->id); ?>">
+                            <?php echo CHtml::encode($category->name); ?>
+                        </label><br>
+                    <?php endforeach; ?>
+                </div>
+                <button type="button" class="toggle-btn" data-target="#category-filter">Show More</button>
+            </div>
+
+            <div class="filter-section">
                 <h4>Brand</h4>
-                <label><input type="checkbox"> Akko</label><br>
-                <label><input type="checkbox"> Ducky</label><br>
-                <label><input type="checkbox"> Keychron</label>
+                <div class="filter-scroll limited-height" id="brand-filter">
+                <?php foreach ($brands as $brand): ?>
+                    <label>
+                        <input type="checkbox" value="<?php echo CHtml::encode($brand); ?>">
+                        <?php echo CHtml::encode($brand); ?>
+                    </label><br>
+                <?php endforeach; ?>
+
+                </div>
+                <button type="button" class="toggle-btn" data-target="#brand-filter">Show More</button>
             </div>
         </aside>
 
-        <div class="main-content">
-			<?php $this->widget('zii.widgets.CListView', array(
-				'dataProvider' => $dataProvider,
-				'itemView' => '_product',
-				'template' => "{items}\n{pager}",
-				'itemsCssClass' => 'pro-container',
-				'pagerCssClass' => 'custom-pagination',
-				'pager' => array(
-					'class' => 'CLinkPager',
-					'header' => '',
-					'selectedPageCssClass' => 'active-page',
-					'hiddenPageCssClass' => 'hidden',
-					'firstPageLabel' => '←',
-					'prevPageLabel' => '<',
-					'nextPageLabel' => '>',
-					'lastPageLabel' => '→',
-					'htmlOptions' => array('class' => 'pagination-wrapper'),
-				),
-			)); ?>
-		</div>
-    </div>
 
+        <div class="main-content">
+            <?php $this->widget('zii.widgets.CListView', array(
+                'dataProvider' => $dataProvider,
+                'itemView' => '_product',
+                'template' => "{items}\n{pager}",
+                'itemsCssClass' => 'pro-container',
+                'pagerCssClass' => 'custom-pagination',
+                'pager' => array(
+                    'class' => 'CLinkPager',
+                    'header' => '',
+                    'selectedPageCssClass' => 'active-page',
+                    'hiddenPageCssClass' => 'hidden',
+                    'firstPageLabel' => '←',
+                    'prevPageLabel' => '<',
+                    'nextPageLabel' => '>',
+                    'lastPageLabel' => '→',
+                    'htmlOptions' => array('class' => 'pagination-wrapper'),
+                ),
+            )); ?>
+        </div>
+    </div>
 </section>

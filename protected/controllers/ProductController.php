@@ -131,8 +131,13 @@ class ProductController extends Controller
 			),
 		));
 	
+		$categories = Category::model()->findAll();
+		$brands = Product::model()->getAllBrands();
+
 		$this->render('index', array(
 			'dataProvider' => $dataProvider,
+			'categories' => $categories,
+			'brands' => $brands,
 		));
 	}
 

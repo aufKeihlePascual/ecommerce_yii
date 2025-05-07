@@ -13,3 +13,15 @@ if (close) {
         nav.classList.remove('active');
     })
 }
+
+document.addEventListener('click', function (e) {
+    if (e.target && e.target.classList.contains('toggle-btn')) {
+        const button = e.target;
+        const target = document.querySelector(button.dataset.target);
+        if (target) {
+            target.classList.toggle('expanded');
+            button.textContent = target.classList.contains('expanded') ? 'Show Less' : 'Show More';
+        }
+    }
+});
+

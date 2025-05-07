@@ -121,4 +121,16 @@ class Product extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public static function getAllBrands()
+	{
+		$sql = "
+			SELECT DISTINCT brand 
+			FROM products
+			WHERE brand IS NOT NULL AND brand != '' 
+			ORDER BY brand ASC
+		";
+
+		return Yii::app()->db->createCommand($sql)->queryColumn();
+	}
 }

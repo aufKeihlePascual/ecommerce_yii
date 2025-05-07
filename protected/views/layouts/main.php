@@ -93,7 +93,7 @@
 	</section>
 
 	<?php if (Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'index'): ?>
-		<section id="hero" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/hero_keyboard.png');">
+		<section id="hero" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/hero_keyboard.png'); background-color: rgba(0,0,0,0.4); background-blend-mode:darken">
 			<h1>Elevate your typing experience</h1>
 			<p>Explore premium keyboards, switches, and keycaps for the ultimate setup.</p>
 			<button>Shop Now</button>
