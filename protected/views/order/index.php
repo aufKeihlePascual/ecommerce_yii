@@ -19,9 +19,9 @@ $this->breadcrumbs = array('Orders');
         <h2>Orders</h2>
     </div>
 
-    <div class="product-page">
-        <!-- Sidebar for Order Actions -->
-        <aside class="sidebar">
+    <!-- <div class="product-page"> -->
+	<div class="order-page d-flex">
+		<aside class="sidebar">
             <div class="filter-section">
                 <h4>Actions</h4>
                 <ul class="menu-links">
@@ -39,14 +39,31 @@ $this->breadcrumbs = array('Orders');
             </div>
         </aside>
 
-		<div class="order-list">
-			<?php $this->widget('zii.widgets.CListView', array(
-				'dataProvider' => $dataProvider,
-				'itemView' => '_orderCard',
-				'template' => "{items}\n{pager}",
-				'itemsCssClass' => 'order-container',
-				'pagerCssClass' => 'custom-pagination',
-			)); ?>
+		<div class="order-table-wrapper">
+			<table class="order-table">
+				<thead>
+					<tr>
+						<th>Order</th>
+						<th>Date</th>
+						<th>Status</th>
+						<th>Total</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($dataProvider->getData() as $data): ?>
+						<tr>
+							<td>#<?php echo $data->id; ?></td>
+							<td><?php echo date('F j, Y', strtotime($data->created_at)); ?></td>
+							<td><span class="status <?php echo strtolower($data->status); ?>"><?php echo ucfirst($data->status); ?></span></td>
+							<td>₱<?php echo number_format($data->total, 2); ?></td>
+							<td>
+								<?php echo CHtml::link('View', array('order/view', 'id' => $data->id), array('class' => 'view-btn')); ?>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
 		</div>
     </div>
 
