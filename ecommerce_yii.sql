@@ -1,12 +1,13 @@
 CREATE DATABASE IF NOT EXISTS `ecommerce_yii` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `ecommerce_yii`;
 
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2025 at 06:57 PM
+-- Generation Time: May 07, 2025 at 02:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -88,12 +89,12 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `image`) VALUES
-(1, 'Keyboards', ''),
-(2, 'Keycaps', ''),
-(3, 'Switches', ''),
-(4, 'Accessories', ''),
-(5, 'Deskmats', ''),
-(6, 'Cables', '');
+(1, 'Keyboards', 'keyboards.jpg'),
+(2, 'Keycaps', 'keycaps.jpg'),
+(3, 'Switches', 'switches.jpg'),
+(4, 'Accessories', 'accessories.jpg'),
+(5, 'Deskmats', 'deskmats.jpg'),
+(6, 'Cables', 'cables.jpg');
 
 -- --------------------------------------------------------
 
@@ -118,6 +119,20 @@ INSERT INTO `orders` (`id`, `user_id`, `cart_id`, `total`, `status`, `created_at
 (1, 2, 1, 219.97, 'paid', '2025-04-16 20:23:39'),
 (2, 2, 2, 189.00, 'paid', '2025-04-20 12:32:54'),
 (3, 2, 3, 349.98, 'pending', '2025-04-25 19:34:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `price` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -202,7 +217,6 @@ INSERT INTO `products` (`id`, `brand`, `name`, `description`, `price`, `stock`, 
 (36, 'SpaceCables', 'Laser Cable', 'Bright violet and cyan themed cable', 32.99, 18, 6, 'laser_cable.jpg'),
 (37, 'Zap Cables', 'Blackout Cable', 'Matte black coiled cable', 31.99, 20, 6, 'blackout_cable.jpg'),
 (38, 'Kono', 'Kono Aviator Cable', 'Color-matched detachable cable', 33.99, 15, 6, 'kono_aviator.jpg');
-
 
 -- --------------------------------------------------------
 
@@ -308,6 +322,14 @@ ALTER TABLE `orders`
   ADD KEY `cart_id` (`cart_id`);
 
 --
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexes for table `payments`
 --
 ALTER TABLE `payments`
@@ -351,37 +373,43 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `tags`
@@ -418,6 +446,13 @@ ALTER TABLE `cart_items`
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `payments`
