@@ -2404,3 +2404,129 @@ Stack trace:
 #12 {main}
 REQUEST_URI=/ecommerce/index.php/cart/update
 ---
+2025/05/10 13:31:21 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in A:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 A:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php
+---
+2025/05/10 13:31:21 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in A:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 A:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php
+---
+2025/05/10 13:31:30 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in A:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 A:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php
+---
+2025/05/10 13:31:30 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in A:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 A:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php
+---
+2025/05/10 13:34:50 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in A:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 A:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php
+---
+2025/05/10 13:40:08 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in A:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 A:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php
+---
+2025/05/10 13:41:38 [error] [exception.CHttpException.400] CHttpException: Your request is invalid. in A:\xampp\htdocs\ecommerce\framework\web\CController.php:337
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#4 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('view')
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/view')
+#10 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 A:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/ecommerce/index.php/cart/view
+HTTP_REFERER=http://localhost/ecommerce/index.php
+---

@@ -36,6 +36,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log("DOM fully loaded");
     fetchCartData();
+
+    document.addEventListener('click', function (e) {
+        const link = e.target.closest('.add-to-cart-link');
+        if (link) {
+            e.preventDefault();
+
+            const productId = link.dataset.id;
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    try {
+                        const response = JSON.parse(this.responseText);
+                        if (response.success) {
+                            alert("Added to cart!");
+                            if (typeof fetchCartData === "function") {
+                                fetchCartData();
+                            }
+                        } else {
+                            alert("Failed: " + response.message);
+                        }
+                    } catch (e) {
+                        console.error("Invalid JSON from server", e);
+                    }
+                }
+            };
+
+            xhttp.open("POST", baseUrl + "/index.php/cart/addToCart/" + productId, true);
+            xhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            xhttp.send();
+        }
+    });
+
     console.log("cartIcon is", cartIcon);
     if (!cartIcon) return;
 
@@ -52,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     cartIcon.addEventListener('click', function (e) {
         e.preventDefault();
-        e.stopPropagation(); // stop any parent listeners
+        e.stopPropagation();
         console.log("Cart icon clicked");
         toggleCart(true);
     });
@@ -103,8 +136,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         content.innerHTML = html;
                         subtotal.textContent = `₱${data.subtotal.toFixed(2)}`;
                         updateCartCount(data.totalQuantity);
-
-                        // Attach event listeners to new buttons
                         attachCartEventListeners();
                     } catch (err) {
                         console.error("JSON parse error", err);

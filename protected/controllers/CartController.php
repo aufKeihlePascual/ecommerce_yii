@@ -28,7 +28,7 @@ class CartController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view', 'ajaxCart', 'updateQuantity', 'removeItem'),
+				'actions'=>array('index','view', 'ajaxCart', 'addToCart', 'updateQuantity', 'removeItem'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -231,6 +231,63 @@ class CartController extends Controller
 
 		Yii::app()->end();
 	}
+
+	public function actionAddToCart($id)
+	{
+		$product = Product::model()->findByPk($id);
+		if (!$product || $product->stock < 1) {
+			if (Yii::app()->request->isAjaxRequest) {
+				echo CJSON::encode(['success' => false, 'message' => 'Out of stock or not found']);
+				Yii::app()->end();
+			}
+			throw new CHttpException(404, 'Product not found or out of stock.');
+		}
+
+		$userId = Yii::app()->user->id;
+
+		$cart = Cart::model()->find('user_id=:uid AND status="active"', array(':uid' => $userId));
+		if (!$cart) {
+			$cart = new Cart;
+			$cart->user_id = $userId;
+			$cart->status = 'active';
+			$cart->save();
+		}
+
+		$item = CartItem::model()->findByAttributes([
+			'cart_id' => $cart->id,
+			'product_id' => $id
+		]);
+
+		if ($item) {
+			if ($product->stock <= 0) {
+				if (Yii::app()->request->isAjaxRequest) {
+					echo CJSON::encode(['success' => false, 'message' => 'Insufficient stock']);
+					Yii::app()->end();
+				}
+				Yii::app()->user->setFlash('error', 'Insufficient stock');
+				$this->redirect(array('product/view', 'id' => $id));
+			}
+			$item->quantity += 1;
+		} else {
+			$item = new CartItem;
+			$item->cart_id = $cart->id;
+			$item->product_id = $id;
+			$item->quantity = 1;
+		}
+
+		$item->save();
+		$product->stock -= 1;
+		$product->save();
+
+		if (Yii::app()->request->isAjaxRequest) {
+			echo CJSON::encode(['success' => true, 'message' => 'Added to cart']);
+			Yii::app()->end();
+		}
+
+		Yii::app()->user->setFlash('success', 'Item added to cart!');
+		$this->redirect(array('cart/view'));
+	}
+
 
 	public function actionUpdateQuantity()
 	{

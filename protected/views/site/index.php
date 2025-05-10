@@ -94,7 +94,9 @@
 
 				</div>
 
-				<a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
+				<a href="#" class="add-to-cart-link" data-id="<?php echo $product->id; ?>">
+					<i class="fa-solid fa-cart-plus cart"></i>
+				</a>
 			</div>
 
 		<?php endforeach; ?>
