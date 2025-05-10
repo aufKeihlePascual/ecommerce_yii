@@ -35,6 +35,7 @@ class Cart extends CActiveRecord
 			array('user_id', 'numerical', 'integerOnly'=>true),
 			array('status', 'length', 'max'=>7),
 			array('created_at', 'safe'),
+			array('session_id', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, user_id, status, created_at', 'safe', 'on'=>'search'),
@@ -64,6 +65,7 @@ class Cart extends CActiveRecord
 			'id' => 'ID',
 			'user_id' => 'User',
 			'status' => 'Status',
+			'session_id' => 'Session ID',
 			'created_at' => 'Created At',
 		);
 	}

@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css">
-	
-	<script src="https://kit.fontawesome.com/4e3a20099e.js"></script>
-</head>
-
 <!-- <section id="index-category" class="section-p1 bg-dark text-light">
 	<h2>Shop by Category</h2>
 		<div class="pro-container">

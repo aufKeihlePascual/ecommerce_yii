@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         var html = '';
 
                         if (data.items.length === 0) {
-                            html = '<p>Your cart is empty.</p>';
+                            html = '<p>You currently have no items in the cart.</p>';
                         } else {
                             data.items.forEach(function (item) {
                                 html += `
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function showCartToast(message = "Added to cart!") {
+    function showCartToast(message = "Added to cart") {
         const toast = document.getElementById("cart-toast");
         const msg = document.getElementById("cart-toast-message");
 

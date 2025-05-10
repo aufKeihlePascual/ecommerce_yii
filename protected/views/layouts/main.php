@@ -154,19 +154,21 @@
 		</div>
 
 		<div id="cart-content">
-			<!-- Cart items will be loaded here via AJAX -->
+
+			<!-- Cart items -->
+
 		</div>
 
 		<div class="cart-footer">
 			<p class="subtotal">Subtotal: <span id="cart-subtotal">₱0.00</span></p>
 			<button id="checkout-btn" class="categories">Checkout</button>
-			<a href="<?php echo Yii::app()->createUrl('/cart/index'); ?>">Go to Cart</a>
+			<a href="<?php echo Yii::app()->createUrl('/cart/shoppingCart'); ?>">Go to Cart</a>
 		</div>
 	</div>
 
 	<div id="cart-toast" class="cart-toast hidden">
 		<i class="fa-solid fa-check"></i>
-		<span id="cart-toast-message">Added to cart!</span>
+		<span id="cart-toast-message">Added to cart</span>
 	</div>
 
 

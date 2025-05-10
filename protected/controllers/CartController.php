@@ -28,7 +28,7 @@ class CartController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view', 'ajaxCart', 'addToCart', 'updateQuantity', 'removeItem'),
+				'actions'=>array('view', 'ajaxCart', 'addToCart', 'updateQuantity', 'removeItem', 'shoppingCart'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -36,7 +36,7 @@ class CartController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('index', 'create','update', 'admin','delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -174,18 +174,18 @@ class CartController extends Controller
 	public function actionAjaxCart()
 	{
 		Yii::app()->layout = false;
+		Yii::app()->session->open();
 
 		try {
-			$userId = Yii::app()->user->id;
-
-			if (!$userId) {
-				throw new Exception('User not logged in');
+			if (Yii::app()->user->isGuest) {
+				$cart = Cart::model()->find('session_id = :sid AND status = "active"', [
+					':sid' => Yii::app()->session->sessionID
+				]);
+			} else {
+				$cart = Cart::model()->find('user_id = :uid AND status = "active"', [
+					':uid' => Yii::app()->user->id
+				]);
 			}
-
-			$cart = Cart::model()->findByAttributes([
-				'user_id' => $userId,
-				'status' => 'active',
-			]);
 
 			if (!$cart) {
 				echo CJSON::encode([
@@ -204,7 +204,7 @@ class CartController extends Controller
 				if (!$cartItem) continue;
 
 				$product = $cartItem->product;
-				if (!$product) continue;
+				if (!$product || $product->stock < 1) continue;
 
 				$items[] = [
 					'id' => $product->id,
@@ -224,7 +224,6 @@ class CartController extends Controller
 				'totalQuantity' => $totalQuantity
 			]);
 		} catch (Exception $e) {
-			// Output the actual error as JSON
 			header('Content-Type: application/json', true, 500);
 			echo json_encode(['error' => $e->getMessage()]);
 		}
@@ -234,7 +233,9 @@ class CartController extends Controller
 
 	public function actionAddToCart($id)
 	{
+		Yii::app()->session->open();
 		$product = Product::model()->findByPk($id);
+
 		if (!$product || $product->stock < 1) {
 			if (Yii::app()->request->isAjaxRequest) {
 				echo CJSON::encode(['success' => false, 'message' => 'Out of stock or not found']);
@@ -243,13 +244,26 @@ class CartController extends Controller
 			throw new CHttpException(404, 'Product not found or out of stock.');
 		}
 
-		$userId = Yii::app()->user->id;
+		$isGuest = Yii::app()->user->isGuest;
+		$sessionId = Yii::app()->session->sessionID;
 
-		$cart = Cart::model()->find('user_id=:uid AND status="active"', array(':uid' => $userId));
+		if ($isGuest) {
+			$cart = Cart::model()->find('session_id=:sid AND status="active"', [':sid' => $sessionId]);
+		} else {
+			$cart = Cart::model()->find('user_id=:uid AND status="active"', [':uid' => Yii::app()->user->id]);
+		}
+
 		if (!$cart) {
 			$cart = new Cart;
-			$cart->user_id = $userId;
 			$cart->status = 'active';
+			$cart->created_at = date('Y-m-d H:i:s');
+
+			if ($isGuest) {
+				$cart->session_id = $sessionId;
+			} else {
+				$cart->user_id = Yii::app()->user->id;
+			}
+
 			$cart->save();
 		}
 
@@ -284,7 +298,7 @@ class CartController extends Controller
 			Yii::app()->end();
 		}
 
-		Yii::app()->user->setFlash('success', 'Item added to cart!');
+		Yii::app()->user->setFlash('success', 'Item added to cart');
 		$this->redirect(array('cart/view'));
 	}
 
@@ -295,12 +309,18 @@ class CartController extends Controller
 
 		$productId = (int) $data['productId'];
 		$action = $data['action'];
-		$userId = Yii::app()->user->id;
 
-		$cart = Cart::model()->findByAttributes([
-			'user_id' => $userId,
-			'status' => 'active',
-		]);
+		if (Yii::app()->user->isGuest) {
+			$cart = Cart::model()->findByAttributes([
+				'session_id' => Yii::app()->session->sessionID,
+				'status' => 'active',
+			]);
+		} else {
+			$cart = Cart::model()->findByAttributes([
+				'user_id' => Yii::app()->user->id,
+				'status' => 'active',
+			]);
+		}
 
 		$item = CartItem::model()->findByAttributes([
 			'cart_id' => $cart->id,
@@ -345,12 +365,18 @@ class CartController extends Controller
 		$data = json_decode(file_get_contents('php://input'), true);
 
 		$productId = (int) $data['productId'];
-		$userId = Yii::app()->user->id;
 
-		$cart = Cart::model()->findByAttributes([
-			'user_id' => $userId,
-			'status' => 'active',
-		]);
+		if (Yii::app()->user->isGuest) {
+			$cart = Cart::model()->findByAttributes([
+				'session_id' => Yii::app()->session->sessionID,
+				'status' => 'active',
+			]);
+		} else {
+			$cart = Cart::model()->findByAttributes([
+				'user_id' => Yii::app()->user->id,
+				'status' => 'active',
+			]);
+		}
 
 		$item = CartItem::model()->findByAttributes([
 			'cart_id' => $cart->id,
@@ -367,6 +393,37 @@ class CartController extends Controller
 
 		echo CJSON::encode(['success' => true]);
 		Yii::app()->end();
+	}
+
+	public function actionShoppingCart()
+	{
+		if (Yii::app()->user->isGuest) {
+			$cart = Cart::model()->find('session_id = :sid AND status = "active"', [
+				':sid' => Yii::app()->session->sessionID
+			]);
+		} else {
+			$cart = Cart::model()->find('user_id = :uid AND status = "active"', [
+				':uid' => Yii::app()->user->id
+			]);
+		}
+
+		$cartItems = $cart ? $cart->cartItems : [];
+		$subtotal = 0;
+
+		foreach ($cartItems as $item) {
+			$subtotal += $item->product->price * $item->quantity;
+		}
+
+		$this->render('shoppingcart', [
+			'cartItems' => $cartItems,
+			'subtotal' => $subtotal,
+		]);
+	}
+
+	public function actionCleanupExpiredCarts()
+	{
+		$threshold = date('Y-m-d H:i:s', strtotime('-3 days'));
+		Cart::model()->deleteAll('user_id IS NULL AND created_at < :threshold', [':threshold' => $threshold]);
 	}
 
 }
