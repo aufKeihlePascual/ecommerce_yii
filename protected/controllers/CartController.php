@@ -420,10 +420,5 @@ class CartController extends Controller
 		]);
 	}
 
-	public function actionCleanupExpiredCarts()
-	{
-		$threshold = date('Y-m-d H:i:s', strtotime('-3 days'));
-		Cart::model()->deleteAll('user_id IS NULL AND created_at < :threshold', [':threshold' => $threshold]);
-	}
 
 }

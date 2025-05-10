@@ -29,12 +29,15 @@ document.addEventListener('click', function (e) {
 
 // CART SIDEBAR
 document.addEventListener('DOMContentLoaded', function () {
+    attachPageCartEventListeners();
+    
     const cartIcon = document.querySelector('#cart-icon');
     const cartSidebar = document.getElementById('cart-sidebar');
     const cartOverlay = document.getElementById('cart-overlay');
     const cartClose = document.getElementById('cart-close');
 
     console.log("DOM fully loaded");
+
     fetchCartData();
 
     document.addEventListener('click', function (e) {
@@ -50,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     try {
                         const response = JSON.parse(this.responseText);
                         if (response.success) {
-                            showCartToast("Added to cart!");
+                            showCartToast("Added to cart");
                             if (typeof fetchCartData === "function") {
                                 fetchCartData();
                             }
@@ -168,19 +171,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function attachCartEventListeners() {
-        var qtyButtons = document.querySelectorAll('.qty-btn');
+        const qtyButtons = document.querySelectorAll('#cart-sidebar .qty-btn'); // scoped to sidebar
         qtyButtons.forEach(function (btn) {
             btn.addEventListener('click', function () {
-                var action = this.dataset.action;
-                var productId = this.dataset.id;
+                const action = this.dataset.action;
+                const productId = this.dataset.id;
 
-                var xhttp = new XMLHttpRequest();
+                const xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         try {
-                            var data = JSON.parse(this.responseText);
+                            const data = JSON.parse(this.responseText);
                             if (data.success) {
-                                fetchCartData();
+                                fetchCartData(); // only updates sidebar
                             }
                         } catch (err) {
                             console.error("JSON parse error", err);
@@ -193,19 +196,20 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        var removeButtons = document.querySelectorAll('.remove-item');
+        // Sidebar remove buttons
+        const removeButtons = document.querySelectorAll('#cart-sidebar .remove-item');
         removeButtons.forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.preventDefault();
-                var productId = this.dataset.id;
+                const productId = this.dataset.id;
 
-                var xhttp = new XMLHttpRequest();
+                const xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         try {
-                            var data = JSON.parse(this.responseText);
+                            const data = JSON.parse(this.responseText);
                             if (data.success) {
-                                fetchCartData();
+                                fetchCartData(); // again, just sidebar
                             }
                         } catch (err) {
                             console.error("JSON parse error", err);
@@ -218,6 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
 
     function showCartToast(message = "Added to cart") {
         const toast = document.getElementById("cart-toast");
@@ -236,3 +241,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+
+    function attachPageCartEventListeners() {
+        const pageCart = document.getElementById('shopping-cart');
+        if (!pageCart) return;
+
+        const buttons = pageCart.querySelectorAll('.page-cart-btn');
+        buttons.forEach((btn) => {
+            btn.addEventListener('click', function () {
+                const productId = this.dataset.id;
+                const action = this.dataset.action;
+
+                const xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        try {
+                            const res = JSON.parse(this.responseText);
+                            if (res.success) {
+                                location.reload(); // or refresh cart section only
+                            }
+                        } catch (e) {
+                            console.error("Error parsing updateQuantity response", e);
+                        }
+                    }
+                };
+                xhttp.open("POST", baseUrl + "/index.php/cart/updateQuantity", true);
+                xhttp.setRequestHeader("Content-Type", "application/json");
+                xhttp.send(JSON.stringify({ productId: productId, action: action }));
+            });
+        });
+    }
+

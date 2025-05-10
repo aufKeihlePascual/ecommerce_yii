@@ -179,6 +179,6 @@
 		const baseUrl = "<?php echo Yii::app()->baseUrl; ?>";
 	</script>
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/script.js?<?php echo time(); ?>"></script>
-	
+	<script src="https://js.stripe.com/v3/"></script>
 </body>
 </html>
