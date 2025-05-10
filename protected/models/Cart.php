@@ -106,4 +106,15 @@ class Cart extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function cartItemsWithDetails()
+	{
+		return Yii::app()->db->createCommand()
+			->select('p.name, p.price, ci.quantity')
+			->from('cart_items ci')
+			->join('product p', 'p.id = ci.product_id')
+			->where('ci.cart_id = :cartId', [':cartId' => $this->id])
+			->queryAll();
+	}
+
 }

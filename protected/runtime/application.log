@@ -1743,3 +1743,53 @@ Stack trace:
 REQUEST_URI=/ecommerce/index.php/product/index
 HTTP_REFERER=http://localhost/ecommerce/index.php/order/index
 ---
+2025/05/10 10:24:19 [error] [exception.CHttpException.403] CHttpException: You are not authorized to perform this action. in A:\xampp\htdocs\ecommerce\framework\web\auth\CAccessControlFilter.php:183
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#3 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#6 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('ajaxCart')
+#8 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/ajaxCart')
+#9 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 A:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/ecommerce/index.php/cart/ajaxCart
+---
+2025/05/10 10:28:19 [error] [exception.CHttpException.403] CHttpException: You are not authorized to perform this action. in A:\xampp\htdocs\ecommerce\framework\web\auth\CAccessControlFilter.php:183
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#3 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#6 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('ajaxCart')
+#8 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/ajaxCart')
+#9 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 A:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/ecommerce/index.php/cart/ajaxCart
+---
+2025/05/10 10:31:44 [error] [exception.CHttpException.400] CHttpException: Invalid request in A:\xampp\htdocs\ecommerce\protected\controllers\CartController.php:175
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): CartController->actionAjaxCart()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('ajaxCart')
+#10 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/ajaxCart')
+#11 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#12 A:\xampp\htdocs\ecommerce\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/ecommerce/index.php/cart/ajaxCart
+---

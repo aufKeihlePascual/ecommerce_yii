@@ -68,7 +68,7 @@
 				<?php endforeach; ?>
 
 				<li id="nav-cart">
-					<a class="<?php echo (Yii::app()->controller->id == $cartItem['controller']) ? 'active' : ''; ?>" href="<?php echo Yii::app()->createUrl($cartItem['url'][0]); ?>">
+					<a href="#" id="cart-icon">
 						<?php echo $cartItem['encode'] === false ? $cartItem['label'] : CHtml::encode($cartItem['label']); ?>
 					</a>
 				</li>
@@ -145,7 +145,27 @@
 
 	</footer>
 
+	<div id="cart-overlay"></div>
+
+	<div id="cart-sidebar">
+		<div class="cart-header">
+			<h4>Your Cart</h4>
+			<button id="cart-close"><i class="fa-solid fa-xmark"></i></button>
+		</div>
+
+		<div id="cart-content">
+			<!-- Cart items will be loaded here via AJAX -->
+		</div>
+
+		<div class="cart-footer">
+			<p class="subtotal">Subtotal: <span id="cart-subtotal">₱0.00</span></p>
+			<button id="checkout-btn" class="categories">Checkout</button>
+			<a href="<?php echo Yii::app()->createUrl('/cart/index'); ?>">Go to Cart</a>
+		</div>
+	</div>
+
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/script.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/script.js?<?php echo time(); ?>"></script>
 </body>
 </html>

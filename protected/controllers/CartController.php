@@ -28,7 +28,7 @@ class CartController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'ajaxCart'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -170,4 +170,54 @@ class CartController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	public function actionAjaxCart()
+	{
+		Yii::app()->layout = false;
+
+		$userId = Yii::app()->user->id;
+
+		$cart = Cart::model()->findByAttributes([
+			'user_id' => $userId,
+			'status' => 'active',
+		]);
+
+		if (!$cart) {
+			echo CJSON::encode([
+				'items' => [],
+				'subtotal' => 0,
+				'totalQuantity' => 0
+			]);
+			Yii::app()->end();
+		}
+
+		$items = [];
+		$subtotal = 0;
+		$totalQuantity = 0;
+
+		foreach ($cart->cartItems as $cartItem) {
+			$product = $cartItem->product;
+
+			if (!$product) continue;
+
+			$items[] = [
+				'name' => $product->name,
+				'price' => floatval($product->price),
+				'quantity' => intval($cartItem->quantity),
+				'image' => $product->image,
+			];
+
+			$subtotal += $product->price * $cartItem->quantity;
+			$totalQuantity += $cartItem->quantity;
+		}
+
+		echo CJSON::encode([
+			'items' => $items,
+			'subtotal' => $subtotal,
+			'totalQuantity' => $totalQuantity
+		]);
+
+		Yii::app()->end();
+	}
+
 }
