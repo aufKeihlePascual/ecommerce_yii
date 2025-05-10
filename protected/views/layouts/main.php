@@ -164,6 +164,12 @@
 		</div>
 	</div>
 
+	<div id="cart-toast" class="cart-toast hidden">
+		<i class="fa-solid fa-check"></i>
+		<span id="cart-toast-message">Added to cart!</span>
+	</div>
+
+
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
@@ -171,5 +177,6 @@
 		const baseUrl = "<?php echo Yii::app()->baseUrl; ?>";
 	</script>
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/script.js?<?php echo time(); ?>"></script>
+	
 </body>
 </html>

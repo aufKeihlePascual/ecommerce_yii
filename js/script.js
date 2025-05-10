@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     try {
                         const response = JSON.parse(this.responseText);
                         if (response.success) {
-                            alert("Added to cart!");
+                            showCartToast("Added to cart!");
                             if (typeof fetchCartData === "function") {
                                 fetchCartData();
                             }
@@ -116,7 +116,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             data.items.forEach(function (item) {
                                 html += `
                                     <div class="cart-item">
-                                        <img src="${baseUrl}/images/products/${item.image}" class="cart-thumb" />
+                                        <div class="cart-thumb">
+                                            <img src="${baseUrl}/images/products/${item.image}" alt="${item.name}" />
+                                        </div>
                                         <div class="cart-item-details">
                                             <p class="cart-product-name">${item.name}</p>
                                             <div class="cart-price-row">
@@ -130,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                             <a href="#" class="remove-item" data-id="${item.id}">Remove</a>
                                         </div>
                                     </div>`;
+
                             });
                         }
 
@@ -215,4 +218,21 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    function showCartToast(message = "Added to cart!") {
+        const toast = document.getElementById("cart-toast");
+        const msg = document.getElementById("cart-toast-message");
+
+        msg.textContent = message;
+        toast.classList.remove("hidden");
+        toast.classList.add("show");
+
+        setTimeout(() => {
+            toast.classList.remove("show");
+            setTimeout(() => {
+                toast.classList.add("hidden");
+            }, 400);
+        }, 2000);
+    }
+
 });
