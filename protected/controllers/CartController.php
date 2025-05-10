@@ -175,47 +175,58 @@ class CartController extends Controller
 	{
 		Yii::app()->layout = false;
 
-		$userId = Yii::app()->user->id;
+		try {
+			$userId = Yii::app()->user->id;
 
-		$cart = Cart::model()->findByAttributes([
-			'user_id' => $userId,
-			'status' => 'active',
-		]);
+			if (!$userId) {
+				throw new Exception('User not logged in');
+			}
 
-		if (!$cart) {
-			echo CJSON::encode([
-				'items' => [],
-				'subtotal' => 0,
-				'totalQuantity' => 0
+			$cart = Cart::model()->findByAttributes([
+				'user_id' => $userId,
+				'status' => 'active',
 			]);
-			Yii::app()->end();
+
+			if (!$cart) {
+				echo CJSON::encode([
+					'items' => [],
+					'subtotal' => 0,
+					'totalQuantity' => 0
+				]);
+				Yii::app()->end();
+			}
+
+			$items = [];
+			$subtotal = 0;
+			$totalQuantity = 0;
+
+			foreach ($cart->cartItems as $cartItem) {
+				if (!$cartItem) continue;
+
+				$product = $cartItem->product;
+				if (!$product) continue;
+
+				$items[] = [
+					'name' => $product->name,
+					'price' => floatval($product->price),
+					'quantity' => intval($cartItem->quantity),
+					'image' => $product->image ?? 'placeholder.jpg',
+				];
+
+				$subtotal += $product->price * $cartItem->quantity;
+				$totalQuantity += $cartItem->quantity;
+			}
+
+			echo CJSON::encode([
+				'items' => $items,
+				'subtotal' => $subtotal,
+				'totalQuantity' => $totalQuantity
+			]);
+		} catch (Exception $e) {
+			// Output the actual error as JSON
+			header('Content-Type: application/json', true, 500);
+			echo json_encode(['error' => $e->getMessage()]);
 		}
-
-		$items = [];
-		$subtotal = 0;
-		$totalQuantity = 0;
-
-		foreach ($cart->cartItems as $cartItem) {
-			$product = $cartItem->product;
-
-			if (!$product) continue;
-
-			$items[] = [
-				'name' => $product->name,
-				'price' => floatval($product->price),
-				'quantity' => intval($cartItem->quantity),
-				'image' => $product->image,
-			];
-
-			$subtotal += $product->price * $cartItem->quantity;
-			$totalQuantity += $cartItem->quantity;
-		}
-
-		echo CJSON::encode([
-			'items' => $items,
-			'subtotal' => $subtotal,
-			'totalQuantity' => $totalQuantity
-		]);
 
 		Yii::app()->end();
 	}

@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const cartClose = document.getElementById('cart-close');
 
     console.log("DOM fully loaded");
+    fetchCartData();
     console.log("cartIcon is", cartIcon);
     if (!cartIcon) return;
 
@@ -65,15 +66,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function fetchCartData() {
-        const url = '/cart/ajaxCart'; // Make sure this returns JSON
-        fetch(url)
+        fetch(ajaxCartUrl)
             .then(res => {
                 if (!res.ok) throw new Error('Network error');
-                return res.text(); // Use .text() for debugging
+                return res.text();
             })
             .then(txt => {
                 console.log("Cart response:", txt);
-                // Try parsing manually
                 try {
                     const data = JSON.parse(txt);
 
@@ -87,12 +86,19 @@ document.addEventListener('DOMContentLoaded', function () {
                         data.items.forEach(item => {
                             html += `
                                 <div class="cart-item">
-                                    <img src="/images/products/${item.image}" class="cart-thumb" />
-                                    <div>
-                                    <p><strong>${item.name}</strong></p>
-                                    <p>₱${item.price} × ${item.quantity}</p>
+                                    <img src="${baseUrl}/images/products/${item.image}" class="cart-thumb" />
+                                    <div class="cart-item-details">
+                                    <p class="cart-product-name">${item.name}</p>
+                                    <div class="cart-price-row">
+                                        <span class="cart-product-price">₱${item.price.toFixed(2)}</span>
+                                        <div class="cart-qty-controls">
+                                        <button class="qty-btn" data-action="decrease" data-id="${item.id}">–</button>
+                                        <span class="cart-qty">${item.quantity}</span>
+                                        <button class="qty-btn" data-action="increase" data-id="${item.id}">+</button>
+                                        </div>
                                     </div>
-                                    <hr>
+                                    <a href="#" class="remove-item" data-id="${item.id}">Remove</a>
+                                    </div>
                                 </div>`;
                         });
                     }
@@ -115,17 +121,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!badge) {
             badge = document.createElement('span');
             badge.className = 'cart-count';
-            badge.style.position = 'absolute';
-            badge.style.top = '-5px';
-            badge.style.right = '-8px';
-            badge.style.background = '#246083';
-            badge.style.color = '#fff';
-            badge.style.fontSize = '12px';
-            badge.style.borderRadius = '50%';
-            badge.style.padding = '3px 6px';
             cartIcon.style.position = 'relative';
             cartIcon.appendChild(badge);
+
         }
-        badge.textContent = count;
+        if (count === 0) {
+            if (badge) badge.remove();
+        } else {
+            badge.textContent = count;
+        }
+
     }
 });

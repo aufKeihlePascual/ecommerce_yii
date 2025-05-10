@@ -13,7 +13,7 @@
  * @property string $image
  *
  * The followings are the available model relations:
- * @property CartItems[] $cartItems
+ * @property CartItem[] $cartItems
  * @property Tags[] $tags
  * @property Categories $category
  */
@@ -56,7 +56,7 @@ class Product extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'cartItems' => array(self::HAS_MANY, 'CartItems', 'product_id'),
+			'cartItems' => array(self::HAS_MANY, 'CartItem', 'product_id'),
 			'tags' => array(self::MANY_MANY, 'Tags', 'product_tags(product_id, tag_id)'),
 			'category' => array(self::BELONGS_TO, 'Categories', 'category_id'),
 			'orderItems' => array(self::HAS_MANY, 'OrderItem', 'product_id'),

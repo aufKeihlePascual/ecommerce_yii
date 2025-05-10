@@ -1,13 +1,12 @@
 CREATE DATABASE IF NOT EXISTS `ecommerce_yii` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `ecommerce_yii`;
 
-
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2025 at 02:49 PM
+-- Generation Time: May 10, 2025 at 12:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +42,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `status`, `created_at`) VALUES
-(1, 2, 'active', '2025-04-16 20:23:38'),
+(1, 1, 'active', '2025-04-16 20:23:38'),
 (2, 2, 'active', '2025-04-24 02:26:56'),
 (3, 2, 'ordered', '2025-04-23 05:54:30');
 
@@ -207,16 +206,11 @@ INSERT INTO `products` (`id`, `brand`, `name`, `description`, `price`, `stock`, 
 (26, 'Akko', 'Switch Lubing Station', 'Tray and tools for lubing switches', 24.99, 40, 4, 'lubing_station.jpg'),
 (27, 'GMK', 'Stabilizer Set', 'PCB screw-in stabilizers', 19.99, 45, 4, 'gmk_stabilizers.jpg'),
 (28, 'KBDfans', 'Switch Films', 'Switch films to reduce wobble', 9.99, 70, 4, 'switch_films.jpg'),
-(29, 'NovelKeys', 'Peach Deskmat', 'Large deskmat with pastel peach design', 24.99, 25, 5, 'peach_deskmat.jpg'),
-(30, 'KBDfans', 'Galaxy Deskmat', 'Cosmic-themed deskmat', 27.99, 20, 5, 'galaxy_deskmat.jpg'),
-(31, 'Akko', 'Akko Tokyo Deskmat', 'Deskmat with Tokyo night design', 29.99, 22, 5, 'akko_tokyo.jpg'),
-(32, 'Glorious', 'Stealth Deskmat', 'Minimal black-on-black deskmat', 19.99, 30, 5, 'stealth_deskmat.jpg'),
-(33, 'Divinikey', 'Rainforest Deskmat', 'Green nature-themed deskmat', 26.99, 18, 5, 'rainforest_deskmat.jpg'),
-(34, 'CableMod', 'Purple Coiled Cable', 'Premium coiled cable with aviator', 34.99, 25, 6, 'purple_coiled.jpg'),
-(35, 'Mechcables', 'Carbon Cable', 'Custom USB cable in carbon theme', 29.99, 22, 6, 'carbon_cable.jpg'),
-(36, 'SpaceCables', 'Laser Cable', 'Bright violet and cyan themed cable', 32.99, 18, 6, 'laser_cable.jpg'),
-(37, 'Zap Cables', 'Blackout Cable', 'Matte black coiled cable', 31.99, 20, 6, 'blackout_cable.jpg'),
-(38, 'Kono', 'Kono Aviator Cable', 'Color-matched detachable cable', 33.99, 15, 6, 'kono_aviator.jpg');
+(29, 'Akko', 'Akko Tokyo Deskmat', 'Deskmat with Tokyo night design', 29.99, 22, 5, 'akko_tokyo.jpg'),
+(30, 'Glorious', 'Stealth Deskmat', 'Minimal black-on-black deskmat', 19.99, 30, 5, 'stealth_deskmat.jpg'),
+(31, 'Divinikey', 'Rainforest Deskmat', 'Green nature-themed deskmat', 26.99, 18, 5, 'rainforest_deskmat.jpg'),
+(32, 'SpaceCables', 'Laser Cable', 'Bright violet and cyan themed cable', 32.99, 18, 6, 'laser_cable.jpg'),
+(33, 'Zap Cables', 'Neon Green A-to-C Cable', 'Turquoise Paracord with Neon Green Techflex', 31.99, 20, 6, 'neongreen_cable.jpg');
 
 -- --------------------------------------------------------
 

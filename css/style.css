@@ -1157,7 +1157,7 @@ footer .copyright {
     font-weight: 700 !important;
 }
 
-/*----------------- CART -----------------*/
+/*----------------- CART SIDEBAR -----------------*/
 
 #cart-sidebar {
     position: fixed;
@@ -1181,7 +1181,8 @@ footer .copyright {
 
 #cart-overlay {
     position: fixed;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
@@ -1192,6 +1193,23 @@ footer .copyright {
 #cart-overlay.active {
     display: block;
 }
+
+.cart-count {
+    position: absolute;
+    top: -11px;
+    right: -8px;
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 4px 7px;
+    line-height: 1;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
 
 .cart-header {
     display: flex;
@@ -1221,6 +1239,81 @@ footer .copyright {
     padding-top: 15px;
 }
 
+.cart-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-product-name {
+    font-weight: 600;
+    margin: 0 0 5px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.cart-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.cart-product-price {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.cart-qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #ccc;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.qty-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #246083;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.cart-qty {
+    min-width: 20px;
+    text-align: center;
+}
+
+.remove-item {
+    font-size: 12px;
+    color: #555;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .cart-footer {
     border-top: 1px solid #ccc;
     padding-top: 15px;
@@ -1237,7 +1330,6 @@ footer .copyright {
     width: 100%;
     margin-bottom: 10px;
 }
-
 
 /*----------------- MEDIA RESPONSIVENESS -----------------*/
 

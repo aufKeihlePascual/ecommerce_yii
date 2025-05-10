@@ -11,7 +11,7 @@
  *
  * The followings are the available model relations:
  * @property Users $user
- * @property CartItems[] $cartItems
+ * @property CartItem[] $cartItems
  * @property Orders[] $orders
  */
 class Cart extends CActiveRecord
@@ -50,7 +50,7 @@ class Cart extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
-			'cartItems' => array(self::HAS_MANY, 'CartItems', 'cart_id'),
+			'cartItems' => array(self::HAS_MANY, 'CartItem', 'cart_id'),
 			'orders' => array(self::HAS_MANY, 'Orders', 'cart_id'),
 		);
 	}

@@ -11,7 +11,7 @@
  *
  * The followings are the available model relations:
  * @property Cart $cart
- * @property Products $product
+ * @property Product $product
  */
 class CartItem extends CActiveRecord
 {
@@ -47,7 +47,7 @@ class CartItem extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'cart' => array(self::BELONGS_TO, 'Cart', 'cart_id'),
-			'product' => array(self::BELONGS_TO, 'Products', 'product_id'),
+			'product' => array(self::BELONGS_TO, 'Product', 'product_id'),
 		);
 	}
 
