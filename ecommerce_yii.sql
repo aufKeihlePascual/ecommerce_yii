@@ -1,12 +1,9 @@
-CREATE DATABASE IF NOT EXISTS `ecommerce_yii` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `ecommerce_yii`;
-
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2025 at 12:43 PM
+-- Generation Time: May 10, 2025 at 03:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `session_id` varchar(255) DEFAULT NULL,
   `status` enum('active','ordered') DEFAULT 'active',
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -41,10 +39,11 @@ CREATE TABLE `cart` (
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `user_id`, `status`, `created_at`) VALUES
-(1, 1, 'active', '2025-04-16 20:23:38'),
-(2, 2, 'active', '2025-04-24 02:26:56'),
-(3, 2, 'ordered', '2025-04-23 05:54:30');
+INSERT INTO `cart` (`id`, `user_id`, `session_id`, `status`, `created_at`) VALUES
+(1, 1, NULL, 'active', '2025-04-16 20:23:38'),
+(2, 2, NULL, 'active', '2025-04-24 02:26:56'),
+(3, 2, NULL, 'ordered', '2025-04-23 05:54:30'),
+(6, NULL, '1g567slpcv9n0bseglhrnhg6p4', 'active', '2025-05-10 15:05:24');
 
 -- --------------------------------------------------------
 
@@ -64,12 +63,14 @@ CREATE TABLE `cart_items` (
 --
 
 INSERT INTO `cart_items` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
-(1, 1, 1, 1),
-(2, 1, 3, 2),
 (3, 2, 2, 1),
 (4, 2, 4, 1),
 (5, 3, 3, 3),
-(6, 3, 1, 1);
+(6, 3, 1, 1),
+(21, 1, 31, 2),
+(22, 1, 27, 1),
+(23, 1, 29, 1),
+(25, 6, 33, 1);
 
 -- --------------------------------------------------------
 
@@ -178,9 +179,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `brand`, `name`, `description`, `price`, `stock`, `category_id`, `image`) VALUES
-(1, 'Glorious Gaming', 'GMMK Pro', 'Barebones 75% keyboard with aluminum case', 169.99, 20, 1, 'gmmk_pro.jpg'),
+(1, 'Glorious Gaming', 'GMMK Pro', 'Barebones 75% keyboard with aluminum case', 169.99, 21, 1, 'gmmk_pro.jpg'),
 (2, 'Keychron', 'Keychron Q1', 'Prebuilt keyboard with VIA support', 189.00, 15, 1, 'keychron_q1.jpg'),
-(3, 'Akko', 'Akko V3 Creaming Black Pro Switch', '45 pieces of 5-pin linear switch with 55gf operating force.', 674.81, 50, 3, 'akko_creamy_black_pro.jpg'),
+(3, 'Akko', 'Akko V3 Creaming Black Pro Switch', '45 pieces of 5-pin linear switch with 55gf operating force.', 674.81, 52, 3, 'akko_creamy_black_pro.jpg'),
 (4, 'GMK', 'GMK Bento Keycap Set', 'High-quality keycap set with a Bento theme', 119.00, 10, 2, 'gmk_bento.jpg'),
 (5, 'Ducky', 'One 3 Mini', '60% keyboard with hot-swappable switches', 119.99, 25, 1, 'ducky_one3.jpg'),
 (6, 'Epomaker', 'Epomaker TH66', 'Compact keyboard with knob and wireless mode', 139.99, 18, 1, 'th66.jpg'),
@@ -204,13 +205,13 @@ INSERT INTO `products` (`id`, `brand`, `name`, `description`, `price`, `stock`, 
 (24, 'Glorious', 'Switch Opener', 'Tool to open MX-style switches', 14.99, 60, 4, 'switch_opener.jpg'),
 (25, 'Ducky', 'Keycap Puller', 'Stainless steel keycap puller', 7.99, 100, 4, 'keycap_puller.jpg'),
 (26, 'Akko', 'Switch Lubing Station', 'Tray and tools for lubing switches', 24.99, 40, 4, 'lubing_station.jpg'),
-(27, 'GMK', 'Stabilizer Set', 'PCB screw-in stabilizers', 19.99, 45, 4, 'gmk_stabilizers.jpg'),
+(27, 'GMK', 'Stabilizer Set', 'PCB screw-in stabilizers', 19.99, 43, 4, 'gmk_stabilizers.jpg'),
 (28, 'KBDfans', 'Switch Films', 'Switch films to reduce wobble', 9.99, 70, 4, 'switch_films.jpg'),
-(29, 'Akko', 'Akko Tokyo Deskmat', 'Deskmat with Tokyo night design', 29.99, 22, 5, 'akko_tokyo.jpg'),
+(29, 'Akko', 'Akko Tokyo Deskmat', 'Deskmat with Tokyo night design', 29.99, 21, 5, 'akko_tokyo.jpg'),
 (30, 'Glorious', 'Stealth Deskmat', 'Minimal black-on-black deskmat', 19.99, 30, 5, 'stealth_deskmat.jpg'),
-(31, 'Divinikey', 'Rainforest Deskmat', 'Green nature-themed deskmat', 26.99, 18, 5, 'rainforest_deskmat.jpg'),
+(31, 'Divinikey', 'Rainforest Deskmat', 'Green nature-themed deskmat', 26.99, 16, 5, 'rainforest_deskmat.jpg'),
 (32, 'SpaceCables', 'Laser Cable', 'Bright violet and cyan themed cable', 32.99, 18, 6, 'laser_cable.jpg'),
-(33, 'Zap Cables', 'Neon Green A-to-C Cable', 'Turquoise Paracord with Neon Green Techflex', 31.99, 20, 6, 'neongreen_cable.jpg');
+(33, 'Zap Cables', 'Neon Green A-to-C Cable', 'Turquoise Paracord with Neon Green Techflex', 31.99, 18, 6, 'neongreen_cable.jpg');
 
 -- --------------------------------------------------------
 
@@ -367,13 +368,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `categories`
