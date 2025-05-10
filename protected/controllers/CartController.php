@@ -28,7 +28,7 @@ class CartController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view', 'ajaxCart'),
+				'actions'=>array('index','view', 'ajaxCart', 'updateQuantity', 'removeItem'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -207,6 +207,7 @@ class CartController extends Controller
 				if (!$product) continue;
 
 				$items[] = [
+					'id' => $product->id,
 					'name' => $product->name,
 					'price' => floatval($product->price),
 					'quantity' => intval($cartItem->quantity),
@@ -228,6 +229,86 @@ class CartController extends Controller
 			echo json_encode(['error' => $e->getMessage()]);
 		}
 
+		Yii::app()->end();
+	}
+
+	public function actionUpdateQuantity()
+	{
+		$data = json_decode(file_get_contents('php://input'), true);
+
+		$productId = (int) $data['productId'];
+		$action = $data['action'];
+		$userId = Yii::app()->user->id;
+
+		$cart = Cart::model()->findByAttributes([
+			'user_id' => $userId,
+			'status' => 'active',
+		]);
+
+		$item = CartItem::model()->findByAttributes([
+			'cart_id' => $cart->id,
+			'product_id' => $productId,
+		]);
+
+		$product = Product::model()->findByPk($productId);
+
+		if (!$item || !$product) {
+			echo CJSON::encode(['success' => false]);
+			Yii::app()->end();
+		}
+
+		if ($action === 'increase') {
+			if ($product->stock > 0) {
+				$item->quantity += 1;
+				$product->stock -= 1;
+			}
+		} elseif ($action === 'decrease') {
+			if ($item->quantity > 1) {
+				$item->quantity -= 1;
+				$product->stock += 1;
+			} else {
+				$item->delete();
+				$product->stock += 1;
+				$product->save();
+				echo CJSON::encode(['success' => true]);
+				Yii::app()->end();
+			}
+		}
+
+		$item->save();
+		$product->save();
+
+		echo CJSON::encode(['success' => true]);
+		Yii::app()->end();
+	}
+
+
+	public function actionRemoveItem()
+	{
+		$data = json_decode(file_get_contents('php://input'), true);
+
+		$productId = (int) $data['productId'];
+		$userId = Yii::app()->user->id;
+
+		$cart = Cart::model()->findByAttributes([
+			'user_id' => $userId,
+			'status' => 'active',
+		]);
+
+		$item = CartItem::model()->findByAttributes([
+			'cart_id' => $cart->id,
+			'product_id' => $productId,
+		]);
+
+		$product = Product::model()->findByPk($productId);
+
+		if ($item && $product) {
+			$product->stock += $item->quantity;
+			$product->save();
+			$item->delete();
+		}
+
+		echo CJSON::encode(['success' => true]);
 		Yii::app()->end();
 	}
 

@@ -7,13 +7,13 @@ const nav = document.getElementById('navbar');
 if (bar) {
     bar.addEventListener('click', () => {
         nav.classList.add('active');
-    })
+    });
 }
 
 if (close) {
     close.addEventListener('click', () => {
         nav.classList.remove('active');
-    })
+    });
 }
 
 document.addEventListener('click', function (e) {
@@ -66,70 +66,122 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function fetchCartData() {
-        fetch(ajaxCartUrl)
-            .then(res => {
-                if (!res.ok) throw new Error('Network error');
-                return res.text();
-            })
-            .then(txt => {
-                console.log("Cart response:", txt);
-                try {
-                    const data = JSON.parse(txt);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    try {
+                        var data = JSON.parse(this.responseText);
 
-                    const content = document.getElementById('cart-content');
-                    const subtotal = document.getElementById('cart-subtotal');
-                    let html = '';
+                        var content = document.getElementById('cart-content');
+                        var subtotal = document.getElementById('cart-subtotal');
+                        var html = '';
 
-                    if (data.items.length === 0) {
-                        html = '<p>Your cart is empty.</p>';
-                    } else {
-                        data.items.forEach(item => {
-                            html += `
-                                <div class="cart-item">
-                                    <img src="${baseUrl}/images/products/${item.image}" class="cart-thumb" />
-                                    <div class="cart-item-details">
-                                    <p class="cart-product-name">${item.name}</p>
-                                    <div class="cart-price-row">
-                                        <span class="cart-product-price">₱${item.price.toFixed(2)}</span>
-                                        <div class="cart-qty-controls">
-                                        <button class="qty-btn" data-action="decrease" data-id="${item.id}">–</button>
-                                        <span class="cart-qty">${item.quantity}</span>
-                                        <button class="qty-btn" data-action="increase" data-id="${item.id}">+</button>
+                        if (data.items.length === 0) {
+                            html = '<p>Your cart is empty.</p>';
+                        } else {
+                            data.items.forEach(function (item) {
+                                html += `
+                                    <div class="cart-item">
+                                        <img src="${baseUrl}/images/products/${item.image}" class="cart-thumb" />
+                                        <div class="cart-item-details">
+                                            <p class="cart-product-name">${item.name}</p>
+                                            <div class="cart-price-row">
+                                                <span class="cart-product-price">₱${item.price.toFixed(2)}</span>
+                                                <div class="cart-qty-controls">
+                                                    <button class="qty-btn" data-action="decrease" data-id="${item.id}">–</button>
+                                                    <span class="cart-qty">${item.quantity}</span>
+                                                    <button class="qty-btn" data-action="increase" data-id="${item.id}">+</button>
+                                                </div>
+                                            </div>
+                                            <a href="#" class="remove-item" data-id="${item.id}">Remove</a>
                                         </div>
-                                    </div>
-                                    <a href="#" class="remove-item" data-id="${item.id}">Remove</a>
-                                    </div>
-                                </div>`;
-                        });
-                    }
+                                    </div>`;
+                            });
+                        }
 
-                    content.innerHTML = html;
-                    subtotal.textContent = `₱${data.subtotal.toFixed(2)}`;
-                    updateCartCount(data.totalQuantity);
-                } catch (err) {
-                    console.error("JSON parse error", err);
+                        content.innerHTML = html;
+                        subtotal.textContent = `₱${data.subtotal.toFixed(2)}`;
+                        updateCartCount(data.totalQuantity);
+
+                        // Attach event listeners to new buttons
+                        attachCartEventListeners();
+                    } catch (err) {
+                        console.error("JSON parse error", err);
+                    }
+                } else {
+                    console.error("Fetch error: Status", this.status);
                 }
-            })
-            .catch(err => {
-                console.error("Fetch error:", err);
-            });
+            }
+        };
+        xhttp.open("GET", ajaxCartUrl, true);
+        xhttp.send();
     }
 
-
     function updateCartCount(count) {
-        let badge = cartIcon.querySelector('.cart-count');
-        if (!badge) {
-            badge = document.createElement('span');
-            badge.className = 'cart-count';
-            cartIcon.style.position = 'relative';
-            cartIcon.appendChild(badge);
-
-        }
+        var badge = cartIcon.querySelector('.cart-count');
         if (count === 0) {
             if (badge) badge.remove();
         } else {
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'cart-count';
+                cartIcon.style.position = 'relative';
+                cartIcon.appendChild(badge);
+            }
             badge.textContent = count;
         }
+    }
 
+    function attachCartEventListeners() {
+        var qtyButtons = document.querySelectorAll('.qty-btn');
+        qtyButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var action = this.dataset.action;
+                var productId = this.dataset.id;
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        try {
+                            var data = JSON.parse(this.responseText);
+                            if (data.success) {
+                                fetchCartData();
+                            }
+                        } catch (err) {
+                            console.error("JSON parse error", err);
+                        }
+                    }
+                };
+                xhttp.open("POST", baseUrl + "/index.php/cart/updateQuantity", true);
+                xhttp.setRequestHeader("Content-Type", "application/json");
+                xhttp.send(JSON.stringify({ productId: productId, action: action }));
+            });
+        });
+
+        var removeButtons = document.querySelectorAll('.remove-item');
+        removeButtons.forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                var productId = this.dataset.id;
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        try {
+                            var data = JSON.parse(this.responseText);
+                            if (data.success) {
+                                fetchCartData();
+                            }
+                        } catch (err) {
+                            console.error("JSON parse error", err);
+                        }
+                    }
+                };
+                xhttp.open("POST", baseUrl + "/index.php/cart/removeItem", true);
+                xhttp.setRequestHeader("Content-Type", "application/json");
+                xhttp.send(JSON.stringify({ productId: productId }));
+            });
+        });
     }
 });
