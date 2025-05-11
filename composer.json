@@ -1,0 +1,17 @@
+{
+    "name": "innotech/keebspot",
+    "description": "An ecommerce website project for the PDC/SIA final requirement",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "aufKeihlePascual",
+            "email": "pascual.keihlediannegyraser@auf.edu.ph"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "stripe/stripe-php": "^17.2",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

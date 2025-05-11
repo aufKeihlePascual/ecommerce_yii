@@ -28,7 +28,7 @@ class OrderController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index', 'view','create','update'),
+				'actions'=>array('index', 'view','create','update', 'stripeOrders'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -116,16 +116,63 @@ class OrderController extends Controller
 	/**
 	 * Lists all models.
 	 */
+	// public function actionIndex()
+	// {
+	// 	$orders = Order::model()->findAll();
+
+	// 	$dataProvider=new CActiveDataProvider('Order');
+	// 	$this->render('index',array(
+	// 		'dataProvider'=>$dataProvider,
+	// 		'orders' => $orders,
+	// 	));
+	// }
+
 	public function actionIndex()
 	{
-		$orders = Order::model()->findAll();
+		yii::import('application.vendors.stripe.init');
+		\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
-		$dataProvider=new CActiveDataProvider('Order');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-			'orders' => $orders,
-		));
+		try {
+			$sessions = \Stripe\Checkout\Session::all([
+				'limit' => 100, // fetch many so we can paginate locally
+				'expand' => ['data.payment_intent'],
+			]);
+
+			$orders = [];
+
+			foreach ($sessions->data as $session) {
+				$lineItems = \Stripe\Checkout\Session::allLineItems($session->id, ['limit' => 100]);
+
+				$itemCount = 0;
+				foreach ($lineItems->data as $item) {
+					$itemCount += $item->quantity;
+				}
+
+				$firstItemName = $lineItems->data[0]->description ?? 'Order';
+				$displayLabel = $itemCount > 1 ? "$firstItemName (+".($itemCount - 1).")" : $firstItemName;
+
+				$orders[] = (object)[
+					'id' => $session->id,
+					'summary' => $displayLabel,
+					'itemCount' => $itemCount,
+					'created_at' => date('Y-m-d H:i:s', $session->created),
+					'status' => $session->payment_status === 'unpaid' ? 'pending' : strtolower($session->payment_status),
+					'total' => $session->amount_total / 100.0,
+				];
+			}
+
+			$dataProvider = new CArrayDataProvider($orders, [
+				'pagination' => ['pageSize' => 5],
+			]);
+
+			$this->render('index', ['dataProvider' => $dataProvider]);
+
+		} catch (Exception $e) {
+			Yii::log("Stripe Fetch Error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
+			throw new CHttpException(500, 'Failed to load Stripe orders.');
+		}
 	}
+
 
 	/**
 	 * Manages all models.
@@ -169,4 +216,54 @@ class OrderController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	public function actionStripeOrders()
+	{
+		yii::import('application.vendors.stripe.init');
+		\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+
+		try {
+			$sessions = \Stripe\Checkout\Session::all([
+				'limit' => 10,
+				'expand' => ['data.payment_intent'],
+			]);
+
+			$orders = [];
+
+			foreach ($sessions->data as $session) {
+				$lineItems = \Stripe\Checkout\Session::allLineItems($session->id, ['limit' => 100]);
+
+				$items = [];
+				foreach ($lineItems->data as $item) {
+					$items[] = [
+						'name' => $item->description,
+						'quantity' => $item->quantity,
+						'total' => number_format($item->amount_total / 100, 2),
+					];
+				}
+
+				$firstItemName = $lineItems->data[0]->description ?? 'Order';
+				$itemCount = count($lineItems->data);
+				$displayLabel = $itemCount > 1
+					? "$firstItemName (+$itemCount)"
+					: $firstItemName;
+
+				$orders[] = [
+					'id' => $displayLabel,
+					'status' => ucfirst($session->payment_status === 'unpaid' ? 'Pending' : $session->payment_status),
+					'amount' => number_format($session->amount_total / 100, 2),
+					'created' => date('F j, Y', $session->created),
+					'items' => $items,
+				];
+
+			}
+
+			$this->render('stripeOrders', ['orders' => $orders]);
+
+		} catch (Exception $e) {
+			Yii::log("Stripe Orders Error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
+			throw new CHttpException(500, 'Failed to retrieve Stripe orders.');
+		}
+	}
+
 }

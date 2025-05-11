@@ -102,4 +102,24 @@ class CartItem extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function getCurrentUserCartItems()
+	{
+		$cartId = null;
+
+		if (!Yii::app()->user->isGuest) {
+			$userId = Yii::app()->user->id;
+			$cart = Cart::model()->find('user_id = :user_id', [':user_id' => $userId]);
+			$cartId = $cart ? $cart->id : null;
+		} else {
+			$sessionId = Yii::app()->session->sessionID;
+			$cart = Cart::model()->find('session_id = :session_id AND user_id IS NULL', [':session_id' => $sessionId]);
+			$cartId = $cart ? $cart->id : null;
+		}
+
+		if (!$cartId) return [];
+
+		return self::model()->with('product')->findAll('cart_id = :cart_id', [':cart_id' => $cartId]);
+	}
+
 }

@@ -34,7 +34,8 @@ class Payment extends CActiveRecord
 		return array(
 			array('order_id', 'numerical', 'integerOnly'=>true),
 			array('method', 'length', 'max'=>50),
-			array('amount, payment_status', 'length', 'max'=>10),
+			array('amount', 'length', 'max'=>10),
+			array('payment_status', 'length', 'max'=>10),
 			array('payment_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

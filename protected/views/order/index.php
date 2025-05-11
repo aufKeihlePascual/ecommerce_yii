@@ -1,6 +1,6 @@
 <?php
 /* @var $this OrderController */
-/* @var $dataProvider CActiveDataProvider */
+/* @var $dataProvider CArrayDataProvider */
 
 $this->breadcrumbs = array('Orders');
 ?>
@@ -19,8 +19,8 @@ $this->breadcrumbs = array('Orders');
         <h2>Orders</h2>
     </div>
 
-	<div class="order-page d-flex">
-		<aside class="sidebar">
+    <div class="order-page d-flex">
+        <aside class="sidebar">
             <div class="filter-section">
                 <h4>Actions</h4>
                 <ul class="menu-links">
@@ -38,34 +38,48 @@ $this->breadcrumbs = array('Orders');
             </div>
         </aside>
 
-		<div class="order-table-wrapper">
+        <div class="order-table-wrapper">
+
 			<table class="order-table">
 				<thead>
 					<tr>
-						<th>Order ID</th>
+						<th>Order Summary</th>
 						<th>Items</th>
 						<th>Date</th>
 						<th>Status</th>
 						<th>Total</th>
-						<th></th>
+						<th>Actions</th>
 					</tr>
 				</thead>
-				<tbody>
-					<?php foreach ($dataProvider->getData() as $data): ?>
-						<tr>
-							<td><?php echo $data->id; ?></td>
-							<td><?php echo $data->itemCount; ?></td>
-							<td><?php echo date('F j, Y', strtotime($data->created_at)); ?></td>
-							<td><span class="status <?php echo strtolower($data->status); ?>"><?php echo ucfirst($data->status); ?></span></td>
-							<td>₱ <strong><?php echo number_format($data->total, 2); ?></strong></td>
-							<td>
-								<?php echo CHtml::link('View', array('order/view', 'id' => $data->id), array('class' => 'view-btn')); ?>
-							</td>
-						</tr>
-					<?php endforeach; ?>
-				</tbody>
+
+				<?php $this->widget('zii.widgets.CListView', array(
+					'dataProvider' => $dataProvider,
+					'itemView' => '_order',
+					'template' => "{items}", // only items here
+					'itemsTagName' => 'tbody',
+				)); ?>
 			</table>
-		</div>
+
+			<div class="order-pagination-wrapper custom-pagination">
+				<?php
+				$this->widget('CLinkPager', array(
+					'pages' => $dataProvider->pagination,
+					'header' => '',
+					'selectedPageCssClass' => 'active-page',
+					'hiddenPageCssClass' => 'hidden',
+					'firstPageLabel' => '←',
+					'prevPageLabel' => '<',
+					'nextPageLabel' => '>',
+					'lastPageLabel' => '→',
+					'htmlOptions' => array(
+						'class' => 'pagination-wrapper',
+						'tag' => 'ul'
+					),
+				));
+				?>
+			</div>
+
+        </div>
     </div>
 
 </section>

@@ -12,9 +12,9 @@
  * @property string $created_at
  *
  * The followings are the available model relations:
- * @property Users $user
+ * @property User $user
  * @property Cart $cart
- * @property Payments[] $payments
+ * @property Payment[] $payments
  */
 class Order extends CActiveRecord
 {
@@ -54,7 +54,7 @@ class Order extends CActiveRecord
 		return array(
 			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
 			'cart' => array(self::BELONGS_TO, 'Cart', 'cart_id'),
-			'payments' => array(self::HAS_MANY, 'Payments', 'order_id'),
+			'payments' => array(self::HAS_MANY, 'Payment', 'order_id'),
 			'orderItems' => array(self::HAS_MANY, 'OrderItem', 'order_id'),
 		);
 	}

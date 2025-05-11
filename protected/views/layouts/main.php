@@ -161,7 +161,12 @@
 
 		<div class="cart-footer">
 			<p class="subtotal">Subtotal: <span id="cart-subtotal">₱0.00</span></p>
-			<button id="checkout-btn" class="categories">Checkout</button>
+
+				<form method="post" action="<?php echo CHtml::normalizeUrl(['payment/checkout']); ?>">
+					<?php echo CHtml::hiddenField(Yii::app()->request->csrfTokenName, Yii::app()->request->csrfToken); ?>
+					<button class="btn btn-primary checkout-btn" type="submit">Proceed to Checkout</button>
+				</form> 
+			
 			<a href="<?php echo Yii::app()->createUrl('/cart/shoppingCart'); ?>">Go to Cart</a>
 		</div>
 	</div>

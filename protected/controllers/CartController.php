@@ -32,7 +32,7 @@ class CartController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'testStripeKey'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -418,6 +418,127 @@ class CartController extends Controller
 			'cartItems' => $cartItems,
 			'subtotal' => $subtotal,
 		]);
+	}
+
+	public function actionRefreshCartTable()
+	{
+		Yii::import('application.models.*');
+
+		$cart = Cart::model()->getCurrentUserCartItems();
+		$cartItems = $cart->cartItems;
+		$subtotal = 0;
+
+		foreach ($cartItems as $item) {
+			$subtotal += $item->product->price * $item->quantity;
+		}
+
+		$html = $this->renderPartial('_cartTable', [
+			'cartItems' => $cartItems,
+			'subtotal' => $subtotal,
+		], true);
+
+		echo CJSON::encode([
+			'success' => true,
+			'html' => $html
+		]);
+		Yii::app()->end();
+	}
+
+	public function actionTestStripeKey()
+	{
+		echo 'Secret Key: ' . $_ENV['STRIPE_SECRET_KEY'] . '<br>';
+		echo 'Publishable Key: ' . $_ENV['STRIPE_PUBLISHABLE_KEY'];
+		Yii::app()->end();
+	}
+
+	public function actionCheckout()
+	{
+		Yii::app()->session->open();
+
+		if (Yii::app()->user->isGuest) {
+			$cart = Cart::model()->find('session_id = :sid AND status = "active"', [
+				':sid' => Yii::app()->session->sessionID
+			]);
+		} else {
+			$cart = Cart::model()->find('user_id = :uid AND status = "active"', [
+				':uid' => Yii::app()->user->id
+			]);
+		}
+
+		if (!$cart || empty($cart->cartItems)) {
+			throw new CHttpException(400, 'Your cart is empty.');
+		}
+
+		// Set Stripe secret key using $_ENV
+		\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+
+		// Build Stripe line items from cart
+		$lineItems = [];
+
+		foreach ($cart->cartItems as $item) {
+			$imageUrl = $_ENV['NGROK_URL'] . Yii::app()->baseUrl . '/images/products/' . $item->product->image;
+
+			$lineItems[] = [
+				'price_data' => [
+					'currency' => 'php',
+					'product_data' => [
+						'name' => $item->product->name,
+						'description' => $item->product->description,
+						// 'images' => [
+						// 	Yii::app()->getBaseUrl(true) . '/images/products/' . $item->product->image
+						// ],
+						'images' => [$imageUrl],
+					],
+					'unit_amount' => intval($item->product->price * 100), // Stripe uses centavos
+				],
+				'quantity' => $item->quantity,
+			];
+		}
+
+		// Create Stripe checkout session
+		$session = \Stripe\Checkout\Session::create([
+			'payment_method_types' => ['card'],
+			'line_items' => $lineItems,
+			'mode' => 'payment',
+			'success_url' => Yii::app()->createAbsoluteUrl('cart/paymentSuccess'),
+			'cancel_url' => Yii::app()->createAbsoluteUrl('cart/shoppingCart'),
+		]);
+
+		try {
+			$session = \Stripe\Checkout\Session::create([
+				'payment_method_types' => ['card'],
+				'line_items' => $lineItems,
+				'mode' => 'payment',
+				'success_url' => Yii::app()->createAbsoluteUrl('cart/paymentSuccess'),
+				'cancel_url' => Yii::app()->createAbsoluteUrl('cart/shoppingCart'),
+			]);
+
+			$this->redirect($session->url);
+		} catch (Exception $e) {
+			Yii::log($e->getMessage(), CLogger::LEVEL_ERROR);
+			throw new CHttpException(500, 'Payment processing failed.');
+		}
+
+		// Redirect to Stripe
+		$this->redirect($session->url);
+	}
+
+	public function actionPaymentSuccess()
+	{
+		Yii::app()->user->setFlash('success', 'Payment successful! Thank you for your purchase.');
+
+		if (!Yii::app()->user->isGuest) {
+			$cart = Cart::model()->find('user_id = :uid AND status = "active"', [
+				':uid' => Yii::app()->user->id
+			]);
+
+			if ($cart) {
+				$cart->status = 'completed';
+				$cart->save();
+			}
+		}
+
+		$this->redirect(['cart/shoppingCart']);
 	}
 
 

@@ -183,7 +183,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         try {
                             const data = JSON.parse(this.responseText);
                             if (data.success) {
-                                fetchCartData(); // only updates sidebar
+                                fetchCartData();
+                                reloadShoppingCartTable();
                             }
                         } catch (err) {
                             console.error("JSON parse error", err);
@@ -209,7 +210,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         try {
                             const data = JSON.parse(this.responseText);
                             if (data.success) {
-                                fetchCartData(); // again, just sidebar
+                                fetchCartData();
+                                reloadShoppingCartTable();
                             }
                         } catch (err) {
                             console.error("JSON parse error", err);
@@ -242,33 +244,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-    function attachPageCartEventListeners() {
-        const pageCart = document.getElementById('shopping-cart');
-        if (!pageCart) return;
+function attachPageCartEventListeners() {
+    const pageCart = document.getElementById('shopping-cart');
+    if (!pageCart) return;
 
-        const buttons = pageCart.querySelectorAll('.page-cart-btn');
-        buttons.forEach((btn) => {
-            btn.addEventListener('click', function () {
-                const productId = this.dataset.id;
-                const action = this.dataset.action;
+    const buttons = pageCart.querySelectorAll('.page-cart-btn');
+    buttons.forEach((btn) => {
+        btn.addEventListener('click', function () {
+            const productId = this.dataset.id;
+            const action = this.dataset.action;
 
-                const xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                        try {
-                            const res = JSON.parse(this.responseText);
-                            if (res.success) {
-                                location.reload(); // or refresh cart section only
-                            }
-                        } catch (e) {
-                            console.error("Error parsing updateQuantity response", e);
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    try {
+                        const res = JSON.parse(this.responseText);
+                        if (res.success) {
+                            location.reload(); // or refresh cart section only
                         }
+                    } catch (e) {
+                        console.error("Error parsing updateQuantity response", e);
                     }
-                };
-                xhttp.open("POST", baseUrl + "/index.php/cart/updateQuantity", true);
-                xhttp.setRequestHeader("Content-Type", "application/json");
-                xhttp.send(JSON.stringify({ productId: productId, action: action }));
-            });
+                }
+            };
+            xhttp.open("POST", baseUrl + "/index.php/cart/updateQuantity", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.send(JSON.stringify({ productId: productId, action: action }));
         });
-    }
+    });
+}
 
+function reloadShoppingCartTable() {
+    const container = document.getElementById('shopping-cart-table');
+    if (!container) return;
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            try {
+                const response = JSON.parse(this.responseText);
+                if (response.success && response.html) {
+                    container.innerHTML = response.html;
+                    attachPageCartEventListeners();
+                }
+            } catch (e) {
+                console.error("Failed to update cart table:", e);
+            }
+        }
+    };
+
+    xhttp.open("GET", baseUrl + "/index.php/cart/refreshCartTable", true);
+    xhttp.send();
+}
