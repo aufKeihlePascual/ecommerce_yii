@@ -4109,3 +4109,60 @@ REQUEST_URI=/ecommerce/index.php/order/index
 in A:\xampp\htdocs\ecommerce\protected\views\order\_order_full.php (16)
 in A:\xampp\htdocs\ecommerce\protected\views\order\index.php (42)
 in A:\xampp\htdocs\ecommerce\protected\controllers\OrderController.php (170)
+2025/05/11 04:34:42 [error] [exception.Error] Error: Call to a member function get() on null in A:\xampp\htdocs\ecommerce\protected\controllers\OrderController.php:136
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): OrderController->actionIndex()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('index')
+#10 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index')
+#11 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#12 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#13 {main}
+REQUEST_URI=/ecommerce/index.php/order/index?page=2
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/index
+---
+2025/05/11 04:35:08 [error] [exception.Error] Error: Call to a member function get() on null in A:\xampp\htdocs\ecommerce\protected\controllers\OrderController.php:136
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): OrderController->actionIndex()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('index')
+#10 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index')
+#11 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#12 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#13 {main}
+REQUEST_URI=/ecommerce/index.php/order/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
+---
+2025/05/11 04:35:13 [error] [exception.Error] Error: Call to a member function get() on null in A:\xampp\htdocs\ecommerce\protected\controllers\OrderController.php:136
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): OrderController->actionIndex()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('index')
+#10 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index')
+#11 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#12 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#13 {main}
+REQUEST_URI=/ecommerce/index.php/order/index
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
+---

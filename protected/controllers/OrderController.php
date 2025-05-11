@@ -134,7 +134,7 @@ class OrderController extends Controller
 
 		try {
 			$sessions = \Stripe\Checkout\Session::all([
-				'limit' => 100, // fetch many so we can paginate locally
+				'limit' => 100,
 				'expand' => ['data.payment_intent'],
 			]);
 
