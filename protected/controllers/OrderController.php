@@ -148,17 +148,19 @@ class OrderController extends Controller
 					$itemCount += $item->quantity;
 				}
 
-				$firstItemName = $lineItems->data[0]->description ?? 'Order';
-				$displayLabel = $itemCount > 1 ? "$firstItemName (+".($itemCount - 1).")" : $firstItemName;
+				$email = $session->customer_details->email ?? 'N/A';
+				$name = $session->customer_details->name ?? 'N/A';
 
 				$orders[] = (object)[
 					'id' => $session->id,
-					'summary' => $displayLabel,
+					'email' => $email,
+					'name' => $name,
 					'itemCount' => $itemCount,
 					'created_at' => date('Y-m-d H:i:s', $session->created),
 					'status' => $session->payment_status === 'unpaid' ? 'pending' : strtolower($session->payment_status),
 					'total' => $session->amount_total / 100.0,
 				];
+
 			}
 
 			$dataProvider = new CArrayDataProvider($orders, [

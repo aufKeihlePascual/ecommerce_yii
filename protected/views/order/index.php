@@ -20,30 +20,22 @@ $this->breadcrumbs = array('Orders');
     </div>
 
     <div class="order-page d-flex">
-        <aside class="sidebar">
+        <!-- <aside class="sidebar">
             <div class="filter-section">
                 <h4>Actions</h4>
                 <ul class="menu-links">
-                    <li>
-                        <a href="<?php echo CHtml::normalizeUrl(array('order/create')); ?>">
-                            <i class="fa fa-plus-circle"></i> Create Order
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo CHtml::normalizeUrl(array('order/admin')); ?>">
-                            <i class="fa fa-cogs"></i> Manage Orders
-                        </a>
-                    </li>
+                    <li><a href="<?php echo CHtml::normalizeUrl(array('order/create')); ?>"><i class="fa fa-plus-circle"></i> Create Order</a></li>
+                    <li><a href="<?php echo CHtml::normalizeUrl(array('order/admin')); ?>"><i class="fa fa-cogs"></i> Manage Orders</a></li>
                 </ul>
             </div>
-        </aside>
+        </aside> -->
 
         <div class="order-table-wrapper">
-
 			<table class="order-table">
 				<thead>
 					<tr>
-						<th>Order Summary</th>
+						<th>Email</th>
+						<th>Customer Name</th>
 						<th>Items</th>
 						<th>Date</th>
 						<th>Status</th>
@@ -55,7 +47,7 @@ $this->breadcrumbs = array('Orders');
 				<?php $this->widget('zii.widgets.CListView', array(
 					'dataProvider' => $dataProvider,
 					'itemView' => '_order',
-					'template' => "{items}", // only items here
+					'template' => '{items}',
 					'itemsTagName' => 'tbody',
 				)); ?>
 			</table>
@@ -71,15 +63,12 @@ $this->breadcrumbs = array('Orders');
 					'prevPageLabel' => '<',
 					'nextPageLabel' => '>',
 					'lastPageLabel' => '→',
-					'htmlOptions' => array(
-						'class' => 'pagination-wrapper',
-						'tag' => 'ul'
-					),
+					'htmlOptions' => array('class' => 'pagination-wrapper', 'tag' => 'ul'),
 				));
 				?>
 			</div>
+		</div>
 
-        </div>
     </div>
 
 </section>

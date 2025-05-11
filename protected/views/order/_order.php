@@ -1,5 +1,6 @@
 <tr>
-    <td><?php echo CHtml::encode($data->summary); ?></td>
+    <td><?php echo CHtml::encode($data->email); ?></td>
+    <td><?php echo CHtml::encode($data->name); ?></td>
     <td><?php echo (int)$data->itemCount; ?></td>
     <td><?php echo date('F j, Y', strtotime($data->created_at)); ?></td>
     <td>
