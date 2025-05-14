@@ -97,7 +97,9 @@
 		<section id="hero" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/hero_keyboard.png'); background-color: rgba(0,0,0,0.4); background-blend-mode:darken">
 			<h1>Elevate your typing experience</h1>
 			<p>Explore premium keyboards, switches, and keycaps for the ultimate setup.</p>
-			<button>Shop Now</button>
+			<button onclick="window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/index.php/product/index';">
+				Shop Now
+			</button>
 		</section>
 	<?php endif; ?>
 
@@ -114,15 +116,18 @@
 		<div class="col">
 			<h4>About</h4>
 			<a href="#">About Us</a>
-			<a href="#">Delivery Information</a>
 			<a href="#">Contact Us</a>
 		</div>
 
 		<div class="col">
 			<h4>My Account</h4>
-			<a href="#">Sign In</a>
-			<a href="#">View Cart</a>
-			<a href="#">My Wishlist</a>
+			<?php if (Yii::app()->user->isGuest): ?>
+				<a href="<?php echo CHtml::normalizeUrl(array('site/login')); ?>">Sign In</a>
+			<?php else: ?>
+				<a href="<?php echo CHtml::normalizeUrl(array('site/logout')); ?>">Sign Out (<?php echo CHtml::encode(Yii::app()->user->name); ?>)</a>
+			<?php endif; ?>
+
+			<a href="#">Orders</a>
 		</div>
 
 		<div class="col install">

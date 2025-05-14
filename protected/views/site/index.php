@@ -43,7 +43,10 @@
 				$name = CHtml::encode($category->name);
 			?>
 			<div class="banner-box categories" style="background-image: url('<?php echo Yii::app()->baseUrl . '/images/categories/' . CHtml::encode($image); ?>');">
-				<button class="categories"><?php echo $name; ?></button>
+				<!-- <button class="categories"><?php //echo $name; ?></button> -->
+				 <a href="<?php echo Yii::app()->createUrl('product/index', ['categories[]' => $category->id]); ?>" class="categories-link">
+					<?php echo $name; ?>
+				</a>
 			</div>
 		<?php endforeach; ?>
 	</div>
@@ -67,7 +70,9 @@
 			<div class="pro">
 
 				<div class="image-wrapper">
-					<img src="<?php echo Yii::app()->baseUrl . '/images/products/' . CHtml::encode($image); ?>" alt="<?php echo CHtml::encode($product->name); ?>">
+					<a href="<?php echo CHtml::normalizeUrl(array('product/view', 'id' => $product->id)); ?>">
+						<img src="<?php echo Yii::app()->baseUrl . '/images/products/' . CHtml::encode($image); ?>" alt="<?php echo CHtml::encode($product->name); ?>">
+					</a>
 				</div>
 				
 				<div class="des">

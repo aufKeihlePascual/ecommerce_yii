@@ -45,8 +45,8 @@ $this->breadcrumbs = array('Products');
             <aside class="sidebar sidebar-filter">
                 <div class="filter-section">
                     <h4>Availability</h4>
-                    <label><input type="checkbox"> In stock / Pre-order</label><br>
-                    <label><input type="checkbox"> Out of stock</label>
+                    <label><input type="checkbox" name="availability" value="in"> In stock / Pre-order</label><br>
+                    <label><input type="checkbox" name="availability" value="out"> Out of stock</label>
                 </div>
 
                 <div class="filter-section">
@@ -54,7 +54,7 @@ $this->breadcrumbs = array('Products');
                     <div class="filter-scroll limited-height" id="category-filter">
                         <?php foreach ($categories as $category): ?>
                             <label>
-                                <input type="checkbox" value="<?php echo CHtml::encode($category->id); ?>">
+                                <input type="checkbox" name="categories[]" value="<?php echo CHtml::encode($category->id); ?>">
                                 <?php echo CHtml::encode($category->name); ?>
                             </label><br>
                         <?php endforeach; ?>

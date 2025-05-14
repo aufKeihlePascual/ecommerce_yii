@@ -140,24 +140,39 @@ class ProductController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$criteria = new CDbCriteria();
+
+		if (isset($_GET['categories']) && is_array($_GET['categories'])) {
+			$criteria->addInCondition('category_id', $_GET['categories']);
+		}
+
+		if (isset($_GET['availability'])) {
+			if ($_GET['availability'] === 'in') {
+				$criteria->addCondition('stock > 0');
+			} elseif ($_GET['availability'] === 'out') {
+				$criteria->addCondition('stock <= 0');
+			}
+		}
+
+		$criteria->order = 'id DESC';
+
 		$dataProvider = new CActiveDataProvider('Product', array(
+			'criteria' => $criteria,
 			'pagination' => array(
 				'pageSize' => 8,
 			),
-			'criteria' => array(
-				'order' => 'id DESC',
-			),
 		));
-	
+
 		$categories = Category::model()->findAll();
 		$brands = Product::model()->getAllBrands();
 
 		$this->render('index', array(
 			'dataProvider' => $dataProvider,
-			'categories' => $categories,
-			'brands' => $brands,
+			'categories'   => $categories,
+			'brands'       => $brands,
 		));
 	}
+
 
 	/**
 	 * Manages all models.

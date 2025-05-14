@@ -5488,3 +5488,107 @@ REQUEST_URI=/ecommerce/index.php/product/create
 in A:\xampp\htdocs\ecommerce\protected\views\product\create.php (41)
 in A:\xampp\htdocs\ecommerce\protected\controllers\ProductController.php (95)
 in A:\xampp\htdocs\ecommerce\index.php (18)
+2025/05/14 22:29:57 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "…". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('\xE2\x80\xA6')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('\xE2\x80\xA6')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('product/\xE2\x80\xA6')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/product/%E2%80%A6
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/39
+---
+2025/05/14 22:29:59 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "…". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('\xE2\x80\xA6')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('\xE2\x80\xA6')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('product/\xE2\x80\xA6')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/product/%E2%80%A6
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/39
+---
+2025/05/14 22:34:06 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "add". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('add')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('add')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('cart/add')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/cart/add
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/39
+---
+2025/05/14 22:36:22 [error] [php] Undefined variable $data (A:\xampp\htdocs\ecommerce\protected\views\product\view.php:22)
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): ProductController->renderInternal()
+#2 A:\xampp\htdocs\ecommerce\framework\web\CController.php(872): ProductController->renderFile()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(785): ProductController->renderPartial()
+#4 A:\xampp\htdocs\ecommerce\protected\controllers\ProductController.php(54): ProductController->render()
+#5 unknown(0): ProductController->actionView()
+#6 A:\xampp\htdocs\ecommerce\framework\web\actions\CAction.php(114): ReflectionMethod->invokeArgs()
+#7 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#10 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#12 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#13 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#14 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#15 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#16 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): ProductController->run()
+#17 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 A:\xampp\htdocs\ecommerce\index.php(18): CWebApplication->run()
+REQUEST_URI=/ecommerce/index.php/product/39
+in A:\xampp\htdocs\ecommerce\protected\views\product\view.php (22)
+in A:\xampp\htdocs\ecommerce\protected\controllers\ProductController.php (54)
+in A:\xampp\htdocs\ecommerce\index.php (18)
+2025/05/14 22:36:23 [error] [php] Undefined variable $data (A:\xampp\htdocs\ecommerce\protected\views\product\view.php:22)
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): ProductController->renderInternal()
+#2 A:\xampp\htdocs\ecommerce\framework\web\CController.php(872): ProductController->renderFile()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(785): ProductController->renderPartial()
+#4 A:\xampp\htdocs\ecommerce\protected\controllers\ProductController.php(54): ProductController->render()
+#5 unknown(0): ProductController->actionView()
+#6 A:\xampp\htdocs\ecommerce\framework\web\actions\CAction.php(114): ReflectionMethod->invokeArgs()
+#7 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): ProductController->runAction()
+#10 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#12 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): ProductController->filterAccessControl()
+#13 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#14 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#15 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): ProductController->runActionWithFilters()
+#16 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): ProductController->run()
+#17 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 A:\xampp\htdocs\ecommerce\index.php(18): CWebApplication->run()
+REQUEST_URI=/ecommerce/index.php/product/39
+in A:\xampp\htdocs\ecommerce\protected\views\product\view.php (22)
+in A:\xampp\htdocs\ecommerce\protected\controllers\ProductController.php (54)
+in A:\xampp\htdocs\ecommerce\index.php (18)
+2025/05/14 23:32:51 [error] [php] Undefined variable $data (A:\xampp\htdocs\ecommerce\protected\views\site\index.php:70)
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): SiteController->renderInternal()
+#2 A:\xampp\htdocs\ecommerce\framework\web\CController.php(872): SiteController->renderFile()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(785): SiteController->renderPartial()
+#4 A:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php(43): SiteController->render()
+#5 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#6 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(286): SiteController->runAction()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): SiteController->run()
+#10 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#12 A:\xampp\htdocs\ecommerce\index.php(18): CWebApplication->run()
+REQUEST_URI=/ecommerce/index.php
+in A:\xampp\htdocs\ecommerce\protected\views\site\index.php (70)
+in A:\xampp\htdocs\ecommerce\protected\controllers\SiteController.php (43)
+in A:\xampp\htdocs\ecommerce\index.php (18)

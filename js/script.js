@@ -260,7 +260,7 @@ function attachPageCartEventListeners() {
                     try {
                         const res = JSON.parse(this.responseText);
                         if (res.success) {
-                            location.reload(); // or refresh cart section only
+                            location.reload(); 
                         }
                     } catch (e) {
                         console.error("Error parsing updateQuantity response", e);
@@ -296,3 +296,81 @@ function reloadShoppingCartTable() {
     xhttp.open("GET", baseUrl + "/index.php/cart/refreshCartTable", true);
     xhttp.send();
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const minusBtn  = document.getElementById('minus');
+  const plusBtn   = document.getElementById('plus');
+  const qtyInput  = document.getElementById('quantity-input');
+  const hiddenQty = document.getElementById('hidden-quantity');
+
+  if (!minusBtn || !plusBtn || !qtyInput || !hiddenQty) {
+    return;
+  }
+
+  minusBtn.addEventListener('click', function() {
+    let v = Math.max(1, parseInt(qtyInput.value, 10) - 1);
+    qtyInput.value  = v;
+    hiddenQty.value = v;
+  });
+
+  plusBtn.addEventListener('click', function() {
+    let v = parseInt(qtyInput.value, 10) + 1;
+    qtyInput.value  = v;
+    hiddenQty.value = v;
+  });
+
+  qtyInput.addEventListener('input', function() {
+    let v = Math.max(1, parseInt(qtyInput.value, 10) || 1);
+    qtyInput.value  = v;
+    hiddenQty.value = v;
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const sidebar = document.getElementById('product-sidebar');
+    if (!sidebar) return; // not on the product index page
+
+    const filterInputs = sidebar.querySelectorAll('input[type=checkbox], input[type=radio]');
+
+    filterInputs.forEach(function (input) {
+        input.addEventListener('change', function () {
+            const formData = new FormData();
+
+            // Checked categories
+            document.querySelectorAll('input[name="categories[]"]:checked').forEach((el) => {
+                formData.append('categories[]', el.value);
+            });
+
+            // Selected availability
+            const availability = document.querySelector('input[name="availability"]:checked');
+            if (availability) {
+                formData.append('availability', availability.value);
+            }
+
+            const params = new URLSearchParams(formData).toString();
+            const listViewUrl = baseUrl + '/index.php/product/index?' + params;
+
+            const container = document.querySelector('.pro-container');
+            if (container) {
+                fetch(listViewUrl, {
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                })
+                .then(response => response.text())
+                .then(html => {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = html;
+
+                    const updated = tempDiv.querySelector('.pro-container');
+                    if (updated) container.innerHTML = updated.innerHTML;
+
+                    const pagination = document.querySelector('.pagination-wrapper');
+                    const newPagination = tempDiv.querySelector('.pagination-wrapper');
+                    if (pagination && newPagination) {
+                        pagination.innerHTML = newPagination.innerHTML;
+                    }
+                })
+                .catch(error => console.error('Filter update failed', error));
+            }
+        });
+    });
+});
