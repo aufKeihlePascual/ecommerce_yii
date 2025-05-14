@@ -129,50 +129,14 @@ class OrderController extends Controller
 
 	public function actionIndex()
 	{
-		yii::import('application.vendors.stripe.init');
-		\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+		$orders = Order::model()->findAll();
 
-		try {
-			$sessions = \Stripe\Checkout\Session::all([
-				'limit' => 50,
-				'expand' => ['data.payment_intent'],
-			]);
+		$dataProvider=new CActiveDataProvider('Order');
 
-			$orders = [];
-
-			foreach ($sessions->data as $session) {
-				$lineItems = \Stripe\Checkout\Session::allLineItems($session->id, ['limit' => 100]);
-
-				$itemCount = 0;
-				foreach ($lineItems->data as $item) {
-					$itemCount += $item->quantity;
-				}
-
-				$email = $session->customer_details->email ?? 'N/A';
-				$name = $session->customer_details->name ?? 'N/A';
-
-				$orders[] = (object)[
-					'id' => $session->id,
-					'email' => $email,
-					'name' => $name,
-					'itemCount' => $itemCount,
-					'created_at' => date('Y-m-d H:i:s', $session->created),
-					'status' => $session->payment_status === 'unpaid' ? 'pending' : strtolower($session->payment_status),
-					'total' => $session->amount_total / 100.0,
-				];
-
-			}
-
-			$dataProvider = new CArrayDataProvider($orders, [
-				'pagination' => ['pageSize' => 10],
-			]);
-
-			$this->render('index', ['dataProvider' => $dataProvider]);
-
-		} catch (Exception $e) {
-			Yii::log("Stripe Fetch Error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
-			throw new CHttpException(500, 'Failed to load Stripe orders.');
-		}
+		$this->render('index', array(
+			'dataProvider' => $dataProvider,
+			'orders' => $orders,
+		));
 	}
 
 
@@ -259,7 +223,7 @@ class OrderController extends Controller
 				'pagination' => ['pageSize' => 10],
 			]);
 
-			$this->render('index', ['dataProvider' => $dataProvider]);
+			$this->render('adminIndex', ['dataProvider' => $dataProvider]);
 
 		} catch (Exception $e) {
 			Yii::log("Stripe Fetch Error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
