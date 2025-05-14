@@ -151,8 +151,10 @@ class PaymentController extends Controller
                 : Cart::model()->find('user_id = :uid AND status = "active"', [':uid' => Yii::app()->user->id]);
 
             if ($cart) {
-                $cart->status = 'pending_confirmation';
+                $cart->status = 'pending';
                 $cart->save();
+
+				CartItem::model()->deleteAll('cart_id = :cartId', [':cartId' => $cart->id]);
             }
 
             $this->actionSyncStripeTransactions();
