@@ -1,4 +1,3 @@
-   
 <?php
 /* @var $this ProductController */
 /* @var $dataProvider CActiveDataProvider */

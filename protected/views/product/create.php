@@ -35,7 +35,10 @@ $this->menu = array(
 
             <div class="form-panel">
                 <h2 class="form-title">Add Product</h2>
-                <?php $this->renderPartial('_form', array('model' => $model)); ?>
+                <?php $this->renderPartial('_form', [
+                    'model'        => $model,
+                    'categoryList' => $categoryList,
+                ]); ?>
             </div>
 
         </div>

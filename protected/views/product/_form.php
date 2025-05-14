@@ -22,7 +22,7 @@
 
     <div class="form-field">
         <?php echo $form->labelEx($model,'name'); ?>
-        <?php echo $form->textField($model,'name', array('placeholder'=>'Product title')); ?>
+        <?php echo $form->textField($model,'name', array('placeholder'=>'Product name')); ?>
         <?php echo $form->error($model,'name'); ?>
     </div>
 
@@ -44,11 +44,23 @@
         <?php echo $form->error($model,'stock'); ?>
     </div>
 
+    <!-- <div class="form-field">
+        <?php //echo $form->labelEx($model,'category_id'); ?>
+        <?php //echo $form->textField($model,'category_id', array('placeholder'=>'Category ID')); ?>
+        <?php //echo $form->error($model,'category_id'); ?>
+    </div> -->
+
     <div class="form-field">
         <?php echo $form->labelEx($model,'category_id'); ?>
-        <?php echo $form->textField($model,'category_id', array('placeholder'=>'Category ID')); ?>
+        <?php echo $form->dropDownList(
+            $model,
+            'category_id',
+            $categoryList,
+            ['prompt'=>'– Select Category –']
+        ); ?>
         <?php echo $form->error($model,'category_id'); ?>
     </div>
+
 
     <div class="form-field media-upload-field">
         <label>Media</label>

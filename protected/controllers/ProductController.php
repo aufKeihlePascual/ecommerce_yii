@@ -62,18 +62,18 @@ class ProductController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Product;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$model = new Product;
+		$categoryList = CHtml::listData(Category::model()->findAll(['order'=>'name']), 'id','name');
 
 		if (isset($_POST['Product'])) {
 			$model->attributes = $_POST['Product'];
 
 			$uploadedFile = CUploadedFile::getInstance($model, 'image');
-
 			if ($uploadedFile !== null) {
-				$filename = uniqid() . '_' . $uploadedFile->getName();
+				$base      = strtolower($model->brand . ' ' . $model->name);
+				$slug      = preg_replace('/[^a-z0-9]+/','_', $base);
+				$extension = $uploadedFile->getExtensionName();
+				$filename  = "{$slug}.{$extension}";
 				$model->image = $filename;
 			}
 
@@ -82,13 +82,14 @@ class ProductController extends Controller
 					$uploadPath = Yii::app()->basePath . '/../images/products/' . $filename;
 					$uploadedFile->saveAs($uploadPath);
 				}
-				$this->redirect(array('view', 'id' => $model->id));
+				$this->redirect(['view', 'id' => $model->id]);
 			}
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create', [
+			'model'        => $model,
+			'categoryList' => $categoryList,
+		]);
 	}
 
 	/**
@@ -98,21 +99,26 @@ class ProductController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		$model = $this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		// load categories for the dropdown
+		$categoryList = CHtml::listData(
+			Category::model()->findAll(['order'=>'name']),
+			'id',
+			'name'
+		);
 
-		if(isset($_POST['Product']))
-		{
-			$model->attributes=$_POST['Product'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+		if (isset($_POST['Product'])) {
+			$model->attributes = $_POST['Product'];
+			if ($model->save()) {
+				$this->redirect(['view','id'=>$model->id]);
+			}
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$this->render('update', [
+			'model'        => $model,
+			'categoryList' => $categoryList,
+		]);
 	}
 
 	/**
