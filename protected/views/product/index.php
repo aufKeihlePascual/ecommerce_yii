@@ -22,23 +22,26 @@ $this->breadcrumbs = array('Products');
 
     <div id="product-sidebar" class="product-page">
         <div class="sidebar-column">
-            <aside class="sidebar admin-side">
-                <div class="filter-section">
-                    <h4>Actions</h4>
-                    <ul class="menu-links">
-                        <li>
-                            <a href="<?php echo CHtml::normalizeUrl(array('product/create')); ?>">
-                                <i class="fa fa-plus-circle"></i> Add Product
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo CHtml::normalizeUrl(array('product/admin')); ?>">
-                                <i class="fa fa-cogs"></i> Manage Products
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
+            
+            <?php if (Yii::app()->user->getState('role') === 'admin'): ?>
+                <aside class="sidebar admin-side">
+                    <div class="filter-section">
+                        <h4>Actions</h4>
+                        <ul class="menu-links">
+                            <li>
+                                <a href="<?php echo CHtml::normalizeUrl(array('product/create')); ?>">
+                                    <i class="fa fa-plus-circle"></i> Add Product
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo CHtml::normalizeUrl(array('product/admin')); ?>">
+                                    <i class="fa fa-cogs"></i> Manage Products
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+            <?php endif; ?>
 
             <aside class="sidebar sidebar-filter">
                 <div class="filter-section">
