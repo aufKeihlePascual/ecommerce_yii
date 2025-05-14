@@ -56,7 +56,23 @@
 <section id="banner" style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/b2.jpg');">
 	<h4>Keyboard Accessories</h4>
 	<h2>Accessories that make every keypress count.</h2>
-	<button class="normal">Check It Out</button>
+	<?php
+	$accessoryCategoryId = null;
+	foreach ($categories as $category) {
+		if (strtolower($category->name) === 'accessories') {
+			$accessoryCategoryId = $category->id;
+			break;
+		}
+	}
+	?>
+
+	<?php if ($accessoryCategoryId !== null): ?>
+		<button class="normal" onclick="window.location.href='<?php echo Yii::app()->createUrl('product/index', ['categories[]' => $accessoryCategoryId]); ?>'">
+			Check It Out
+		</button>
+	<?php endif; ?>
+
+
 </section>
 
 <section id="featured" class="section-p1">
@@ -112,7 +128,7 @@
 	</div>
 </section>
 
-<section id="keyboard-section" class="section-p1 keyboard-size">
+<!-- <section id="keyboard-section" class="section-p1 keyboard-size">
 	<h2>Shop by Keyboard Size</h2>
 
 	<div class="keyboard-container">
@@ -147,4 +163,4 @@
 		</div>
 	</div>
 
-</section>
+</section> -->
