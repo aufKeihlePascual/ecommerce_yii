@@ -16,7 +16,7 @@ class PaymentController extends Controller
 	{
 		return array(
 			array('allow',
-                'actions' => array('createSession', 'checkout', 'success', 'cancel', 'syncStripeTransactions'),
+                'actions' => array('createSession', 'checkout', 'success', 'cancel', 'syncStripeTransactions', 'markAsShipped'),
                 'users' => array('*')),
             array('deny',
                 'users' => array('*')),
@@ -84,6 +84,7 @@ class PaymentController extends Controller
 
 		$lineItems = [];
 		foreach ($cart->cartItems as $item) {
+			$product = Product::model()->findByAttributes(['name' => $item->description]);
 			$imageUrl = $_ENV['NGROK_URL'] . Yii::app()->baseUrl . '/images/products/' . $item->product->image;
 			$lineItems[] = [
 				'price_data' => [
@@ -92,6 +93,9 @@ class PaymentController extends Controller
 						'name' => $item->product->name,
 						'description' => $item->product->description,
 						'images' => [$imageUrl],
+						'metadata' => [
+							'product_id' => $item->product->id,
+						],
 					],
 					'unit_amount' => intval($item->product->price * 100),
 				],
@@ -119,14 +123,17 @@ class PaymentController extends Controller
 			$order->cart_id = $cart->id;
 			$order->total = $cart->getTotal();
 			$order->status = 'pending';
+			$order->dispatch_status = 'pending';
 			$order->stripe_session_id = $session->id;
 			$order->created_at = new CDbExpression('NOW()');
 			$order->save();
 
 			$this->redirect($session->url);
 		} catch (Exception $e) {
-			Yii::log($e->getMessage(), CLogger::LEVEL_ERROR);
-			throw new CHttpException(500, 'Payment processing failed.');
+			// Yii::log($e->getMessage(), CLogger::LEVEL_ERROR);
+			// throw new CHttpException(500, 'Payment processing failed.');
+			throw new CHttpException(500, 'Payment processing failed: ' . $e->getMessage());
+
 		}
 	}
 
@@ -146,8 +153,6 @@ class PaymentController extends Controller
             $lineItems = \Stripe\Checkout\Session::allLineItems($sessionId, ['limit' => 100]);
 
 			$paymentIntent = \Stripe\PaymentIntent::retrieve($session->payment_intent);
-			$charge = \Stripe\Charge::retrieve($paymentIntent->latest_charge);
-			$networkTransactionId = $charge->payment_method_details->card->network_transaction_id;
 
             $items = [];
 			$grandTotal = 0;
@@ -182,7 +187,7 @@ class PaymentController extends Controller
             $this->render('success', [
 				'items' => $items, 
 				'grandTotal' => number_format($grandTotal, 2),
-				'networkTransactionId' => $networkTransactionId,
+				'paymentIntentId' => strtoupper($paymentIntent->id)
 			]);
 
         } catch (Exception $e) {
@@ -240,7 +245,7 @@ class PaymentController extends Controller
 				$order = Order::model()->findByAttributes(['cart_id' => $cartId]);
 
 				$statusMap = [
-					'shipped' => ['order' => 'shipped', 'cart' => 'completed'],
+					'accepted' => ['order' => 'accepted', 'cart' => 'completed'],
 					'unpaid' => ['order' => 'pending', 'cart' => 'active'],
 				];
 
@@ -271,7 +276,7 @@ class PaymentController extends Controller
 				$paymentDate = isset($intent->created) ? date('Y-m-d H:i:s', $intent->created) : date('Y-m-d H:i:s');
 
 				$paymentStatusMap = [
-					'succeeded' => 'shipped',
+					'succeeded' => 'accepted',
 					'processing' => 'pending',
 					'requires_payment_method' => 'pending',
 					'canceled' => 'cancelled',
@@ -331,5 +336,49 @@ class PaymentController extends Controller
 
         Yii::app()->end();
     }
+
+	public function actionSyncPaymentStatus()
+	{
+		Yii::import('application.vendors.stripe.init');
+		\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+
+		$orders = Order::model()->findAllByAttributes(['dispatch_status' => 'unpaid']);
+
+		foreach ($orders as $order) {
+			if (!$order->stripe_session_id) continue;
+
+			try {
+				$session = \Stripe\Checkout\Session::retrieve($order->stripe_session_id);
+				$paymentIntent = \Stripe\PaymentIntent::retrieve($session->payment_intent);
+
+				if ($paymentIntent->status === 'succeeded') {
+					$order->status = 'accepted';
+					$order->dispatch_status = 'pending';
+					$order->save(false);
+				}
+
+			} catch (Exception $e) {
+				Yii::log("Stripe sync error for Order ID {$order->id}: " . $e->getMessage(), CLogger::LEVEL_ERROR);
+			}
+		}
+
+		echo "Dispatch statuses updated where applicable.";
+	}
+
+	public function actionMarkAsShipped($session_id)
+	{
+		// echo "Received session ID: " . CHtml::encode($session_id) . "<br>";
+
+		$order = Order::model()->findByAttributes(['stripe_session_id' => $session_id]);
+
+		if (!$order) {
+			throw new CHttpException(404, 'Order not found.');
+		}
+
+		$order->dispatch_status = 'shipped';
+		$order->save(false);
+
+		echo "Order marked as shipped.";
+	}
 
 }

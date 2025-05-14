@@ -37,10 +37,12 @@ class Order extends CActiveRecord
 			array('user_id, cart_id', 'numerical', 'integerOnly'=>true),
 			array('total', 'length', 'max'=>10),
 			array('status', 'length', 'max'=>9),
+			array('stripe_session_id', 'length', 'max'=>255),
+			array('dispatch_status', 'length', 'max'=>10),
 			array('created_at', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, cart_id, total, status, created_at', 'safe', 'on'=>'search'),
+			array('id, user_id, cart_id, total, status, stripe_session_id, dispatch_status, created_at', 'on'=>'search'),
 		);
 	}
 

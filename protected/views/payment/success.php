@@ -2,7 +2,7 @@
 
 <div class="payment-status-container">
     <h2 class="text-success"><i class="fa-solid fa-check-circle"></i> Payment Successful</h2>
-    <p>Thank you for your purchase. Your Order (Ref No. <strong><?php echo CHtml::encode($networkTransactionId); ?></strong>) has been confirmed and your cart has been cleared.</p>
+    <p>Thank you for your purchase. Your Order (Ref No. <strong><?php echo CHtml::encode($paymentIntentId); ?></strong>) has been confirmed and your cart has been cleared.</p>
 
     <?php if (!empty($items)): ?>
         <div class="checkout-summary">

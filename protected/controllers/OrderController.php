@@ -28,7 +28,7 @@ class OrderController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index', 'view','create','update','userView'),
+				'actions'=>array('index','view','create','update','userView', 'viewOrderDetails'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -157,11 +157,16 @@ class OrderController extends Controller
 
 				$status = match ($session->payment_status) {
 					'unpaid' => 'pending',
-					'paid' => 'shipped',
-					'no_payment_required' => 'shipped',
+					'paid' => 'accepted',
+					'no_payment_required' => 'accepted',
 					'canceled' => 'cancelled',
 					default => strtolower($session->payment_status),
 				};
+
+				$receiptUrl = null;
+				if (isset($session->payment_intent->charges->data[0]->receipt_url)) {
+					$receiptUrl = $session->payment_intent->charges->data[0]->receipt_url;
+				}
 
 				$orders[] = (object)[
 					'id' => $session->id,
@@ -171,7 +176,10 @@ class OrderController extends Controller
 					'created_at' => date('Y-m-d H:i:s', $session->created),
 					'status' => $status,
 					'total' => $session->amount_total / 100.0,
+					'dispatch_status' => $this->getDispatchStatusFromDb($session->id),
+					'receipt_url' => $receiptUrl,
 				];
+
 
 			}
 
@@ -257,5 +265,61 @@ class OrderController extends Controller
 			'orders' => $orders,
 		));
 	}
+
+	protected function getDispatchStatusFromDb($stripeSessionId)
+	{
+		$order = Order::model()->findByAttributes(['stripe_session_id' => $stripeSessionId]);
+		return $order ? $order->dispatch_status : 'unpaid';
+	}
+
+	public function actionViewOrderDetails($session_id)
+	{
+		Yii::import('application.vendors.stripe.init');
+		\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+
+		try {
+			$session = \Stripe\Checkout\Session::retrieve([
+				'id' => $session_id,
+				'expand' => ['line_items', 'payment_intent'],
+			]);
+
+			$lineItems = \Stripe\Checkout\Session::allLineItems($session_id, ['limit' => 100]);
+			$grandTotal = $session->amount_total / 100.0;
+
+			$order = Order::model()->findByAttributes(['stripe_session_id' => $session_id]);
+        	$dispatchStatus = $order ? $order->dispatch_status : 'N/A';
+
+			$items = [];
+			foreach ($lineItems->data as $item) {
+				$productId = $item->price->product->metadata['product_id'] ?? null;
+				$product = $productId ? Product::model()->findByPk($productId) : null;
+
+				$items[] = [
+					'name' => $item->description,
+					'quantity' => $item->quantity,
+					'unit_price' => number_format($item->price->unit_amount / 100, 2),
+					'total' => number_format(($item->amount_total / 100), 2),
+					'image' => $product ? Yii::app()->baseUrl . '/images/products/' . $product->image : Yii::app()->baseUrl . '/images/featured/placeholder.jpg',
+					
+					'brand' => $product ? $product->brand : 'N/A',
+					'category' => $product && $product->category ? $product->category->name : 'N/A',
+					'description' => $product ? $product->description : 'N/A',
+				];
+			}
+
+			$this->render('orderDetails', [
+				'paymentIntentId' => is_object($session->payment_intent)
+					? $session->payment_intent->id
+					: $session->payment_intent,
+            	'dispatchStatus' => $dispatchStatus,
+				'items' => $items,
+				'grandTotal' => number_format($grandTotal, 2),
+			]);
+		} catch (Exception $e) {
+			Yii::log("Failed to load order details: " . $e->getMessage(), CLogger::LEVEL_ERROR);
+			throw new CHttpException(500, 'Failed to load order details.');
+		}
+	}
+
 
 }
