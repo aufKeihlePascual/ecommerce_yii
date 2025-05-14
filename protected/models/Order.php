@@ -42,7 +42,7 @@ class Order extends CActiveRecord
 			array('created_at', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, cart_id, total, status, stripe_session_id, dispatch_status, created_at', 'on'=>'search'),
+			array('user_id, cart_id, total, status, dispatch_status, stripe_session_id, created_at', 'safe'),
 		);
 	}
 

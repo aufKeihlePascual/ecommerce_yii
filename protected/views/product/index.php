@@ -65,20 +65,20 @@ $this->breadcrumbs = array('Products');
                     </div>
                 </div>
 
-                <div class="filter-section">
+                <!-- <div class="filter-section">
                     <h4>Brand</h4>
                     <div class="filter-scroll limited-height" id="brand-filter">
-                        <?php foreach ($brands as $brand): ?>
+                        <?php //foreach ($brands as $brand): ?>
                             <label>
-                                <input type="checkbox" value="<?php echo CHtml::encode($brand); ?>">
-                                <?php echo CHtml::encode($brand); ?>
+                                <input type="checkbox" value="<?php //echo CHtml::encode($brand); ?>">
+                                <?php //echo CHtml::encode($brand); ?>
                             </label><br>
-                        <?php endforeach; ?>
+                        <?php //endforeach; ?>
                     </div>
                     <div class="toggle-btn-wrapper">
                         <button type="button" class="toggle-btn" data-target="#brand-filter">Show More</button>
                     </div>
-                </div>
+                </div> -->
             </aside>
         </div>
 

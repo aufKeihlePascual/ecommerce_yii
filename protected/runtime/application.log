@@ -5249,3 +5249,190 @@ Stack trace:
 REQUEST_URI=/ecommerce/index.php/order/viewOrderDetails?session_id=cs_test_a1aUI57zqAA3LiycA3kvgy5awcyL6uUwLbbDRUPR1iwVEbzBLu6wTBZsuh
 in A:\xampp\htdocs\ecommerce\protected\controllers\OrderController.php (296)
 in A:\xampp\htdocs\ecommerce\index.php (18)
+2025/05/14 19:48:30 [error] [php] Undefined variable $paymentStatus (A:\xampp\htdocs\ecommerce\protected\views\order\orderDetails.php:8)
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): OrderController->renderInternal()
+#2 A:\xampp\htdocs\ecommerce\framework\web\CController.php(872): OrderController->renderFile()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(785): OrderController->renderPartial()
+#4 A:\xampp\htdocs\ecommerce\protected\controllers\OrderController.php(310): OrderController->render()
+#5 unknown(0): OrderController->actionViewOrderDetails()
+#6 A:\xampp\htdocs\ecommerce\framework\web\actions\CAction.php(114): ReflectionMethod->invokeArgs()
+#7 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): OrderController->runAction()
+#10 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#12 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): OrderController->filterAccessControl()
+#13 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#14 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#15 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): OrderController->runActionWithFilters()
+#16 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): OrderController->run()
+#17 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 A:\xampp\htdocs\ecommerce\index.php(18): CWebApplication->run()
+REQUEST_URI=/ecommerce/index.php/order/viewOrderDetails?session_id=cs_test_a1aUI57zqAA3LiycA3kvgy5awcyL6uUwLbbDRUPR1iwVEbzBLu6wTBZsuh
+in A:\xampp\htdocs\ecommerce\protected\views\order\orderDetails.php (8)
+in A:\xampp\htdocs\ecommerce\protected\controllers\OrderController.php (310)
+in A:\xampp\htdocs\ecommerce\index.php (18)
+2025/05/14 19:53:27 [error] [php] Undefined variable $data (A:\xampp\htdocs\ecommerce\protected\views\order\orderDetails.php:8)
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): OrderController->renderInternal()
+#2 A:\xampp\htdocs\ecommerce\framework\web\CController.php(872): OrderController->renderFile()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(785): OrderController->renderPartial()
+#4 A:\xampp\htdocs\ecommerce\protected\controllers\OrderController.php(310): OrderController->render()
+#5 unknown(0): OrderController->actionViewOrderDetails()
+#6 A:\xampp\htdocs\ecommerce\framework\web\actions\CAction.php(114): ReflectionMethod->invokeArgs()
+#7 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): OrderController->runAction()
+#10 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#12 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): OrderController->filterAccessControl()
+#13 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#14 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#15 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): OrderController->runActionWithFilters()
+#16 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): OrderController->run()
+#17 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 A:\xampp\htdocs\ecommerce\index.php(18): CWebApplication->run()
+REQUEST_URI=/ecommerce/index.php/order/viewOrderDetails?session_id=cs_test_a1aUI57zqAA3LiycA3kvgy5awcyL6uUwLbbDRUPR1iwVEbzBLu6wTBZsuh
+in A:\xampp\htdocs\ecommerce\protected\views\order\orderDetails.php (8)
+in A:\xampp\htdocs\ecommerce\protected\controllers\OrderController.php (310)
+in A:\xampp\htdocs\ecommerce\index.php (18)
+2025/05/14 19:53:52 [error] [php] Undefined variable $data (A:\xampp\htdocs\ecommerce\protected\views\order\orderDetails.php:8)
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(126): require()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CBaseController.php(95): OrderController->renderInternal()
+#2 A:\xampp\htdocs\ecommerce\framework\web\CController.php(872): OrderController->renderFile()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(785): OrderController->renderPartial()
+#4 A:\xampp\htdocs\ecommerce\protected\controllers\OrderController.php(310): OrderController->render()
+#5 unknown(0): OrderController->actionViewOrderDetails()
+#6 A:\xampp\htdocs\ecommerce\framework\web\actions\CAction.php(114): ReflectionMethod->invokeArgs()
+#7 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): OrderController->runAction()
+#10 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CAccessControlFilter->filter()
+#12 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): OrderController->filterAccessControl()
+#13 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#14 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#15 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): OrderController->runActionWithFilters()
+#16 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): OrderController->run()
+#17 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 A:\xampp\htdocs\ecommerce\index.php(18): CWebApplication->run()
+REQUEST_URI=/ecommerce/index.php/order/viewOrderDetails?session_id=cs_test_a1aUI57zqAA3LiycA3kvgy5awcyL6uUwLbbDRUPR1iwVEbzBLu6wTBZsuh
+in A:\xampp\htdocs\ecommerce\protected\views\order\orderDetails.php (8)
+in A:\xampp\htdocs\ecommerce\protected\controllers\OrderController.php (310)
+in A:\xampp\htdocs\ecommerce\index.php (18)
+2025/05/14 20:04:25 [error] [exception.CException] CException: Property "CartItem.description" is not defined. in A:\xampp\htdocs\ecommerce\framework\base\CComponent.php:130
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\db\ar\CActiveRecord.php(145): CComponent->__get('description')
+#1 A:\xampp\htdocs\ecommerce\protected\controllers\PaymentController.php(92): CActiveRecord->__get('description')
+#2 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): PaymentController->actionCheckout()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#7 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#10 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('checkout')
+#12 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('payment/checkou...')
+#13 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#14 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#15 {main}
+REQUEST_URI=/ecommerce/index.php/payment/checkout
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
+---
+2025/05/14 20:07:47 [error] [exception.CException] CException: Property "Product.brand_id" is not defined. in A:\xampp\htdocs\ecommerce\framework\base\CComponent.php:130
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\db\ar\CActiveRecord.php(145): CComponent->__get('brand_id')
+#1 A:\xampp\htdocs\ecommerce\protected\controllers\PaymentController.php(94): CActiveRecord->__get('brand_id')
+#2 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): PaymentController->actionCheckout()
+#3 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#7 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#10 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('checkout')
+#12 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('payment/checkou...')
+#13 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#14 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#15 {main}
+REQUEST_URI=/ecommerce/index.php/payment/checkout
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
+---
+2025/05/14 20:19:25 [error] [exception.CHttpException.500] CHttpException: Payment processing failed: Order has an invalid validation rule. The rule must specify attributes to be validated and the validator name. in A:\xampp\htdocs\ecommerce\protected\controllers\PaymentController.php:150
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): PaymentController->actionCheckout()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('checkout')
+#10 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('payment/checkou...')
+#11 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#12 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#13 {main}
+REQUEST_URI=/ecommerce/index.php/payment/checkout
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
+---
+2025/05/14 20:22:49 [error] [exception.CHttpException.500] CHttpException: Payment processing failed: Order has an invalid validation rule. The rule must specify attributes to be validated and the validator name. in A:\xampp\htdocs\ecommerce\protected\controllers\PaymentController.php:150
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): PaymentController->actionCheckout()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('checkout')
+#10 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('payment/checkou...')
+#11 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#12 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#13 {main}
+REQUEST_URI=/ecommerce/index.php/payment/checkout
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
+---
+2025/05/14 20:23:51 [error] [exception.CHttpException.500] CHttpException: Payment processing failed: Order has an invalid validation rule. The rule must specify attributes to be validated and the validator name. in A:\xampp\htdocs\ecommerce\protected\controllers\PaymentController.php:150
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\actions\CInlineAction.php(49): PaymentController->actionCheckout()
+#1 A:\xampp\htdocs\ecommerce\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 A:\xampp\htdocs\ecommerce\framework\web\CController.php(1148): CFilter->filter(Object(CFilterChain))
+#5 A:\xampp\htdocs\ecommerce\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 A:\xampp\htdocs\ecommerce\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 A:\xampp\htdocs\ecommerce\framework\web\CController.php(291): CFilterChain->run()
+#8 A:\xampp\htdocs\ecommerce\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('checkout')
+#10 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('payment/checkou...')
+#11 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#12 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#13 {main}
+REQUEST_URI=/ecommerce/index.php/payment/checkout
+HTTP_REFERER=http://localhost/ecommerce/index.php/product/index
+---
+2025/05/14 21:47:39 [error] [exception.ParseError] ParseError: syntax error, unexpected token "<" in A:\xampp\htdocs\ecommerce\protected\controllers\OrderController.php:277
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(276): CWebApplication->createController('viewOrderDetail...')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/viewOrder...')
+#2 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#3 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#4 {main}
+REQUEST_URI=/ecommerce/index.php/order/viewOrderDetails?session_id=cs_test_a1DqxzjQto1O7SD3noPTbBWW7wCa8Wm5iwVTvodyTjekoGKdYhtwS2clGI
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---

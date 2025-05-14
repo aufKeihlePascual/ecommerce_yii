@@ -278,48 +278,81 @@ class OrderController extends Controller
 		\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
 		try {
+			// 1) Retrieve session
 			$session = \Stripe\Checkout\Session::retrieve([
-				'id' => $session_id,
-				'expand' => ['line_items', 'payment_intent'],
+				'id'     => $session_id,
+				'expand' => ['payment_intent'],
 			]);
 
-			$lineItems = \Stripe\Checkout\Session::allLineItems($session_id, ['limit' => 100]);
+			// 2) Grab line items & total
+			$lineItems  = \Stripe\Checkout\Session::allLineItems($session_id, ['limit' => 100]);
 			$grandTotal = $session->amount_total / 100.0;
 
-			$order = Order::model()->findByAttributes(['stripe_session_id' => $session_id]);
-        	$dispatchStatus = $order ? $order->dispatch_status : 'N/A';
+			// 3) Our local order for dispatch status
+			$order          = Order::model()->findByAttributes(['stripe_session_id' => $session_id]);
+			$dispatchStatus = $order ? $order->dispatch_status : 'N/A';
 
+			// 4) Pull metadata properly
+			$pi = $session->payment_intent;
+			if (method_exists($pi->metadata, 'toArray')) {
+				$metadata = $pi->metadata->toArray();
+			} else {
+				$metadata = (array)$pi->metadata;
+			}
+
+			// 5) Turn them into arrays
+			$brandNames     = isset($metadata['brand_names'])     ? explode(',', $metadata['brand_names'])     : [];
+			$categoryIds    = isset($metadata['category_ids'])    ? explode(',', $metadata['category_ids'])    : [];
+			$descriptions   = isset($metadata['descriptions'])    ? explode('|',   $metadata['descriptions'])   : [];
+			$imageFiles     = isset($metadata['image_filenames']) ? explode(',', $metadata['image_filenames']) : [];
+
+			// 6) Lookup category names
+			$categoryMap = [];
+			if (!empty($categoryIds)) {
+				$crit = new CDbCriteria;
+				$crit->addInCondition('id', $categoryIds);
+				foreach (Category::model()->findAll($crit) as $cat) {
+					$categoryMap[$cat->id] = $cat->name;
+				}
+			}
+
+			// 7) Build your display items
 			$items = [];
-			foreach ($lineItems->data as $item) {
-				$productId = $item->price->product->metadata['product_id'] ?? null;
-				$product = $productId ? Product::model()->findByPk($productId) : null;
+			foreach ($lineItems->data as $i => $li) {
+				$brand    = $brandNames[$i]     ?? 'N/A';
+				$desc     = $descriptions[$i]   ?? 'N/A';
+				$img      = isset($imageFiles[$i])
+							? Yii::app()->baseUrl . '/images/products/' . $imageFiles[$i]
+							: Yii::app()->baseUrl . '/images/featured/placeholder.jpg';
+				$catId    = $categoryIds[$i]    ?? null;
+				$category = $catId && isset($categoryMap[$catId])
+							? $categoryMap[$catId]
+							: ($catId ?: 'N/A');
 
 				$items[] = [
-					'name' => $item->description,
-					'quantity' => $item->quantity,
-					'unit_price' => number_format($item->price->unit_amount / 100, 2),
-					'total' => number_format(($item->amount_total / 100), 2),
-					'image' => $product ? Yii::app()->baseUrl . '/images/products/' . $product->image : Yii::app()->baseUrl . '/images/featured/placeholder.jpg',
-					
-					'brand' => $product ? $product->brand : 'N/A',
-					'category' => $product && $product->category ? $product->category->name : 'N/A',
-					'description' => $product ? $product->description : 'N/A',
+					'name'        => $li->description,
+					'quantity'    => $li->quantity,
+					'unit_price'  => number_format($li->price->unit_amount / 100, 2),
+					'total'       => number_format($li->amount_total    / 100, 2),
+					'image'       => $img,
+					'brand'       => $brand,
+					'category'    => $category,
+					'description' => $desc,
 				];
 			}
 
+			// 8) Render view
 			$this->render('orderDetails', [
-				'paymentIntentId' => is_object($session->payment_intent)
-					? $session->payment_intent->id
-					: $session->payment_intent,
-            	'dispatchStatus' => $dispatchStatus,
-				'items' => $items,
-				'grandTotal' => number_format($grandTotal, 2),
+				'paymentIntentId' => strtoupper($pi->id),
+				'dispatchStatus'  => $dispatchStatus,
+				'items'           => $items,
+				'grandTotal'      => number_format($grandTotal, 2),
 			]);
+
 		} catch (Exception $e) {
 			Yii::log("Failed to load order details: " . $e->getMessage(), CLogger::LEVEL_ERROR);
 			throw new CHttpException(500, 'Failed to load order details.');
 		}
 	}
-
 
 }

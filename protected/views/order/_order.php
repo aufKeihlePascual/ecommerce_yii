@@ -2,7 +2,7 @@
     <td><?php echo CHtml::encode($data->email); ?></td>
     <td><?php echo CHtml::encode($data->name); ?></td>
     <td><?php echo (int)$data->itemCount; ?></td>
-    <td><?php echo date('F j, Y', strtotime($data->created_at)); ?></td>
+    <td><?php echo date('F j, Y g:i A', strtotime($data->created_at)); ?></td>
     <td>
         <span class="status <?php echo strtolower($data->status); ?>">
             <?php echo ucfirst($data->status); ?>

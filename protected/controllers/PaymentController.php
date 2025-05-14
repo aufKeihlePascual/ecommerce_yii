@@ -80,29 +80,50 @@ class PaymentController extends Controller
 			throw new CHttpException(400, 'Your cart is empty.');
 		}
 
+		$lineItems = [];
+		$brandIds = [];
+		$categoryIds = [];
+		$descriptions = [];
+		$imageFilenames = [];
+
 		Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
 		$lineItems = [];
 		foreach ($cart->cartItems as $item) {
-			$product = Product::model()->findByAttributes(['name' => $item->description]);
-			$imageUrl = $_ENV['NGROK_URL'] . Yii::app()->baseUrl . '/images/products/' . $item->product->image;
+			$product = $item->product;
+			$imageUrl = $_ENV['NGROK_URL'] . Yii::app()->baseUrl . '/images/products/' . $product->image;
+
+			$brands[] = $product->brand;
+			$categoryIds[] = $product->category_id;
+			$descriptions[] = mb_substr($product->description, 0, 100);
+			$imageFilenames[] = $product->image;
+
 			$lineItems[] = [
 				'price_data' => [
 					'currency' => 'php',
 					'product_data' => [
-						'name' => $item->product->name,
-						'description' => $item->product->description,
+						'name' => $product->name,
+						'description' => $product->description,
 						'images' => [$imageUrl],
 						'metadata' => [
-							'product_id' => $item->product->id,
+							'product_id' => $product->id,
 						],
 					],
-					'unit_amount' => intval($item->product->price * 100),
+					'unit_amount' => intval($product->price * 100),
 				],
 				'quantity' => $item->quantity,
 			];
 		}
 
+		$metadata = [
+			'cart_id' => $cart->id,
+			'user_id' => $cart->user_id,
+			'brand_names' => implode(',', $brands),
+			'category_ids' => implode(',', $categoryIds),
+			'descriptions' => implode('|', $descriptions),
+			'image_filenames' => implode(',', $imageFilenames),
+		];
+		
 		try {
 			$session = Session::create([
 				'payment_method_types' => ['card'],
@@ -111,10 +132,7 @@ class PaymentController extends Controller
 				'success_url' => Yii::app()->createAbsoluteUrl("/payment/success") . "?session_id={CHECKOUT_SESSION_ID}",
                 'cancel_url' => Yii::app()->createAbsoluteUrl("/payment/cancel") . "?session_id={CHECKOUT_SESSION_ID}",
 				'payment_intent_data' => [
-                    'metadata' => [
-                        'cart_id' => $cart->id,
-                        'user_id' => $cart->user_id,
-                    ]
+                    'metadata' => $metadata,
                 ],
 			]);
 

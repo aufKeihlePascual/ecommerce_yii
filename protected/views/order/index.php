@@ -37,7 +37,7 @@ $this->breadcrumbs = array('Orders');
 						<tr>
 							<td><?php echo $data->id; ?></td>
 							<td><?php echo $data->itemCount; ?></td>
-							<td><?php echo date('F j, Y', strtotime($data->created_at)); ?></td>
+							<td><?php echo date('F j, Y g:i A', strtotime($data->created_at)); ?></td>
 							<td><span class="status <?php echo strtolower($data->status); ?>"><?php echo ucfirst($data->status); ?></span></td>
 							<td>₱ <strong><?php echo number_format($data->total, 2); ?></strong></td>
 							<!-- <td>
