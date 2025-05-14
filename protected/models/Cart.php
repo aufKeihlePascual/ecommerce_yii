@@ -120,4 +120,13 @@ class Cart extends CActiveRecord
 			->queryAll();
 	}
 
+	public function getTotal()
+	{
+		$total = 0;
+		foreach ($this->cartItems as $item) {
+			$total += $item->quantity * $item->product->price;
+		}
+		return $total;
+	}
+
 }
