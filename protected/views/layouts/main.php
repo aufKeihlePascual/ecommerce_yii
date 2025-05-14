@@ -36,7 +36,7 @@
 			array('label' => 'Products', 'url' => array('/product/index'), 'controller' => 'product'),
 			// array('label' => 'Orders', 'url' => array('/order/index'), 'controller' => 'order', 'visible' => !Yii::app()->user->isGuest),
 			array('label' => 'Orders', 'url' => array('/order/index'), 'controller' => 'order', 'visible' => !Yii::app()->user->isGuest),
-			// array('label' => 'About', 'url' => array('/site/about'), 'controller' => 'site', 'action' => 'about'),
+			array('label' => 'About', 'url' => array('/site/about'), 'controller' => 'site', 'action' => 'about'),
 			// array('label' => 'Contact', 'url' => array('/site/contact'), 'controller' => 'site', 'action' => 'contact'),
 		);
 

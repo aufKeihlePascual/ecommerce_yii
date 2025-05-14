@@ -1872,7 +1872,7 @@ tfoot tr td span {
     border-radius: 8px;
     object-fit: contain;
     margin-right: 20px;
-    background-color: #163a4bcc;
+    background-color: #083d5598;
     padding: 20px;
 }
 .order-summary-info {
@@ -2172,6 +2172,150 @@ tfoot tr td span {
 	justify-content: center;
 	padding: 0;
 }
+
+#about-us-section {
+    padding: 60px 40px;
+    background-color: #f8f8f8;
+    color: #222;
+}
+
+.about-us-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.about-us-text {
+    flex: 1 1 50%;
+}
+
+.about-us-text h2 {
+    font-size: 46px;
+    color: #f1970f;
+    margin-bottom: 20px;
+}
+
+.about-us-text p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #465b52;
+    margin-bottom: 15px;
+}
+
+.about-us-image {
+    flex: 1 1 45%;
+    text-align: center;
+}
+
+.about-us-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 18px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+#about-keyboards-section {
+    padding: 60px 50px 60px 130px;
+    /* background-color: #3f3f3f; */
+    text-align: center;
+    min-height: 50vh;
+    background-position: 0% 8%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.keyboard-showcase {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.keyboard-image img {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.keyboard-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    text-align: left;
+    margin-top: 80px;
+}
+
+.feature-box {
+    flex: 1 1 30%;
+    min-width: 250px;
+    max-width: 300px;
+}
+
+.feature-box h3 {
+    font-size: 18px;
+    color: #5DE0E6;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.feature-box p {
+    font-size: 16px;
+    color: #e4e4e4;;
+    line-height: 1.6;
+}
+
+#about-craft-section {
+    padding: 60px 40px;
+    background-color: #12293b;
+    color: #fff;
+}
+
+.about-craft-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.about-craft-image {
+    flex: 1 1 45%;
+    text-align: center;
+}
+
+.about-craft-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(150, 103, 49, 0.5);
+}
+
+.about-craft-text {
+    flex: 1 1 50%;
+}
+
+.about-craft-text h2 {
+    font-size: 46px;
+    color: #ffcd27;
+    margin-bottom: 20px;
+}
+
+.about-craft-text p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #dde8eb;
+    margin-bottom: 15px;
+}
+
 
 /*----------------- MEDIA RESPONSIVENESS -----------------*/
 
