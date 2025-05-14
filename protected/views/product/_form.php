@@ -4,67 +4,65 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<div class="product-form-card">
+    <?php $form = $this->beginWidget('CActiveForm', array(
+        'id'=>'product-form',
+        'enableAjaxValidation'=>false,
+        'htmlOptions'=>array('enctype'=>'multipart/form-data'),
+    )); ?>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'product-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
-)); ?>
+    <p class="note">Fields with <span class="required">*</span> are required.</p>
+    <?php echo $form->errorSummary($model, null, null, array('class'=>'form-errors')); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+    <div class="form-field">
+        <?php echo $form->labelEx($model,'brand'); ?>
+        <?php echo $form->textField($model,'brand', array('placeholder'=>'Brand name')); ?>
+        <?php echo $form->error($model,'brand'); ?>
+    </div>
 
-	<?php echo $form->errorSummary($model); ?>
+    <div class="form-field">
+        <?php echo $form->labelEx($model,'name'); ?>
+        <?php echo $form->textField($model,'name', array('placeholder'=>'Product title')); ?>
+        <?php echo $form->error($model,'name'); ?>
+    </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'brand'); ?>
-		<?php echo $form->textField($model,'brand',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'brand'); ?>
-	</div>
+    <div class="form-field">
+        <?php echo $form->labelEx($model,'description'); ?>
+        <?php echo $form->textArea($model,'description', array('class'=>'rich-text', 'rows'=>5, 'placeholder'=>'Product description')); ?>
+        <?php echo $form->error($model,'description'); ?>
+    </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
+    <div class="form-field">
+        <?php echo $form->labelEx($model,'price'); ?>
+        <?php echo $form->textField($model,'price', array('placeholder'=>'₱0.00')); ?>
+        <?php echo $form->error($model,'price'); ?>
+    </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'description'); ?>
-	</div>
+    <div class="form-field">
+        <?php echo $form->labelEx($model,'stock'); ?>
+        <?php echo $form->textField($model,'stock', array('placeholder'=>'0')); ?>
+        <?php echo $form->error($model,'stock'); ?>
+    </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'price'); ?>
-		<?php echo $form->textField($model,'price',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'price'); ?>
-	</div>
+    <div class="form-field">
+        <?php echo $form->labelEx($model,'category_id'); ?>
+        <?php echo $form->textField($model,'category_id', array('placeholder'=>'Category ID')); ?>
+        <?php echo $form->error($model,'category_id'); ?>
+    </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'stock'); ?>
-		<?php echo $form->textField($model,'stock'); ?>
-		<?php echo $form->error($model,'stock'); ?>
-	</div>
+    <div class="form-field media-upload-field">
+        <label>Media</label>
+        <div class="upload-zone">
+            <!-- <i class="fa fa-upload"></i> -->
+            <?php echo $form->fileField($model, 'image'); ?>
+            <p class="upload-hint">Add file<br><small>or drop files to upload</small></p>
+        </div>
+        <?php echo $form->error($model,'image'); ?>
+    </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'category_id'); ?>
-		<?php echo $form->textField($model,'category_id'); ?>
-		<?php echo $form->error($model,'category_id'); ?>
-	</div>
+    <div class="submit-wrapper">
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'submit-btn')); ?>
+    </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo $form->textField($model,'image',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'image'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
-
-</div><!-- form -->
+    <?php $this->endWidget(); ?>
+</div>

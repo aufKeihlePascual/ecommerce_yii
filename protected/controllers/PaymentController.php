@@ -114,6 +114,15 @@ class PaymentController extends Controller
                 ],
 			]);
 
+			$order = new Order();
+			$order->user_id = Yii::app()->user->isGuest ? null : Yii::app()->user->id;
+			$order->cart_id = $cart->id;
+			$order->total = $cart->getTotal();
+			$order->status = 'pending';
+			$order->stripe_session_id = $session->id;
+			$order->created_at = new CDbExpression('NOW()');
+			$order->save();
+
 			$this->redirect($session->url);
 		} catch (Exception $e) {
 			Yii::log($e->getMessage(), CLogger::LEVEL_ERROR);
@@ -136,14 +145,25 @@ class PaymentController extends Controller
             $session = \Stripe\Checkout\Session::retrieve($sessionId);
             $lineItems = \Stripe\Checkout\Session::allLineItems($sessionId, ['limit' => 100]);
 
+			$paymentIntent = \Stripe\PaymentIntent::retrieve($session->payment_intent);
+			$charge = \Stripe\Charge::retrieve($paymentIntent->latest_charge);
+			$networkTransactionId = $charge->payment_method_details->card->network_transaction_id;
+
             $items = [];
+			$grandTotal = 0;
+
             foreach ($lineItems->data as $item) {
+				$unitPrice = $item->amount_subtotal / $item->quantity / 100;
+   				$total = $item->amount_total / 100;
+
                 $items[] = [
-                    'name' => $item->description,
-                    'quantity' => $item->quantity,
-                    'unit_price' => number_format($item->amount_subtotal / $item->quantity / 100, 2),
-                    'total' => number_format($item->amount_total / 100, 2),
-                ];
+					'name' => $item->description,
+					'quantity' => $item->quantity,
+					'unit_price' => number_format($unitPrice, 2),
+					'total' => number_format($total, 2),
+				];
+
+				$grandTotal += $total;
             }
 
             $cart = Yii::app()->user->isGuest
@@ -159,7 +179,11 @@ class PaymentController extends Controller
 
             $this->actionSyncStripeTransactions();
 
-            $this->render('success', ['items' => $items]);
+            $this->render('success', [
+				'items' => $items, 
+				'grandTotal' => number_format($grandTotal, 2),
+				'networkTransactionId' => $networkTransactionId,
+			]);
 
         } catch (Exception $e) {
             Yii::log("Stripe line item fetch failed: " . $e->getMessage(), CLogger::LEVEL_ERROR);
@@ -216,7 +240,7 @@ class PaymentController extends Controller
 				$order = Order::model()->findByAttributes(['cart_id' => $cartId]);
 
 				$statusMap = [
-					'paid' => ['order' => 'paid', 'cart' => 'completed'],
+					'shipped' => ['order' => 'shipped', 'cart' => 'completed'],
 					'unpaid' => ['order' => 'pending', 'cart' => 'active'],
 				];
 
@@ -247,7 +271,7 @@ class PaymentController extends Controller
 				$paymentDate = isset($intent->created) ? date('Y-m-d H:i:s', $intent->created) : date('Y-m-d H:i:s');
 
 				$paymentStatusMap = [
-					'succeeded' => 'paid',
+					'succeeded' => 'shipped',
 					'processing' => 'pending',
 					'requires_payment_method' => 'pending',
 					'canceled' => 'cancelled',
@@ -274,7 +298,7 @@ class PaymentController extends Controller
 				}
 			}
 
-			echo "Orders and payments synced from Stripe.";
+			// echo "Orders and payments synced from Stripe.";
 		} catch (Exception $e) {
 			Yii::log("Stripe Sync Error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
 			throw new CHttpException(500, 'Failed to sync Stripe transactions.');

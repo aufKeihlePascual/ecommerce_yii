@@ -2,7 +2,7 @@
 
 <div class="payment-status-container">
     <h2 class="text-success"><i class="fa-solid fa-check-circle"></i> Payment Successful</h2>
-    <p>Thank you for your purchase. Your order has been confirmed and your cart has been cleared.</p>
+    <p>Thank you for your purchase. Your Order (Ref No. <strong><?php echo CHtml::encode($networkTransactionId); ?></strong>) has been confirmed and your cart has been cleared.</p>
 
     <?php if (!empty($items)): ?>
         <div class="checkout-summary">
@@ -26,6 +26,11 @@
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-right total-amount"><strong>Grand Total = <span>₱ <?php echo $grandTotal; ?></span></strong></td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     <?php endif; ?>

@@ -290,8 +290,9 @@ class CartController extends Controller
 		}
 
 		$item->save();
-		$product->stock -= 1;
-		$product->save();
+		Product::model()->updateByPk($product->id, [
+			'stock' => new CDbExpression('stock - 1'),
+		]);
 
 		if (Yii::app()->request->isAjaxRequest) {
 			echo CJSON::encode(['success' => true, 'message' => 'Added to cart']);
@@ -343,17 +344,27 @@ class CartController extends Controller
 			if ($item->quantity > 1) {
 				$item->quantity -= 1;
 				$product->stock += 1;
+				 $item->save();
+				Product::model()->updateByPk($product->id, [
+					'stock' => $product->stock,
+				]);
+				echo CJSON::encode(['success' => true]);
+				Yii::app()->end();
 			} else {
 				$item->delete();
 				$product->stock += 1;
-				$product->save();
+				Product::model()->updateByPk($product->id, [
+					'stock' => $product->stock,
+				]);
 				echo CJSON::encode(['success' => true]);
 				Yii::app()->end();
 			}
 		}
 
 		$item->save();
-		$product->save();
+		Product::model()->updateByPk($product->id, [
+			'stock' => $product->stock,
+		]);
 
 		echo CJSON::encode(['success' => true]);
 		Yii::app()->end();
@@ -387,7 +398,10 @@ class CartController extends Controller
 
 		if ($item && $product) {
 			$product->stock += $item->quantity;
-			$product->save();
+				Product::model()->updateByPk($product->id, [
+				'stock' => $product->stock,
+			]);
+
 			$item->delete();
 		}
 

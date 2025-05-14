@@ -41,6 +41,7 @@ class Product extends CActiveRecord
 			array('name', 'length', 'max'=>100),
 			array('price', 'length', 'max'=>10),
 			array('image', 'length', 'max'=>255),
+			array('image', 'file', 'types'=>'jpg, jpeg, png', 'allowEmpty'=>true, 'on'=>'insert, update'),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

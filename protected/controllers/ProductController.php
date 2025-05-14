@@ -6,7 +6,7 @@ class ProductController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/main';
 
 	/**
 	 * @return array action filters
@@ -67,11 +67,23 @@ class ProductController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Product']))
-		{
-			$model->attributes=$_POST['Product'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+		if (isset($_POST['Product'])) {
+			$model->attributes = $_POST['Product'];
+
+			$uploadedFile = CUploadedFile::getInstance($model, 'image');
+
+			if ($uploadedFile !== null) {
+				$filename = uniqid() . '_' . $uploadedFile->getName();
+				$model->image = $filename;
+			}
+
+			if ($model->save()) {
+				if ($uploadedFile !== null) {
+					$uploadPath = Yii::app()->basePath . '/../images/products/' . $filename;
+					$uploadedFile->saveAs($uploadPath);
+				}
+				$this->redirect(array('view', 'id' => $model->id));
+			}
 		}
 
 		$this->render('create',array(
