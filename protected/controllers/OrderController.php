@@ -28,11 +28,11 @@ class OrderController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index', 'view','create','update', 'stripeOrders'),
+				'actions'=>array('view','create','update', 'stripeOrders'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('index','admin','delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -134,7 +134,7 @@ class OrderController extends Controller
 
 		try {
 			$sessions = \Stripe\Checkout\Session::all([
-				'limit' => 100,
+				'limit' => 50,
 				'expand' => ['data.payment_intent'],
 			]);
 
@@ -164,7 +164,7 @@ class OrderController extends Controller
 			}
 
 			$dataProvider = new CArrayDataProvider($orders, [
-				'pagination' => ['pageSize' => 5],
+				'pagination' => ['pageSize' => 10],
 			]);
 
 			$this->render('index', ['dataProvider' => $dataProvider]);
@@ -226,7 +226,7 @@ class OrderController extends Controller
 
 		try {
 			$sessions = \Stripe\Checkout\Session::all([
-				'limit' => 10,
+				'limit' => 50,
 				'expand' => ['data.payment_intent'],
 			]);
 
@@ -235,36 +235,35 @@ class OrderController extends Controller
 			foreach ($sessions->data as $session) {
 				$lineItems = \Stripe\Checkout\Session::allLineItems($session->id, ['limit' => 100]);
 
-				$items = [];
+				$itemCount = 0;
 				foreach ($lineItems->data as $item) {
-					$items[] = [
-						'name' => $item->description,
-						'quantity' => $item->quantity,
-						'total' => number_format($item->amount_total / 100, 2),
-					];
+					$itemCount += $item->quantity;
 				}
 
-				$firstItemName = $lineItems->data[0]->description ?? 'Order';
-				$itemCount = count($lineItems->data);
-				$displayLabel = $itemCount > 1
-					? "$firstItemName (+$itemCount)"
-					: $firstItemName;
+				$email = $session->customer_details->email ?? 'N/A';
+				$name = $session->customer_details->name ?? 'N/A';
 
-				$orders[] = [
-					'id' => $displayLabel,
-					'status' => ucfirst($session->payment_status === 'unpaid' ? 'Pending' : $session->payment_status),
-					'amount' => number_format($session->amount_total / 100, 2),
-					'created' => date('F j, Y', $session->created),
-					'items' => $items,
+				$orders[] = (object)[
+					'id' => $session->id,
+					'email' => $email,
+					'name' => $name,
+					'itemCount' => $itemCount,
+					'created_at' => date('Y-m-d H:i:s', $session->created),
+					'status' => $session->payment_status === 'unpaid' ? 'pending' : strtolower($session->payment_status),
+					'total' => $session->amount_total / 100.0,
 				];
 
 			}
 
-			$this->render('stripeOrders', ['orders' => $orders]);
+			$dataProvider = new CArrayDataProvider($orders, [
+				'pagination' => ['pageSize' => 10],
+			]);
+
+			$this->render('index', ['dataProvider' => $dataProvider]);
 
 		} catch (Exception $e) {
-			Yii::log("Stripe Orders Error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
-			throw new CHttpException(500, 'Failed to retrieve Stripe orders.');
+			Yii::log("Stripe Fetch Error: " . $e->getMessage(), CLogger::LEVEL_ERROR);
+			throw new CHttpException(500, 'Failed to load Stripe orders.');
 		}
 	}
 
