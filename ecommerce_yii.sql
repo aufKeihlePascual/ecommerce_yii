@@ -1,12 +1,11 @@
 CREATE DATABASE IF NOT EXISTS `ecommerce_yii` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `ecommerce_yii`;
-
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2025 at 03:06 PM
+-- Generation Time: May 14, 2025 at 06:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -284,7 +283,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `middlename`, `lastname`, `email`, `role`, `address`) VALUES
 (1, 'admin', '$2y$10$mTuOYYcmweU/AWLOKh/iC.5.AzUHCzlWtDT76NTS4rIszzAYZmc5i', 'admin', NULL, 'NULL', 'admin@example.com', 'admin', 'MacArthur Hwy, Angeles, 2009 Pampanga, Philippines'),
-(2, 'user', '$2y$10$fUZ881.pbVvFRby1qOidZeMPeVBspfIl1v9j.vKmO0CiB2IuN3IeS', 'Keihle', 'L.', 'Pascual', 'user@example.com', 'user', 'Angeles City, Pampanga');
+(2, 'demo', '$2y$10$Oy1loEBhaqyGhbvsLpPU4OxflMuVdNggU20FC9rjjzLuJGeXSpPbW', 'Keihle', 'L.', 'Pascual', 'user@example.com', 'user', 'Angeles City, Pampanga');
 
 --
 -- Indexes for dumped tables
