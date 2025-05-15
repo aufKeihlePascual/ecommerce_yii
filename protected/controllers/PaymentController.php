@@ -81,7 +81,7 @@ class PaymentController extends Controller
 		}
 
 		$lineItems = [];
-		$brandIds = [];
+		$brands = [];
 		$categoryIds = [];
 		$descriptions = [];
 		$imageFilenames = [];
@@ -155,155 +155,6 @@ class PaymentController extends Controller
 		}
 	}
 
-	// public function actionSuccess()
-	// {
-	// 	Yii::app()->user->setFlash('success', 'Payment successful! Thank you for your purchase.');
-
-	// 	$sessionId = Yii::app()->request->getQuery('session_id');
-	// 	if (!$sessionId) {
-	// 		throw new CHttpException(400, 'Missing session_id.');
-	// 	}
-
-	// 	\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
-
-	// 	try {
-	// 		$retryCount = 0;
-	// 		$maxRetries = 3;
-	// 		$session = null;
-
-	// 		do {
-	// 			try {
-	// 				$session = \Stripe\Checkout\Session::retrieve([
-	// 					'id' => $sessionId,
-	// 					'expand' => ['line_items.data.price.product', 'payment_intent'],
-	// 				]);
-	// 				break;
-	// 			} catch (Exception $e) {
-	// 				Yii::log("⚠️ Attempt $retryCount failed to retrieve session: " . $e->getMessage(), CLogger::LEVEL_WARNING);
-	// 				usleep(500000);
-	// 				$retryCount++;
-	// 			}
-	// 		} while ($retryCount < $maxRetries);
-
-	// 		if (!$session) {
-	// 			throw new CHttpException(500, 'Unable to retrieve Stripe session after multiple attempts.');
-	// 		}
-
-
-	// 		$lineItems = \Stripe\Checkout\Session::allLineItems($sessionId, ['limit' => 100]);
-	// 		$paymentIntent = $session->payment_intent;
-
-	// 		$items = [];
-	// 		$grandTotal = 0;
-
-	// 		foreach ($lineItems->data as $item) {
-	// 			$unitPrice = $item->amount_subtotal / $item->quantity / 100;
-	// 			$total = $item->amount_total / 100;
-
-	// 			$items[] = [
-	// 				'name' => $item->description,
-	// 				'quantity' => $item->quantity,
-	// 				'unit_price' => number_format($unitPrice, 2),
-	// 				'total' => number_format($total, 2),
-	// 			];
-
-	// 			$grandTotal += $total;
-	// 		}
-
-	// 		$cart = Yii::app()->user->isGuest
-	// 			? Cart::model()->find('session_id = :sid AND status = "active"', [':sid' => Yii::app()->session->sessionID])
-	// 			: Cart::model()->find('user_id = :uid AND status = "active"', [':uid' => Yii::app()->user->id]);
-
-	// 		if ($cart) {
-	// 			$cart->status = 'pending';
-	// 			$cart->save();
-
-	// 			$order = Order::model()->findByAttributes(['stripe_session_id' => $session->id]);
-	// 			if (!$order) {
-	// 				Yii::log("❌ No pending order found for session ID: " . $session->id, CLogger::LEVEL_ERROR);
-	// 				throw new CHttpException(404, 'Order not found.');
-	// 			}
-
-	// 			$order->user_id = Yii::app()->user->isGuest ? null : Yii::app()->user->id;
-	// 			$order->cart_id = $cart->id;
-	// 			$order->total = $grandTotal;
-	// 			$order->status = 'paid';
-	// 			$order->created_at = new CDbExpression('NOW()');
-
-	// 			if ($order->save()) {
-
-	// 				foreach ($lineItems->data as $item) {
-	// 					$productId = null;
-
-	// 					if (!empty($item->price->product->metadata['product_id'])) {
-	// 						Yii::log("🧪 Checking item metadata: " . print_r($item->price->product->metadata, true), CLogger::LEVEL_INFO);
-
-	// 						$productId = $item->price->product->metadata['product_id'];
-	// 					} else {
-	// 						$productName = $item->description;
-	// 						$product = Product::model()->findByAttributes(['name' => $productName]);
-	// 						if ($product) {
-	// 							$productId = $product->id;
-	// 						}
-	// 					}
-
-	// 					$product = $productId ? Product::model()->findByPk($productId) : null;
-
-	// 					if ($product) {
-	// 						$orderItem = new OrderItem();
-	// 						$orderItem->order_id = $order->id;
-	// 						$orderItem->product_id = $product->id;
-	// 						$orderItem->quantity = $item->quantity;
-	// 						$orderItem->price = $product->price;
-	// 						$orderItem->save();
-	// 					} else {
-	// 						Yii::log("⚠️ Could not resolve product for line item: " . print_r($item, true), CLogger::LEVEL_WARNING);
-	// 					}
-
-	// 					if ($product) {
-	// 						$orderItem = new OrderItem();
-	// 						$orderItem->order_id = $order->id;
-	// 						$orderItem->product_id = $product->id;
-	// 						$orderItem->quantity = $item->quantity;
-	// 						$orderItem->price = $product->price;
-	// 						$orderItem->save();
-	// 					} else {
-	// 						Yii::log("⚠️ Product not found for product_id: " . print_r($productId, true), CLogger::LEVEL_WARNING);
-	// 					}
-	// 				}
-
-	// 				$payment = new Payment();
-	// 				$payment->order_id = $order->id;
-	// 				$payment->stripe_intent_id = $paymentIntent->id;
-	// 				$payment->receipt_url = $paymentIntent->charges->data[0]->receipt_url ?? null;
-	// 				$payment->status = 'paid';
-	// 				$payment->save();
-
-	// 				Yii::log("✅ Payment record created for order ID: " . $order->id, CLogger::LEVEL_INFO);
-	// 			} else {
-	// 				Yii::log("❌ Failed to save order. Errors: " . print_r($order->getErrors(), true), CLogger::LEVEL_ERROR);
-	// 			}
-
-	// 			CartItem::model()->deleteAll('cart_id = :cartId', [':cartId' => $cart->id]);
-	// 		} else {
-	// 			Yii::log("⚠️ Cart not found for current user/session.", CLogger::LEVEL_WARNING);
-	// 		}
-
-	// 		$this->actionSyncStripeTransactions();
-
-	// 		$this->render('success', [
-	// 			'items' => $items,
-	// 			'grandTotal' => number_format($grandTotal, 2),
-	// 			'paymentIntentId' => strtoupper($paymentIntent->id)
-	// 		]);
-
-	// 	} catch (Exception $e) {
-	// 		Yii::log("❌ Stripe session or payment fetch failed: " . $e->getMessage(), CLogger::LEVEL_ERROR);
-	// 		Yii::log("📄 Stack trace: " . $e->getTraceAsString(), CLogger::LEVEL_ERROR);
-	// 		throw new CHttpException(500, 'Failed to fetch Stripe session details.');
-	// 	}
-	// }
-
 	public function actionSuccess()
     {
         Yii::app()->user->setFlash('success', 'Payment successful! Thank you for your purchase.');
@@ -348,6 +199,8 @@ class PaymentController extends Controller
             if ($cart) {
                 $cart->status = 'pending_confirmation';
                 $cart->save();
+
+				CartItem::model()->deleteAll('cart_id = :cartId', [':cartId' => $cart->id]);
             }
 
             $this->actionSyncStripeTransactions();
