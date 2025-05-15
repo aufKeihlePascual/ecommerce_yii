@@ -6,7 +6,7 @@ USE `ecommerce_yii`;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2025 at 03:06 PM
+-- Generation Time: May 15, 2025 at 12:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,10 +43,31 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `session_id`, `status`, `created_at`) VALUES
-(1, 1, NULL, 'active', '2025-04-16 20:23:38'),
-(2, 2, NULL, 'active', '2025-04-24 02:26:56'),
+(1, 1, NULL, '', '2025-04-16 20:23:38'),
+(2, 2, NULL, '', '2025-04-24 02:26:56'),
 (3, 2, NULL, 'ordered', '2025-04-23 05:54:30'),
-(6, NULL, '1g567slpcv9n0bseglhrnhg6p4', 'active', '2025-05-10 15:05:24');
+(6, NULL, '1g567slpcv9n0bseglhrnhg6p4', 'active', '2025-05-10 15:05:24'),
+(7, 1, NULL, '', '2025-05-14 12:29:43'),
+(8, 1, NULL, '', '2025-05-14 12:57:04'),
+(9, 1, NULL, '', '2025-05-14 13:00:52'),
+(10, 1, NULL, '', '2025-05-14 13:03:17'),
+(11, 1, NULL, '', '2025-05-14 13:24:16'),
+(12, 1, NULL, '', '2025-05-14 13:27:27'),
+(13, 1, NULL, '', '2025-05-14 13:28:49'),
+(14, 1, NULL, '', '2025-05-14 13:34:14'),
+(15, 1, NULL, '', '2025-05-14 13:35:15'),
+(16, 1, NULL, '', '2025-05-14 13:37:41'),
+(17, 1, NULL, '', '2025-05-14 13:42:32'),
+(18, 1, NULL, '', '2025-05-14 13:49:49'),
+(19, 1, NULL, '', '2025-05-14 14:06:15'),
+(20, 1, NULL, '', '2025-05-14 14:07:15'),
+(21, 1, NULL, '', '2025-05-14 14:24:58'),
+(22, 1, NULL, '', '2025-05-14 14:26:14'),
+(23, 1, NULL, '', '2025-05-14 16:12:16'),
+(24, 1, NULL, '', '2025-05-14 18:04:32'),
+(25, 1, NULL, '', '2025-05-14 20:04:21'),
+(26, 1, NULL, '', '2025-05-14 20:34:37'),
+(27, 1, NULL, 'active', '2025-05-14 22:49:36');
 
 -- --------------------------------------------------------
 
@@ -66,13 +87,8 @@ CREATE TABLE `cart_items` (
 --
 
 INSERT INTO `cart_items` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
-(3, 2, 2, 1),
-(4, 2, 4, 1),
 (5, 3, 3, 3),
 (6, 3, 1, 1),
-(21, 1, 31, 2),
-(22, 1, 27, 1),
-(23, 1, 29, 1),
 (25, 6, 33, 1);
 
 -- --------------------------------------------------------
@@ -111,17 +127,23 @@ CREATE TABLE `orders` (
   `cart_id` int(11) DEFAULT NULL,
   `total` decimal(10,2) DEFAULT NULL,
   `status` enum('pending','paid','cancelled') DEFAULT 'pending',
-  `created_at` datetime DEFAULT current_timestamp()
+  `created_at` datetime DEFAULT current_timestamp(),
+  `dispatch_status` enum('pending','shipped') NOT NULL DEFAULT 'pending',
+  `stripe_session_id` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `cart_id`, `total`, `status`, `created_at`) VALUES
-(1, 2, 1, 219.97, 'paid', '2025-04-16 20:23:39'),
-(2, 2, 2, 189.00, 'paid', '2025-04-20 12:32:54'),
-(3, 2, 3, 349.98, 'pending', '2025-04-25 19:34:35');
+INSERT INTO `orders` (`id`, `user_id`, `cart_id`, `total`, `status`, `created_at`, `dispatch_status`, `stripe_session_id`) VALUES
+(1, 2, 1, 219.97, 'cancelled', '2025-04-16 20:23:39', 'pending', NULL),
+(2, 2, 2, 189.00, 'paid', '2025-04-20 12:32:54', 'shipped', NULL),
+(3, 2, 3, 349.98, 'pending', '2025-04-25 19:34:35', 'pending', NULL),
+(4, 1, 23, 793.81, 'pending', '2025-05-14 23:59:07', 'pending', 'cs_test_b1XucRaqDqqIhtTOZMGTjCCxZJzgQ6ua5xRafDKeba5f9qh58ZkvhbXprq'),
+(5, 1, 24, 32.99, 'pending', '2025-05-15 00:04:35', 'shipped', 'cs_test_a1aUI57zqAA3LiycA3kvgy5awcyL6uUwLbbDRUPR1iwVEbzBLu6wTBZsuh'),
+(6, 1, 25, 32.99, 'pending', '2025-05-15 02:25:30', 'pending', 'cs_test_a15rjbpkoi1J0i7AOfXjjVJBjvPw7KS0QKpveo5KJBMRCYJpq4JaMQ85aw'),
+(7, 1, 26, 29.99, 'pending', '2025-05-15 02:34:43', 'shipped', 'cs_test_a1DqxzjQto1O7SD3noPTbBWW7wCa8Wm5iwVTvodyTjekoGKdYhtwS2clGI');
 
 -- --------------------------------------------------------
 
@@ -184,8 +206,8 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `brand`, `name`, `description`, `price`, `stock`, `category_id`, `image`) VALUES
 (1, 'Glorious Gaming', 'GMMK Pro', 'Barebones 75% keyboard with aluminum case', 169.99, 21, 1, 'gmmk_pro.jpg'),
 (2, 'Keychron', 'Keychron Q1', 'Prebuilt keyboard with VIA support', 189.00, 15, 1, 'keychron_q1.jpg'),
-(3, 'Akko', 'Akko V3 Creaming Black Pro Switch', '45 pieces of 5-pin linear switch with 55gf operating force.', 674.81, 52, 3, 'akko_creamy_black_pro.jpg'),
-(4, 'GMK', 'GMK Bento Keycap Set', 'High-quality keycap set with a Bento theme', 119.00, 10, 2, 'gmk_bento.jpg'),
+(3, 'Akko', 'Akko V3 Creaming Black Pro Switch', '45 pieces of 5-pin linear switch with 55gf operating force.', 674.81, 51, 3, 'akko_creamy_black_pro.jpg'),
+(4, 'GMK', 'GMK Bento Keycap Set', 'High-quality keycap set with a Bento theme', 119.00, 9, 2, 'gmk_bento.jpg'),
 (5, 'Ducky', 'One 3 Mini', '60% keyboard with hot-swappable switches', 119.99, 25, 1, 'ducky_one3.jpg'),
 (6, 'Epomaker', 'Epomaker TH66', 'Compact keyboard with knob and wireless mode', 139.99, 18, 1, 'th66.jpg'),
 (7, 'Glorious Gaming', 'Glorious Panda Switches', 'Tactile switches, 36 pcs', 39.99, 40, 3, 'glorious_panda.jpg'),
@@ -207,14 +229,15 @@ INSERT INTO `products` (`id`, `brand`, `name`, `description`, `price`, `stock`, 
 (23, 'NovelKeys', 'NK_ Silk Black', 'Linear switches pre-lubed from factory', 31.99, 30, 3, 'nk_silk_black.jpg'),
 (24, 'Glorious', 'Switch Opener', 'Tool to open MX-style switches', 14.99, 60, 4, 'switch_opener.jpg'),
 (25, 'Ducky', 'Keycap Puller', 'Stainless steel keycap puller', 7.99, 100, 4, 'keycap_puller.jpg'),
-(26, 'Akko', 'Switch Lubing Station', 'Tray and tools for lubing switches', 24.99, 40, 4, 'lubing_station.jpg'),
-(27, 'GMK', 'Stabilizer Set', 'PCB screw-in stabilizers', 19.99, 43, 4, 'gmk_stabilizers.jpg'),
-(28, 'KBDfans', 'Switch Films', 'Switch films to reduce wobble', 9.99, 70, 4, 'switch_films.jpg'),
-(29, 'Akko', 'Akko Tokyo Deskmat', 'Deskmat with Tokyo night design', 29.99, 21, 5, 'akko_tokyo.jpg'),
-(30, 'Glorious', 'Stealth Deskmat', 'Minimal black-on-black deskmat', 19.99, 30, 5, 'stealth_deskmat.jpg'),
-(31, 'Divinikey', 'Rainforest Deskmat', 'Green nature-themed deskmat', 26.99, 16, 5, 'rainforest_deskmat.jpg'),
-(32, 'SpaceCables', 'Laser Cable', 'Bright violet and cyan themed cable', 32.99, 18, 6, 'laser_cable.jpg'),
-(33, 'Zap Cables', 'Neon Green A-to-C Cable', 'Turquoise Paracord with Neon Green Techflex', 31.99, 18, 6, 'neongreen_cable.jpg');
+(26, 'Akko', 'Switch Lubing Station', 'Tray and tools for lubing switches', 24.99, 38, 4, 'lubing_station.jpg'),
+(27, 'GMK', 'Stabilizer Set', 'PCB screw-in stabilizers', 19.99, 41, 4, 'gmk_stabilizers.jpg'),
+(28, 'KBDfans', 'Switch Films', 'Switch films to reduce wobble', 9.99, 69, 4, 'switch_films.jpg'),
+(29, 'Akko', 'Akko Tokyo Deskmat', 'Deskmat with Tokyo night design', 29.99, 18, 5, 'akko_tokyo.jpg'),
+(30, 'Glorious', 'Stealth Deskmat', 'Minimal black-on-black deskmat', 19.99, 27, 5, 'stealth_deskmat.jpg'),
+(31, 'Divinikey', 'Rainforest Deskmat', 'Green nature-themed deskmat', 26.99, 14, 5, 'rainforest_deskmat.jpg'),
+(32, 'SpaceCables', 'Laser Cable', 'Bright violet and cyan themed cable', 32.99, 11, 6, 'laser_cable.jpg'),
+(33, 'Zap Cables', 'Neon Green A-to-C Cable', 'Turquoise Paracord with Neon Green Techflex', 31.99, 15, 6, 'neongreen_cable.jpg'),
+(39, 'Akko', 'Akko CS Lavender Purple Switch (45 pcs)', '3 pin and fits keycaps with standard MX structure;', 557.61, 50, 3, 'akko_cs_lavender.jpg');
 
 -- --------------------------------------------------------
 
@@ -284,7 +307,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `middlename`, `lastname`, `email`, `role`, `address`) VALUES
 (1, 'admin', '$2y$10$mTuOYYcmweU/AWLOKh/iC.5.AzUHCzlWtDT76NTS4rIszzAYZmc5i', 'admin', NULL, 'NULL', 'admin@example.com', 'admin', 'MacArthur Hwy, Angeles, 2009 Pampanga, Philippines'),
-(2, 'user', '$2y$10$fUZ881.pbVvFRby1qOidZeMPeVBspfIl1v9j.vKmO0CiB2IuN3IeS', 'Keihle', 'L.', 'Pascual', 'user@example.com', 'user', 'Angeles City, Pampanga');
+(2, 'demo', '$2y$10$Oy1loEBhaqyGhbvsLpPU4OxflMuVdNggU20FC9rjjzLuJGeXSpPbW', 'Keihle', 'L.', 'Pascual', 'user@example.com', 'user', 'Angeles City, Pampanga');
 
 --
 -- Indexes for dumped tables
@@ -371,13 +394,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -389,7 +412,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `order_items`
@@ -407,7 +430,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `tags`
