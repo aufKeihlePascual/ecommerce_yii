@@ -17,7 +17,9 @@
     <td>
         <a href="<?php echo CHtml::normalizeUrl(['order/viewOrderDetails', 'session_id' => $data->id]); ?>" class="view-btn">View</a>
          <form action="<?php echo CHtml::normalizeUrl(['payment/markAsShipped', 'session_id' => $data->id]); ?>" method="post" style="margin-top: 5px;">
-            <button type="submit" class="normal ship-btn" onclick="return confirm('Mark this order as shipped?');">Ship</button>
+            <button type="button" class="normal ship-btn"
+                data-session-id="<?php echo $data->id; ?>"
+                onclick="markAsShipped(this)">Ship</button>
         </form>
     </td>
 </tr>
