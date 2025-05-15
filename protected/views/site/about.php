@@ -32,8 +32,6 @@
     </div>
 </section>
 
-
-<!-- <section id="about-keyboards-section"  style="background-image: url('<?php //echo Yii::app()->baseUrl; ?>/images/about_us3.jpg'); background-color: rgba(0,0,0,0.4); background-blend-mode:darken"> -->
 <section id="about-keyboards-section"  style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/about_us3.jpg'); background-color: rgba(0,0,0,0.4);">
     <div class="keyboard-showcase">
         <!-- <div class="keyboard-image">

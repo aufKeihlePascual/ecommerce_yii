@@ -2177,6 +2177,7 @@ tfoot tr td span {
     padding: 60px 40px;
     background-color: #f8f8f8;
     color: #222;
+    min-height: 485px;
 }
 
 .about-us-container {
@@ -2273,8 +2274,10 @@ tfoot tr td span {
 
 #about-craft-section {
     padding: 60px 40px;
-    background-color: #12293b;
+    background-color: #40464b;
     color: #fff;
+    min-height: 485px;
+    align-content: center;
 }
 
 .about-craft-container {
