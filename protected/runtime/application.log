@@ -6781,3 +6781,168 @@ REQUEST_URI=/ecommerce/index.php/payment/success?session_id=cs_test_a1dwQAFZ8i7W
 in A:\xampp\htdocs\ecommerce\protected\views\payment\success.php (31)
 in A:\xampp\htdocs\ecommerce\protected\controllers\PaymentController.php (346)
 in A:\xampp\htdocs\ecommerce\index.php (18)
+2025/05/15 21:17:20 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "index.php". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('index.php')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('index.php')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index.php...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/index.php/payment/markAsShipped?session_id=cs_test_a1UDQenGKyufsOJjJu2GVi2wGHrlnigbSf27qKlQHEjRwbOnKNMM2koO2O
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:17:26 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "index.php". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('index.php')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('index.php')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index.php...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/index.php/payment/markAsShipped?session_id=cs_test_a1UDQenGKyufsOJjJu2GVi2wGHrlnigbSf27qKlQHEjRwbOnKNMM2koO2O
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:20:47 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "index.php". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('index.php')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('index.php')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index.php...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/index.php/payment/markAsShipped?session_id=cs_test_a1UDQenGKyufsOJjJu2GVi2wGHrlnigbSf27qKlQHEjRwbOnKNMM2koO2O
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:26:04 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "index.php". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('index.php')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('index.php')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/index.php...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/index.php/payment/markAsShipped?session_id=cs_test_a1UDQenGKyufsOJjJu2GVi2wGHrlnigbSf27qKlQHEjRwbOnKNMM2koO2O
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:28:38 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "js". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('js')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('js')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/js/ship.j...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/js/ship.js
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:28:39 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "js". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('js')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('js')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/js/ship.j...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/js/ship.js
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:28:39 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "js". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('js')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('js')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/js/ship.j...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/js/ship.js
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:28:39 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "js". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('js')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('js')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/js/ship.j...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/js/ship.js
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:28:39 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "js". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('js')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('js')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/js/ship.j...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/js/ship.js
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:28:39 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "js". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('js')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('js')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/js/ship.j...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/js/ship.js
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:28:39 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "js". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('js')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('js')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/js/ship.j...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/js/ship.js
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:28:39 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "js". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('js')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('js')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/js/ship.j...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/js/ship.js
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:28:39 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "js". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('js')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('js')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/js/ship.j...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/js/ship.js
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:28:39 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "js". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('js')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('js')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/js/ship.j...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/js/ship.js
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---
+2025/05/15 21:28:39 [error] [exception.CHttpException.404] CHttpException: The system is unable to find the requested action "js". in A:\xampp\htdocs\ecommerce\framework\web\CController.php:486
+Stack trace:
+#0 A:\xampp\htdocs\ecommerce\framework\web\CController.php(270): CController->missingAction('js')
+#1 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(282): CController->run('js')
+#2 A:\xampp\htdocs\ecommerce\framework\web\CWebApplication.php(141): CWebApplication->runController('order/js/ship.j...')
+#3 A:\xampp\htdocs\ecommerce\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 A:\xampp\htdocs\ecommerce\index.php(18): CApplication->run()
+#5 {main}
+REQUEST_URI=/ecommerce/index.php/order/js/ship.js
+HTTP_REFERER=http://localhost/ecommerce/index.php/order/stripeOrders
+---

@@ -401,6 +401,7 @@ class PaymentController extends Controller
 		$order->save(false);
 
 		// echo "Order marked as shipped.";
+		$this->redirect(Yii::app()->request->urlReferrer ?: ['order/index']);
 	}
 
 }

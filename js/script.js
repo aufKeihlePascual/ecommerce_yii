@@ -374,29 +374,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
-function markAsShipped(button) {
-    if (!confirm('Mark this order as shipped?')) return;
-
-    const sessionId = button.getAttribute('data-session-id');
-
-    fetch('index.php/payment/markAsShipped?session_id=' + sessionId, {
-        method: 'POST',
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        }
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Request failed.');
-        return response.text();
-    })
-    .then(result => {
-        button.innerText = 'Shipped';
-        button.disabled = true;
-        button.classList.add('shipped');
-        alert('Order marked as shipped!');
-    })
-    .catch(error => {
-        alert('Something went wrong: ' + error.message);
-    });
-}
