@@ -15,23 +15,6 @@
     </div>
 </section>
 
-<section id="about-craft-section">
-    <div class="about-craft-container">
-        <div class="about-craft-image">
-            <img src="<?php echo Yii::app()->baseUrl; ?>/images/about_us.jpg" alt="Keyboard Crafting">
-        </div>
-        <div class="about-craft-text">
-            <h2>Crafted With Purpose</h2>
-            <p>
-                Every product we design is born from a deep understanding of what keyboard users truly need. From prototyping to final production, attention to detail defines every step of our process.
-            </p>
-            <p>
-                We don’t just assemble keyboards — we bring ideas to life. Whether it's a custom layout, a unique finish, or a specific typing feel, our goal is to create products that resonate with our users.
-            </p>
-        </div>
-    </div>
-</section>
-
 <section id="about-keyboards-section"  style="background-image: url('<?php echo Yii::app()->baseUrl; ?>/images/about_us3.jpg'); background-color: rgba(0,0,0,0.4);">
     <div class="keyboard-showcase">
         <!-- <div class="keyboard-image">
@@ -56,6 +39,23 @@
                     From aluminum cases to PBT keycaps and custom switches, every part is selected for durability and performance. These are tools you'll love for years.
                 </p>
             </div>
+        </div>
+    </div>
+</section>
+
+<section id="about-craft-section">
+    <div class="about-craft-container">
+        <div class="about-craft-image">
+            <img src="<?php echo Yii::app()->baseUrl; ?>/images/about_us.jpg" alt="Keyboard Crafting">
+        </div>
+        <div class="about-craft-text">
+            <h2>Crafted With Purpose</h2>
+            <p>
+                Every product we design is born from a deep understanding of what keyboard users truly need. From prototyping to final production, attention to detail defines every step of our process.
+            </p>
+            <p>
+                We don’t just assemble keyboards — we bring ideas to life. Whether it's a custom layout, a unique finish, or a specific typing feel, our goal is to create products that resonate with our users.
+            </p>
         </div>
     </div>
 </section>
