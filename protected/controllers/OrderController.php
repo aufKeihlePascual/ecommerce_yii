@@ -47,14 +47,17 @@ class OrderController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$order = Order::model()->with('payments', 'orderItems.product')->findByPk($id);
+		$order = Order::model()
+			->with('payments', 'orderItems.product')
+			->findByPk($id);
 
-		if (!$order) {
-			throw new CHttpException(404, 'Order not found.');
+		if (!$order || $order->user_id != Yii::app()->user->id) {
+			throw new CHttpException(404, 'You are not authorized to view this order.');
 		}
 
 		$this->render('view', ['order' => $order]);
 	}
+
 
 	/**
 	 * Creates a new model.

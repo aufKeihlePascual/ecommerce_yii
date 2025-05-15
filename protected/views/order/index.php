@@ -29,7 +29,7 @@ $this->breadcrumbs = array('Orders');
 						<th>Date</th>
 						<th>Status</th>
 						<th>Total</th>
-						<th></th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -1124,7 +1124,7 @@ footer .copyright {
     color: #222;
 }
 
-.status.accepted {
+.status.accepted, .status.paid {
     background-color: #2ecc71;
     color: #222;
 }
