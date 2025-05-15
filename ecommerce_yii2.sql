@@ -1,12 +1,9 @@
-CREATE DATABASE IF NOT EXISTS `ecommerce_yii` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `ecommerce_yii`;
-
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2025 at 12:56 AM
+-- Generation Time: May 15, 2025 at 06:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -67,7 +64,14 @@ INSERT INTO `cart` (`id`, `user_id`, `session_id`, `status`, `created_at`) VALUE
 (24, 1, NULL, '', '2025-05-14 18:04:32'),
 (25, 1, NULL, '', '2025-05-14 20:04:21'),
 (26, 1, NULL, '', '2025-05-14 20:34:37'),
-(27, 1, NULL, 'active', '2025-05-14 22:49:36');
+(27, 1, NULL, '', '2025-05-14 22:49:36'),
+(28, 2, NULL, '', '2025-05-15 02:17:50'),
+(29, 2, NULL, '', '2025-05-15 02:33:51'),
+(30, 2, NULL, '', '2025-05-15 02:58:11'),
+(31, 2, NULL, '', '2025-05-15 03:00:27'),
+(32, 2, NULL, '', '2025-05-15 03:03:32'),
+(33, 2, NULL, '', '2025-05-15 03:08:04'),
+(34, 1, NULL, 'active', '2025-05-15 03:22:19');
 
 -- --------------------------------------------------------
 
@@ -89,7 +93,16 @@ CREATE TABLE `cart_items` (
 INSERT INTO `cart_items` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
 (5, 3, 3, 3),
 (6, 3, 1, 1),
-(25, 6, 33, 1);
+(25, 6, 33, 1),
+(61, 28, 27, 1),
+(62, 28, 28, 1),
+(63, 29, 33, 1),
+(64, 30, 39, 1),
+(65, 31, 32, 1),
+(66, 32, 39, 1),
+(67, 33, 31, 1),
+(68, 27, 27, 1),
+(69, 34, 39, 1);
 
 -- --------------------------------------------------------
 
@@ -141,9 +154,18 @@ INSERT INTO `orders` (`id`, `user_id`, `cart_id`, `total`, `status`, `created_at
 (2, 2, 2, 189.00, 'paid', '2025-04-20 12:32:54', 'shipped', NULL),
 (3, 2, 3, 349.98, 'pending', '2025-04-25 19:34:35', 'pending', NULL),
 (4, 1, 23, 793.81, 'pending', '2025-05-14 23:59:07', 'pending', 'cs_test_b1XucRaqDqqIhtTOZMGTjCCxZJzgQ6ua5xRafDKeba5f9qh58ZkvhbXprq'),
-(5, 1, 24, 32.99, 'pending', '2025-05-15 00:04:35', 'shipped', 'cs_test_a1aUI57zqAA3LiycA3kvgy5awcyL6uUwLbbDRUPR1iwVEbzBLu6wTBZsuh'),
+(5, 1, 24, 32.99, 'paid', '2025-05-15 00:04:35', 'shipped', 'cs_test_a1aUI57zqAA3LiycA3kvgy5awcyL6uUwLbbDRUPR1iwVEbzBLu6wTBZsuh'),
 (6, 1, 25, 32.99, 'pending', '2025-05-15 02:25:30', 'pending', 'cs_test_a15rjbpkoi1J0i7AOfXjjVJBjvPw7KS0QKpveo5KJBMRCYJpq4JaMQ85aw'),
-(7, 1, 26, 29.99, 'pending', '2025-05-15 02:34:43', 'shipped', 'cs_test_a1DqxzjQto1O7SD3noPTbBWW7wCa8Wm5iwVTvodyTjekoGKdYhtwS2clGI');
+(7, 1, 26, 29.99, 'paid', '2025-05-15 02:34:43', 'shipped', 'cs_test_a1DqxzjQto1O7SD3noPTbBWW7wCa8Wm5iwVTvodyTjekoGKdYhtwS2clGI'),
+(8, 2, 28, 29.98, 'pending', '2025-05-15 08:18:00', 'pending', 'cs_test_b1PQQG7039U2Drbg2wwS94fr3Q6V63OgEd0xf7Q5E5Ole1BAvYZTNA6jGz'),
+(10, 2, 29, 31.99, 'pending', '2025-05-15 08:33:54', 'pending', 'cs_test_a1LGC3PE4hjdSexqtBqQNUFV86TtO6IlsQBIFaTJyae7nx3scqgKfINi6q'),
+(14, 2, 32, 557.61, 'paid', '2025-05-15 09:04:06', 'pending', 'cs_test_a12DVxKPnhwRpPoVGYWkuCtMmFDTjZob7ejuV0fg8AbQ0j3B4VdDWUUiSe'),
+(15, 2, 33, 26.99, 'pending', '2025-05-15 09:08:07', 'pending', 'cs_test_a1neHsgIvj8KP80BIg0XU282oVX1FySBFfgpvCIrKnuBtiR7Zpirkv5eJI'),
+(16, 2, 33, 26.99, 'paid', '2025-05-15 09:12:54', 'pending', 'cs_test_a13vrol8BWRFNjCJyiZ1EuwHAwa6tlW0C4fHQRaZL2MsSgiivsYXhWSSgq'),
+(17, 1, 27, 19.98, 'paid', '2025-05-15 09:14:41', 'pending', 'cs_test_a13c7in7uqKGSWi7mMwEOO99EhQmSJ57hUUT1nUlFHNYsn2wl8VNHtLxXC'),
+(18, 1, 34, 557.61, 'pending', '2025-05-15 09:22:22', 'pending', 'cs_test_a1dwQAFZ8i7W7ha0gVGX700qB8i21m7i0YVRjBeIJBqfRPsXXvzKA2x9AA'),
+(19, 1, 34, 557.61, 'paid', '2025-05-15 09:30:44', 'shipped', 'cs_test_a1WgEIPYMerSwSFXCwKUVakx5fd5DsZ2mw6QeLTGuAFo9zqd2qJubwRuoU'),
+(20, 1, 34, 557.61, 'pending', '2025-05-15 10:35:31', 'pending', 'cs_test_a1AdTlQZvUJxuNwVDwes58prwakHzprfAJnewENk7vt4gwfecZGjUaGwok');
 
 -- --------------------------------------------------------
 
@@ -158,6 +180,18 @@ CREATE TABLE `order_items` (
   `quantity` int(11) NOT NULL DEFAULT 1,
   `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`) VALUES
+(5, 14, 39, 1, 557.61),
+(6, 14, 39, 1, 557.61),
+(7, 16, 31, 1, 26.99),
+(8, 16, 31, 1, 26.99),
+(9, 17, 27, 1, 19.99),
+(10, 17, 27, 1, 19.99);
 
 -- --------------------------------------------------------
 
@@ -230,14 +264,14 @@ INSERT INTO `products` (`id`, `brand`, `name`, `description`, `price`, `stock`, 
 (24, 'Glorious', 'Switch Opener', 'Tool to open MX-style switches', 14.99, 60, 4, 'switch_opener.jpg'),
 (25, 'Ducky', 'Keycap Puller', 'Stainless steel keycap puller', 7.99, 100, 4, 'keycap_puller.jpg'),
 (26, 'Akko', 'Switch Lubing Station', 'Tray and tools for lubing switches', 24.99, 38, 4, 'lubing_station.jpg'),
-(27, 'GMK', 'Stabilizer Set', 'PCB screw-in stabilizers', 19.99, 41, 4, 'gmk_stabilizers.jpg'),
-(28, 'KBDfans', 'Switch Films', 'Switch films to reduce wobble', 9.99, 69, 4, 'switch_films.jpg'),
+(27, 'GMK', 'Stabilizer Set', 'PCB screw-in stabilizers', 19.99, 39, 4, 'gmk_stabilizers.jpg'),
+(28, 'KBDfans', 'Switch Films', 'Switch films to reduce wobble', 9.99, 68, 4, 'switch_films.jpg'),
 (29, 'Akko', 'Akko Tokyo Deskmat', 'Deskmat with Tokyo night design', 29.99, 18, 5, 'akko_tokyo.jpg'),
 (30, 'Glorious', 'Stealth Deskmat', 'Minimal black-on-black deskmat', 19.99, 27, 5, 'stealth_deskmat.jpg'),
-(31, 'Divinikey', 'Rainforest Deskmat', 'Green nature-themed deskmat', 26.99, 14, 5, 'rainforest_deskmat.jpg'),
-(32, 'SpaceCables', 'Laser Cable', 'Bright violet and cyan themed cable', 32.99, 11, 6, 'laser_cable.jpg'),
-(33, 'Zap Cables', 'Neon Green A-to-C Cable', 'Turquoise Paracord with Neon Green Techflex', 31.99, 15, 6, 'neongreen_cable.jpg'),
-(39, 'Akko', 'Akko CS Lavender Purple Switch (45 pcs)', '3 pin and fits keycaps with standard MX structure;', 557.61, 50, 3, 'akko_cs_lavender.jpg');
+(31, 'Divinikey', 'Rainforest Deskmat', 'Green nature-themed deskmat', 26.99, 13, 5, 'rainforest_deskmat.jpg'),
+(32, 'SpaceCables', 'Laser Cable', 'Bright violet and cyan themed cable', 32.99, 10, 6, 'laser_cable.jpg'),
+(33, 'Zap Cables', 'Neon Green A-to-C Cable', 'Turquoise Paracord with Neon Green Techflex', 31.99, 14, 6, 'neongreen_cable.jpg'),
+(39, 'Akko', 'Akko CS Lavender Purple Switch (45 pcs)', '3 pin and fits keycaps with standard MX structure;', 557.61, 47, 3, 'akko_cs_lavender.jpg');
 
 -- --------------------------------------------------------
 
@@ -394,13 +428,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -412,13 +446,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `payments`
