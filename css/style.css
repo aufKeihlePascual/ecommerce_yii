@@ -2316,6 +2316,19 @@ tfoot tr td span {
     margin-bottom: 15px;
 }
 
+td .ship-btn {
+	font-size: 15px;
+	font-weight: 600;
+	padding: 5px 16px;
+	color: #fff;
+	background-color: #0e5508;
+	border-radius: 5px;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	transition: 0.2s;
+    margin-top: 10px;
+}
 
 /*----------------- MEDIA RESPONSIVENESS -----------------*/
 

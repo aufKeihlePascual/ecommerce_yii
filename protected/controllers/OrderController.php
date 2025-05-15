@@ -259,9 +259,19 @@ class OrderController extends Controller
 
 	public function actionUserView()
 	{
-		$orders = Order::model()->findAll();
+		if (Yii::app()->user->isGuest) {
+			$this->redirect(Yii::app()->user->loginUrl);
+		}	
 
-		$dataProvider=new CActiveDataProvider('Order');
+		$orders = Order::model()->findAll([
+			'condition' => 'user_id = :uid',
+			'params' => [':uid' => Yii::app()->user->id],
+			'order' => 'created_at DESC',
+		]);
+
+		$dataProvider = new CArrayDataProvider($orders, [
+			'pagination' => ['pageSize' => 10],
+		]);
 
 		$this->render('index', array(
 			'dataProvider' => $dataProvider,

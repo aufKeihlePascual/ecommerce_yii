@@ -27,7 +27,8 @@ $this->breadcrumbs = array('Orders');
 						<th>Order ID</th>
 						<th>Items</th>
 						<th>Date</th>
-						<th>Status</th>
+						<th>Payment Status</th>
+						<th>Dispatch Status</th>
 						<th>Total</th>
 						<th>Action</th>
 					</tr>
@@ -39,6 +40,11 @@ $this->breadcrumbs = array('Orders');
 							<td><?php echo $data->itemCount; ?></td>
 							<td><?php echo date('F j, Y g:i A', strtotime($data->created_at)); ?></td>
 							<td><span class="status <?php echo strtolower($data->status); ?>"><?php echo ucfirst($data->status); ?></span></td>
+							 <td>
+								<span class="status <?php echo strtolower(trim($data->dispatch_status)); ?>">
+									<?php echo ucfirst(trim($data->dispatch_status)); ?>
+								</span>
+							</td>
 							<td>₱ <strong><?php echo number_format($data->total, 2); ?></strong></td>
 							<!-- <td>
 								<?php //echo CHtml::link('View', array('order/view', 'id' => $data->id), array('class' => 'view-btn')); ?>
