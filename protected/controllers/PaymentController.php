@@ -16,7 +16,7 @@ class PaymentController extends Controller
 	{
 		return array(
 			array('allow',
-                'actions' => array('createSession', 'checkout', 'success', 'cancel', 'syncStripeTransactions', 'markAsShipped'),
+                'actions' => array('createSession', 'checkout', 'success', 'cancel', 'syncStripeTransactions', 'markAsShipped', 'viewStripeReceipt'),
                 'users' => array('*')),
             array('deny',
                 'users' => array('*')),
@@ -404,4 +404,27 @@ class PaymentController extends Controller
 		$this->redirect(Yii::app()->request->urlReferrer ?: ['order/index']);
 	}
 
+	public function actionViewStripeReceipt($session_id)
+	{
+		Yii::import('application.vendors.stripe.init');
+		\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+
+		try {
+			$session = \Stripe\Checkout\Session::retrieve($session_id);
+			$paymentIntent = \Stripe\PaymentIntent::retrieve($session->payment_intent);
+			$charge = \Stripe\Charge::retrieve($paymentIntent->latest_charge);
+
+			$receiptUrl = $charge->receipt_url;
+
+			if ($receiptUrl) {
+				$this->redirect($receiptUrl);
+			} else {
+				throw new Exception("Receipt URL not available.");
+			}
+
+		} catch (Exception $e) {
+			Yii::log("Failed to retrieve Stripe receipt: " . $e->getMessage(), CLogger::LEVEL_ERROR);
+			throw new CHttpException(500, 'Could not fetch receipt from Stripe.');
+		}
+	}
 }

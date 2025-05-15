@@ -25,7 +25,7 @@ $this->breadcrumbs = array('Orders');
 				<thead>
 					<tr>
 						<th>Order ID</th>
-						<th>Items</th>
+						<!-- <th>Items</th> -->
 						<th>Date</th>
 						<th>Payment Status</th>
 						<th>Dispatch Status</th>
@@ -37,7 +37,7 @@ $this->breadcrumbs = array('Orders');
 					<?php foreach ($dataProvider->getData() as $data): ?>
 						<tr>
 							<td><?php echo $data->id; ?></td>
-							<td><?php echo $data->itemCount; ?></td>
+							<!-- <td><?php //echo $data->itemCount; ?></td> -->
 							<td><?php echo date('F j, Y g:i A', strtotime($data->created_at)); ?></td>
 							<td><span class="status <?php echo strtolower($data->status); ?>"><?php echo ucfirst($data->status); ?></span></td>
 							 <td>
@@ -51,16 +51,16 @@ $this->breadcrumbs = array('Orders');
 							</td> -->
 
 							<td>
-								<?php echo CHtml::link('View', array('order/view', 'id' => $data->id), array('class' => 'view-btn')); ?>
-								<?php if (!empty($data->payments) && !empty($data->payments[0]->stripe_intent_id)): ?>
-									<br>
-									<?php echo CHtml::link('Stripe Status', array('payment/stripePaymentStatus', 'orderId' => $data->id), array(
-										'class' => 'stripe-btn',
-										'target' => '_blank'
-									)); ?>
-								<?php endif; ?>
+								<?php if (!empty($data->stripe_session_id)): ?>
+								<?php echo CHtml::link('View', array(
+									'payment/viewStripeReceipt',
+									'session_id' => $data->stripe_session_id
+								), array(
+									'class' => 'view-btn',
+									'target' => '_blank'
+								)); ?>
+							<?php endif; ?>
 							</td>
-
 						</tr>
 					<?php endforeach; ?>
 				</tbody>
